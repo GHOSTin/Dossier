@@ -24,13 +24,13 @@ Template.mainLayout.rendered = function(){
                 $('#page-wrapper').css("min-height", $(window).height()  + "px");
             }
 
-            if ($('body').hasClass('fixed-nav')) {
+            /*if ($('body').hasClass('fixed-nav')) {
                 if (navbarHeight > wrapperHeight) {
                     $('#page-wrapper').css("min-height", navbarHeight  + "px");
                 } else {
                     $('#page-wrapper').css("min-height", $(window).height() - 60 + "px");
                 }
-            }
+            }*/
         }
     });
 
