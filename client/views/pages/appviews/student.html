@@ -1,0 +1,411 @@
+<template name="student">
+
+    <!-- Page heading -->
+    {{> pageHeading title='Создание/Редактирование студента (абитуриента)' category='' }}
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="wrapper wrapper-content">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                <div class="m-b-md">
+                                    <h2>Анкета поступающего(абитуриента)</h2>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Индивидуальный номер:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="ind" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <h2>Общие сведения</h2>
+                            </div>
+                            <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Фамилия:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="firstname" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Имя:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="lastname" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Отчество:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="middlename" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Дата рождения:</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="text" id="birthday" class="form-control">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Пол:</label>
+                                    <div class="col-sm-9">
+                                        <div class="i-checks radio-inline"><label> <input type="radio" value="male" name="sex"> <i></i> Мужской </label></div>
+                                        <div class="i-checks radio-inline"><label> <input type="radio" value="female" name="sex"> <i></i> Женский </label></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Домашний телефон:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="phone" class="form-control" data-mask="(999) 999-9999">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Сотовый телефон:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="mobile" class="form-control" data-mask="+7 9999999999">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Электронная почта:</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" id="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-sm">
+                            <div class="col-lg-12">
+                                <div class="panel blank-panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-options">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab-1" data-toggle="tab">Образование</a></li>
+                                                <li class=""><a href="#tab-2" data-toggle="tab">Паспортные данные</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab-1">
+                                                <h3 class="m-b">Образовательная организация</h3>
+                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Полное наименование:</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="schoolName" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Номер:</label>
+                                                        <div class="col-sm-2">
+                                                            <input type="number" id="schoolNumber" class="form-control">
+                                                        </div>
+                                                        <label class="col-sm-1 control-label">Город:</label><div class="col-sm-6">
+                                                        <input type="text" id="schoolCity" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed"></div>
+                                                <h3 class="m-b">Документ об образовании</h3>
+                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Тип документа:</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="diploma" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Серия:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" id="diplomaCode" class="form-control">
+                                                        </div>
+                                                        <label class="col-sm-1 control-label">Номер:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" id="diplomaNumber" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Год окончания:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" data-mask="9999" id="schoolYearEnd" class="form-control">
+                                                        </div>
+                                                        <label class="col-sm-1 control-label">Дата выдачи:</label>
+                                                        <div class="col-sm-4">
+                                                            <div class="input-group">
+                                                                <input type="text" data-mask="99.99.9999" id="diplomaDate" class="form-control">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hr-line-dashed"></div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Кол-во "3":</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="number" id="diplomaCounts3" class="form-control">
+                                                        </div>
+                                                        <label class="col-sm-3 control-label">Кол-во "4":</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="number" id="diplomaCounts4" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Кол-во "5":</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="number" id="diplomaCounts5" class="form-control">
+                                                        </div>
+                                                        <label class="col-sm-3 control-label">Средний балл:</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="text" id="diplomaAvr" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="hr-line-dashed"></div>
+                                                <h3 class="m-b">Дополнительные данные</h3>
+                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label">Иностранный язык (какой):</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="text" id="otherLangName" class="form-control">
+                                                        </div>
+                                                        <label class="col-sm-4 control-label">Иностранный язык (оценка):</label>
+                                                        <div class="col-sm-2">
+                                                            <input type="text" id="otherLangPoints" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Физическая культура (оценка):</label>
+                                                        <div class="col-sm-2">
+                                                            <input type="text" id="physicalPoints" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="tab-2">
+
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Status</th>
+                                                        <th>Title</th>
+                                                        <th>Start Time</th>
+                                                        <th>End Time</th>
+                                                        <th>Comments</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
+                                                        </td>
+                                                        <td>
+                                                            Create project in webapp
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
+                                                        </td>
+                                                        <td>
+                                                            Various versions
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+                                                        </td>
+                                                        <td>
+                                                            There are many variations
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
+                                                        </td>
+                                                        <td>
+                                                            Latin words
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                Latin words, combined with a handful of model sentence structures
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Accepted</span>
+                                                        </td>
+                                                        <td>
+                                                            The generated Lorem
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+                                                        </td>
+                                                        <td>
+                                                            The first line
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Reported</span>
+                                                        </td>
+                                                        <td>
+                                                            The standard chunk
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Completed</span>
+                                                        </td>
+                                                        <td>
+                                                            Lorem Ipsum is that
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable.
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="label label-primary"><i class="fa fa-check"></i> Sent</span>
+                                                        </td>
+                                                        <td>
+                                                            Contrary to popular
+                                                        </td>
+                                                        <td>
+                                                            12.07.2014 10:10:1
+                                                        </td>
+                                                        <td>
+                                                            14.07.2014 10:16:36
+                                                        </td>
+                                                        <td>
+                                                            <p class="small">
+                                                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                                                            </p>
+                                                        </td>
+
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="wrapper wrapper-content project-manager">
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+.onoffswitch-inner:before {
+    text-align: left;
+}

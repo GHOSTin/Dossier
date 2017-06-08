@@ -10,6 +10,27 @@ FlowRouter.route('/users', {
     }
 });
 
+FlowRouter.route('/students', {
+    action() {
+        BlazeLayout.render("mainLayout", {content: "students"})
+    }
+});
+
+FlowRouter.route('/student', {
+    action() {
+        BlazeLayout.render("mainLayout", {content: "student"})
+    }
+});
+
+FlowRouter.route('/student/:id', {
+    subscriptions(params){
+        this.register('student', Meteor.subscribe('students', params.id))
+    },
+    action() {
+        BlazeLayout.render("mainLayout", {content: "student"})
+    }
+});
+
 //
 // Layouts route
 //

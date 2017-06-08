@@ -1,0 +1,62 @@
+<template name="userModal">
+    <div class="modal inmodal fade" id="userModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div class="pull-right">
+                        <div class="switch">
+                            <h5>Статус</h5>
+                            <div class="onoffswitch">
+                                <input type="checkbox" {{isChecked user.profile.status "active"}} class="onoffswitch-checkbox" id="status">
+                                <label class="onoffswitch-label" for="status">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="modal-title">Добавление/Редактирование пользователя</h1>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group label-floating {{#if _isEqual user.profile.name ""}}is-empty{{/if}}">
+                        <label for="name" class="control-label">ФИО</label>
+                        <input type="text" class="form-control" id="name" value="{{user.profile.name}}">
+                    </div>
+                    <div class="form-group label-floating {{#if _isEqual user.email ""}}is-empty{{/if}}">
+                        <label for="email" class="control-label">Email</label>
+                        <input type="text" class="form-control" id="email" value="{{user.email}}">
+                    </div>
+                    <div class="form-group label-floating {{#if _isEqual user.username ""}}is-empty{{/if}}">
+                        <label for="username" class="control-label">Логин</label>
+                        <input type="text" class="form-control" id="username" value="{{user.username}}">
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                        <label for="password" class="control-label">Пароль</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                        <label for="password2" class="control-label">Повтор пароля</label>
+                        <input type="password" class="form-control" id="password2">
+                    </div>
+                    <div class="form-group {{#if _isEmpty user.roles}}is-empty{{/if}}">
+                        <label for="role">Роль</label>
+                        <select id="role" class="form-control input pmd-select2" style="width: 100%;">
+                            <option></option>
+                            {{#each role in roles}}
+                                <option value="{{role.name}}" selected="{{#if _contains user.roles role.name}}selected{{/if}}">{{role.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save">Сохранить</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

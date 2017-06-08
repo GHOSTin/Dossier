@@ -1,12 +1,12 @@
-Template.userModal.onRendered(()=>{
-    $('#role').select2({
+Template.userModal.rendered = function(){
+    /*$('#role').select2({
         dropdownParent: $('#userModal'),
         theme: "bootstrap"
-    })
-});
+    });*/
+};
 
 Template.userModal.helpers({
-    user: function() {
+    user() {
         let userId = Session.get('selectedUser');
 
         if (typeof userId !== "undefined") {
@@ -15,6 +15,9 @@ Template.userModal.helpers({
             return {username:'', profile:{name: ''}, roles: []}
         }
     },
+    roles() {
+        return Roles.getAllRoles();
+    }
 });
 
 Template.userModal.events({

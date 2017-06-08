@@ -1,15 +1,15 @@
-<template name="users">
+<template name="students">
 
     <!-- Page heading -->
-    {{> pageHeading title='Список пользователей' category='' }}
+    {{> pageHeading title='Список студентов/абитуриентов' category='' }}
 
     <div class="wrapper wrapper-content">
 
         <div class="ibox">
             <div class="ibox-title">
-                <h5>Список пользователей</h5>
+                <h5>Список студентов/абитуриентов</h5>
                 <div class="ibox-tools">
-                    <a href="" class="btn btn-primary btn-xs" id="add">Добавить</a>
+                    <a href="/student" class="btn btn-primary btn-xs" id="add">Добавить</a>
                 </div>
             </div>
             <div class="ibox-content">
@@ -28,7 +28,7 @@
 
                     <table class="table table-hover">
                         <tbody>
-                        {{#each users}}
+                        {{#each students}}
                             <tr>
                                 <td class="project-status">
                                     {{#if _isEqual profile.status "active" }}
@@ -38,7 +38,7 @@
                                     {{/if}}
                                 </td>
                                 <td class="project-title">
-                                    <a href="#">{{profile.name}}</a>
+                                    <a href="#">{{name}}</a>
                                 </td>
                                 <td class="project-completion">
                                     {{profession}}

@@ -30,3 +30,8 @@ kadira:flow-router
 ian:accounts-ui-bootstrap-3
 accounts-password
 alanning:roles
+check
+peppelg:bootstrap-3-modal
+session
+raix:handlebar-helpers
+pmteor:underscore-helpers

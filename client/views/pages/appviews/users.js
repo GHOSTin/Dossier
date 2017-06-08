@@ -1,5 +1,14 @@
+ModalHelper = {};
+
+ModalHelper.openModalFor = function(userId) {
+    if(Meteor.isClient) {
+        Session.set('selectedUser', userId);
+        Modal.show('userModal');
+    }
+};
+
 Template.users.onCreated(function() {
-    var self = this;
+    let self = this;
     self.searchQuery = new ReactiveVar();
     self.searching = new ReactiveVar(false);
     self.autorun(() => {
@@ -18,6 +27,16 @@ Template.users.helpers({
 });
 
 Template.users.events({
+    'click #add': function(e, template){
+        e.preventDefault();
+        ModalHelper.openModalFor(null);
+    },
+    'click .edit': function (e) {
+        e.preventDefault();
+        let user = $(e.target).closest('.edit'),
+            userId = user.attr('data-user-id');
+        ModalHelper.openModalFor(userId);
+    },
     'keyup #userName': function(e, template) {
         let value = $('#userName').val().trim();
 
