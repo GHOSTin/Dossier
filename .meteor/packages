@@ -35,3 +35,5 @@ peppelg:bootstrap-3-modal
 session
 raix:handlebar-helpers
 pmteor:underscore-helpers
+themeteorchef:jquery-validation
+themeteorchef:bert

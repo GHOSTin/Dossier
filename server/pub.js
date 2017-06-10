@@ -18,12 +18,22 @@ Meteor.publish('students', function( search ){
     check(search, Match.OneOf(String, null, undefined));
 
     let query = {},
-        projection = {sort: {"name": 1}};
+        projection = {sort: {"ind": 1}};
 
     if (search) {
         let regex = new RegExp(search, 'i');
 
-        query = {"name": regex};
+        query = {"firstname": regex};
     }
     return Students.find(query, projection);
 });
+
+Meteor.publish('student', function( id ){
+    check(id, Match.OneOf(String, null, undefined));
+    let query = {},
+        projection = {sort: {"ind": 1}};
+    if(id) {
+        query = {_id: id}
+    }
+    return Students.find(query, projection);
+})

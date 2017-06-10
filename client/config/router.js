@@ -18,7 +18,7 @@ FlowRouter.route('/students', {
 
 FlowRouter.route('/student', {
     action() {
-        BlazeLayout.render("mainLayout", {content: "student"})
+        BlazeLayout.render("mainLayout", {content: "Student"})
     }
 });
 
@@ -27,7 +27,7 @@ FlowRouter.route('/student/:id', {
         this.register('student', Meteor.subscribe('students', params.id))
     },
     action() {
-        BlazeLayout.render("mainLayout", {content: "student"})
+        BlazeLayout.render("mainLayout", {content: "Student"})
     }
 });
 

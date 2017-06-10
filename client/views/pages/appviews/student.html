@@ -1,915 +1,926 @@
-<template name="student">
+<template name="Student">
 
     <!-- Page heading -->
     {{> pageHeading title='Создание/Редактирование студента (абитуриента)' category='' }}
-
+    {{#with student}}
     <div class="row">
         <div class="col-lg-9">
             <div class="wrapper wrapper-content">
                 <div class="ibox">
                     <div class="ibox-content">
-                        <div class="row">
-                            <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                <div class="m-b-md">
-                                    <h2>Карточка студента/абитуриента</h2>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Индивидуальный номер:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="ind" class="form-control">
+                        <form id="form">
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                    <div class="m-b-md">
+                                        <h2>Карточка студента/абитуриента</h2>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-10 col-lg-offset-1">
-                                <h2>Общие сведения</h2>
-                            </div>
-                            <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Фамилия:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="firstname" class="form-control">
+                                    <div class="form-group required">
+                                        <label class="col-sm-3 control-label">Индивидуальный номер:</label>
+                                        <div class="col-sm-9">
+                                            <input name="ind" type="text" id="ind" class="form-control" value="{{ind}}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Имя:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="lastname" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Отчество:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="middlename" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Дата рождения:</label>
-                                    <div class="col-sm-9">
-                                        <div class="input-group">
-                                            <input type="text" id="birthday" class="form-control">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Статус:</label>
+                                        <div class="col-sm-9">
+                                            <select id="role" name="role" class="form-control">
+                                                <option value="abiturient">Абитуриент</option>
+                                                <option value="student">Студент</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Пол:</label>
-                                    <div class="col-sm-9">
-                                        <div class="i-checks radio-inline"><label> <input type="radio" value="male" name="sex"> <i></i> Мужской </label></div>
-                                        <div class="i-checks radio-inline"><label> <input type="radio" value="female" name="sex"> <i></i> Женский </label></div>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1">
+                                    <h2>Общие сведения</h2>
                                 </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Домашний телефон:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="phone" class="form-control" data-mask="(999) 999-9999">
+                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                    <div class="form-group required">
+                                        <label class="col-sm-3 control-label">Фамилия:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="lastname" class="form-control" name="lastname" value="{{lastname}}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Сотовый телефон:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="mobile" class="form-control" data-mask="+7 9999999999">
+                                    <div class="form-group required">
+                                        <label class="col-sm-3 control-label">Имя:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="firstname" class="form-control" name="firstname" value="{{firstname}}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Электронная почта:</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" id="email" class="form-control">
+                                    <div class="form-group required">
+                                        <label class="col-sm-3 control-label">Отчество:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="middlename" class="form-control" name="middlename" value="{{middlename}}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group required">
+                                        <label class="col-sm-3 control-label">Дата рождения:</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group date">
+                                                <input type="text" id="birthday" class="form-control" name="birthday" value="{{birthday}}">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="col-sm-3 control-label">Пол:</label>
+                                        <div class="col-sm-9">
+                                            <div class="i-checks radio-inline"><label> <input type="radio" value="male" name="gender" {{isChecked gender "male"}}> <i></i> Мужской </label></div>
+                                            <div class="i-checks radio-inline"><label> <input type="radio" value="female" name="gender" {{isChecked gender "female"}}> <i></i> Женский </label></div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Домашний телефон:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="phone" name="phone" class="form-control" data-mask="(999) 999-9999" value="{{phone}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Сотовый телефон:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="mobile" name="mobile" class="form-control" data-mask="+7 9999999999" value="{{mobile}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Электронная почта:</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" id="email" name="email" class="form-control" value="{{email}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row m-t-sm">
-                            <div class="col-lg-12">
-                                <div class="panel blank-panel">
-                                    <div class="panel-heading">
-                                        <div class="panel-options">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab">Образование</a></li>
-                                                <li class=""><a href="#tab-2" data-toggle="tab">Паспортные данные</a></li>
-                                                <li class=""><a href="#tab-3" data-toggle="tab">Прочие документы</a></li>
-                                                <li class=""><a href="#tab-4" data-toggle="tab">Информация о родителях/семье</a></li>
-                                                <li class=""><a href="#tab-5" data-toggle="tab">Доп информация</a></li>
-                                                <li class=""><a href="#tab-6" data-toggle="tab">Успеваемость</a></li>
-                                            </ul>
+                            <div class="row m-t-sm">
+                                <div class="col-lg-12">
+                                    <div class="panel blank-panel">
+                                        <div class="panel-heading">
+                                            <div class="panel-options">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tab-1" data-toggle="tab">Образование</a></li>
+                                                    <li class=""><a href="#tab-2" data-toggle="tab">Паспортные данные</a></li>
+                                                    <li class=""><a href="#tab-3" data-toggle="tab">Прочие документы</a></li>
+                                                    <li class=""><a href="#tab-4" data-toggle="tab">Информация о родителях/семье</a></li>
+                                                    <li class=""><a href="#tab-5" data-toggle="tab">Доп информация</a></li>
+                                                    <li class=""><a href="#tab-6" data-toggle="tab">Успеваемость</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab-1">
-                                                <div class="row">
-                                                    <h3 class="m-b col-lg-12">Образовательная организация</h3>
-                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Полное наименование:</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" id="schoolName" class="form-control">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab-1">
+                                                    <div class="row">
+                                                        <h3 class="m-b col-lg-12">Образовательная организация</h3>
+                                                        <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Полное наименование:</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" id="schoolName" name="school[name]" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Номер:</label>
+                                                                <div class="col-sm-2">
+                                                                    <input type="number" id="schoolNumber" name="school[number]" class="form-control">
+                                                                </div>
+                                                                <label class="col-sm-1 control-label">Город:</label><div class="col-sm-6">
+                                                                <input type="text" id="schoolCity" name="school[city]" class="form-control">
+                                                            </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Номер:</label>
-                                                            <div class="col-sm-2">
-                                                                <input type="number" id="schoolNumber" class="form-control">
+                                                        <div class="hr-line-dashed col-lg-12"></div>
+                                                        <h3 class="m-b col-lg-12">Документ об образовании</h3>
+                                                        <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Тип документа:</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" id="diploma" name="diploma[type]" class="form-control">
+                                                                </div>
                                                             </div>
-                                                            <label class="col-sm-1 control-label">Город:</label><div class="col-sm-6">
-                                                            <input type="text" id="schoolCity" class="form-control">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Серия:</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" id="diplomaCode" name="diploma[code]" class="form-control">
+                                                                </div>
+                                                                <label class="col-sm-1 control-label">Номер:</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" id="diplomaNumber" name="diploma[number]" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Год окончания:</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" data-mask="9999" id="schoolYearEnd" name="school[year]" class="form-control">
+                                                                </div>
+                                                                <label class="col-sm-1 control-label">Дата выдачи:</label>
+                                                                <div class="col-sm-4">
+                                                                    <div class="input-group date">
+                                                                        <input type="text" data-mask="99.99.9999" id="diplomaDate" name="diploma[date]" class="form-control">
+                                                                        <span class="input-group-addon date">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hr-line-dashed col-lg-12"></div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Кол-во "3":</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="number" id="diplomaCounts3" name="diploma[counts][3]" class="form-control">
+                                                                </div>
+                                                                <label class="col-sm-3 control-label">Кол-во "4":</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="number" id="diplomaCounts4" name="diploma[counts][4]" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Кол-во "5":</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="number" id="diplomaCounts5" name="diploma[counts][5]" class="form-control">
+                                                                </div>
+                                                                <label class="col-sm-3 control-label">Средний балл:</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" id="diplomaAvr" name="diploma[avr]" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hr-line-dashed col-lg-12"></div>
+                                                        <h3 class="m-b col-lg-12">Дополнительные данные</h3>
+                                                        <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-3 control-label">Иностранный язык (какой):</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" id="otherLangName" name="otherLangName" class="form-control">
+                                                                </div>
+                                                                <label class="col-sm-4 control-label">Иностранный язык (оценка):</label>
+                                                                <div class="col-sm-2">
+                                                                    <input type="text" id="otherLangPoints" name="otherLangPoints" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-4 control-label">Физическая культура (оценка):</label>
+                                                                <div class="col-sm-2">
+                                                                    <input type="text" id="physicalPoints" name="physicalPoints" class="form-control">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="hr-line-dashed col-lg-12"></div>
-                                                    <h3 class="m-b col-lg-12">Документ об образовании</h3>
+                                                </div>
+                                                <div class="tab-pane" id="tab-2">
+                                                    <h3 class="m-b col-lg-12">Паспортные данные</h3>
                                                     <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Тип документа:</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" id="diploma" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group required">
                                                             <label class="col-sm-3 control-label">Серия:</label>
-                                                            <div class="col-sm-4">
-                                                                <input type="text" id="diplomaCode" class="form-control">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" data-mask="9999" id="passportCode" name="passport[code]" class="form-control">
                                                             </div>
-                                                            <label class="col-sm-1 control-label">Номер:</label>
+                                                            <label class="col-sm-2 control-label">Номер:</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" id="diplomaNumber" class="form-control">
+                                                                <input type="text" id="passportNumber" name="passport[number]" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Год окончания:</label>
-                                                            <div class="col-sm-4">
-                                                                <input type="text" data-mask="9999" id="schoolYearEnd" class="form-control">
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-3 control-label">Кем выдан:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="passportDepartment" name="passport[department]" class="form-control">
                                                             </div>
-                                                            <label class="col-sm-1 control-label">Дата выдачи:</label>
-                                                            <div class="col-sm-4">
-                                                                <div class="input-group">
-                                                                    <input type="text" data-mask="99.99.9999" id="diplomaDate" class="form-control">
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <label class="col-sm-3 control-label">Когда выдан:</label>
+                                                            <div class="col-sm-3">
+                                                                <div class="input-group date">
+                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="passport[date]" class="form-control">
                                                                     <span class="input-group-addon">
                                                                         <i class="fa fa-calendar"></i>
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="hr-line-dashed col-lg-12"></div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Кол-во "3":</label>
+                                                            <label class="col-sm-3 control-label">Код подразделения:</label>
                                                             <div class="col-sm-3">
-                                                                <input type="number" id="diplomaCounts3" class="form-control">
-                                                            </div>
-                                                            <label class="col-sm-3 control-label">Кол-во "4":</label>
-                                                            <div class="col-sm-3">
-                                                                <input type="number" id="diplomaCounts4" class="form-control">
+                                                                <input type="text" id="passportDepartmentCode" name="passport[departmentCode]" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Кол-во "5":</label>
-                                                            <div class="col-sm-3">
-                                                                <input type="number" id="diplomaCounts5" class="form-control">
-                                                            </div>
-                                                            <label class="col-sm-3 control-label">Средний балл:</label>
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="diplomaAvr" class="form-control">
+                                                            <label class="col-sm-3 control-label">Место рождения:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="hr-line-dashed col-lg-12"></div>
-                                                    <h3 class="m-b col-lg-12">Дополнительные данные</h3>
+                                                    <h3 class="m-b col-lg-12">Адрес регистрации</h3>
                                                     <div class="col-lg-10 col-lg-offset-1 form-horizontal">
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Иностранный язык (какой):</label>
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="otherLangName" class="form-control">
-                                                            </div>
-                                                            <label class="col-sm-4 control-label">Иностранный язык (оценка):</label>
-                                                            <div class="col-sm-2">
-                                                                <input type="text" id="otherLangPoints" class="form-control">
+                                                            <label class="col-sm-3 control-label">Зарегистрирован:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="addressRegistration" name="address[registration][name]" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Физическая культура (оценка):</label>
-                                                            <div class="col-sm-2">
-                                                                <input type="text" id="physicalPoints" class="form-control">
+                                                            <label class="col-sm-3 control-label">Регион:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="addressRegistrationRegion" name="address[registration][region]" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Населенный пункт:</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" id="addressRegistrationCity" name="address[registration][city]" class="form-control">
+                                                            </div>
+                                                            <label class="col-sm-1 control-label">Район:</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" id="addressRegistrationArea" name="address[registration][area]" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Улица, дом, квартира:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="addressRegistrationSHF" name="address[registration][shf]" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h3 class="m-b col-lg-12">
+                                                        Фактический адрес
+                                                        <small class="pull-right">
+                                                            <div class="i-checks checkbox-inline">
+                                                                <label>
+                                                                    <input type="checkbox" name="factAsRegistration" value="true">
+                                                                    <i></i> Совпадает с адресом регистрации
+                                                                </label>
+                                                            </div>
+                                                        </small>
+                                                    </h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Регион:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="addressFactRegion" name="address[fact][region]" data-link="addressRegistrationRegion" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Населенный пункт:</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" id="addressFactCity" name="address[fact][city]" data-link="addressRegistrationCity" class="form-control">
+                                                            </div>
+                                                            <label class="col-sm-1 control-label">Район:</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" id="addressFactArea" name="address[fact][area]" data-link="addressRegistrationArea" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Улица, дом, квартира:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="addressFactSHF" name="address[fact][shf]" data-link="addressRegistrationSHF" class="form-control">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab-2">
-                                                <h3 class="m-b col-lg-12">Паспортные данные</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Серия:</label>
-                                                        <div class="col-sm-3">
-                                                            <input type="text" data-mask="9999" id="passportCode" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-2 control-label">Номер:</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" id="passportNumber" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Кем выдан:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="passportDepartment" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Когда выдан:</label>
-                                                        <div class="col-sm-3">
-                                                            <div class="input-group">
-                                                                <input type="text" data-mask="99.99.9999" id="passportDate" class="form-control">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </span>
+                                                <div class="tab-pane" id="tab-3">
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Медицинский полис:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="medicalPolicy" name="medicalPolicy" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <label class="col-sm-3 control-label">Код подразделения:</label>
-                                                        <div class="col-sm-3">
-                                                            <input type="text" id="passportDepartmentCode" class="form-control">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">ИНН:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="TIN" name="TIN" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">СНИЛС:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="SNILS" name="SNILS" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Место рождения:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="placeOfBirth" class="form-control">
+                                                    <div class="hr-line-dashed col-lg-12"></div>
+                                                    <h3 class="m-b col-lg-12">Военный билет или приписное свидетельство</h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Номер:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="armyNumber" name="army[number]" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Кем выдан (о):</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="armyDepartment" name="army[department]" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Когда выдан (о):</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="armyDate" name="army[date]" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Категория годности:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" id="armyCategory" name="army[category]" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h3 class="m-b col-lg-12">Адрес регистрации</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Зарегистрирован:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="addressRegistration" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Регион:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="addressRegistrationRegion" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Населенный пункт:</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" id="addressRegistrationCity" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-1 control-label">Район:</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" id="addressRegistrationArea" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Улица, дом, квартира:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="addressRegistrationSHF" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <h3 class="m-b col-lg-12">
-                                                    Фактический адрес
-                                                    <small class="pull-right">
-                                                        <div class="i-checks checkbox-inline">
-                                                            <label>
-                                                                <input type="checkbox" name="">
-                                                                <i></i> Совпадает с адресом регистрации
-                                                            </label>
-                                                        </div>
-                                                    </small>
-                                                </h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Регион:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="addressFactRegion" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Населенный пункт:</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" id="addressFactCity" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-1 control-label">Район:</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" id="addressFactArea" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Улица, дом, квартира:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="addressFactSHF" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab-3">
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Медицинский полис:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="medicalPolicy" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">ИНН:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="TIN" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">СНИЛС:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="SNILS" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h3 class="m-b col-lg-12">Военный билет или приписное свидетельство</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Номер:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="armyNumber" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Кем выдан (о):</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="armyDepartment" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Когда выдан (о):</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="armyDate" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Категория годности:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" id="armyCategory" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h3 class="m-b col-lg-12">
-                                                    <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
-                                                    Документы подтверждающие социальный статус
-                                                </h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                    <div class="hr-line-dashed col-lg-12"></div>
+                                                    <h3 class="m-b col-lg-12">
+                                                        <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
+                                                        Документы подтверждающие социальный статус
+                                                    </h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
 
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Наименование:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control socialDocName">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Наименование:</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control socialDocName" name="socialDoc[0][name]">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Кем выдан (о):</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control socialDocDepartment">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Кем выдан (о):</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control socialDocDepartment" name="socialDoc[0][department]">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Когда выдан (о):</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control socialDocDate">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Когда выдан (о):</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control socialDocDate"  name="socialDoc[0][date]">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab-4">
-                                                <h3 class="m-b col-lg-12">Родитель 1</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Степень родства:</label>
-                                                            <select id="parentRole" class="form-control">
-                                                                <option></option>
-                                                                <option value="mother">Мать</option>
-                                                                <option value="father">Отец</option>
-                                                                <option value="guardian">Опекун</option>
-                                                                <option value="guardian">Законный представитель</option>
-                                                            </select>
+                                                <div class="tab-pane" id="tab-4">
+                                                    <h3 class="m-b col-lg-12">Родитель 1</h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Степень родства:</label>
+                                                                <select id="parentRole" name="parent[0][role]" class="form-control">
+                                                                    <option></option>
+                                                                    <option value="mother">Мать</option>
+                                                                    <option value="father">Отец</option>
+                                                                    <option value="guardian">Опекун</option>
+                                                                    <option value="guardian">Законный представитель</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Фамилия:</label>
-                                                            <input type="text" id="parentFirstName" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Фамилия:</label>
+                                                                <input type="text" id="parentFirstName" name="parent[0][firstname]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Имя:</label>
+                                                                <input type="text" id="parentLastName" name="parent[0][lastname]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Отчество:</label>
+                                                                <input type="text" id="parentMiddleName" name="parent[0][middlename]" class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Имя:</label>
-                                                            <input type="text" id="parentLastName" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Место работы:</label>
+                                                                <input type="text" id="parentWork" name="parent[0][work]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Должность:</label>
+                                                                <input type="text" id="parentPosition" name="parent[0][position]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" data-mask="(999) 999-9999">Рабочий телефон:</label>
+                                                                <input type="text" id="parentWorkphone" name="parent[0][workphone]" class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Отчество:</label>
-                                                            <input type="text" id="parentMiddleName" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Контактный телефон:</label>
+                                                                <input type="text" id="parentPhone" name="parent[0][phone]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="control-label">Адрес:</label>
+                                                                <input type="text" id="parentAddress" name="parent[0][address]" class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Место работы:</label>
-                                                            <input type="text" id="parentWork" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Должность:</label>
-                                                            <input type="text" id="parentPosition" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label" data-mask="(999) 999-9999">Рабочий телефон:</label>
-                                                            <input type="text" id="parentWorkphone" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Контактный телефон:</label>
-                                                            <input type="text" id="parentPhone" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-8">
-                                                            <label class="control-label">Адрес:</label>
-                                                            <input type="text" id="parentAddress" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="ibox float-e-margins">
-                                                                <div class="ibox-title">
-                                                                    <h5>Паспортные данные</h5>
-                                                                    {{>iboxTools}}
-                                                                </div>
-                                                                <div class="ibox-content">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Серия:</label>
-                                                                        <div class="col-sm-3">
-                                                                            <input type="text" data-mask="9999" id="passportCode" class="form-control">
-                                                                        </div>
-                                                                        <label class="col-sm-2 control-label">Номер:</label>
-                                                                        <div class="col-sm-4">
-                                                                            <input type="text" id="passportNumber" class="form-control">
-                                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="ibox float-e-margins">
+                                                                    <div class="ibox-title">
+                                                                        <h5>Паспортные данные</h5>
+                                                                        {{>iboxTools}}
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Кем выдан:</label>
-                                                                        <div class="col-sm-9">
-                                                                            <input type="text" id="passportDepartment" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Когда выдан:</label>
-                                                                        <div class="col-sm-3">
-                                                                            <div class="input-group">
-                                                                                <input type="text" data-mask="99.99.9999" id="passportDate" class="form-control">
-                                                                                <span class="input-group-addon">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </span>
+                                                                    <div class="ibox-content">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Серия:</label>
+                                                                            <div class="col-sm-3">
+                                                                                <input type="text" data-mask="9999" id="passportCode" name="parent[0][passport][code]" class="form-control">
+                                                                            </div>
+                                                                            <label class="col-sm-2 control-label">Номер:</label>
+                                                                            <div class="col-sm-4">
+                                                                                <input type="text" id="passportNumber" name="parent[0][passport][number]" class="form-control">
                                                                             </div>
                                                                         </div>
-                                                                        <label class="col-sm-3 control-label">Код подразделения:</label>
-                                                                        <div class="col-sm-3">
-                                                                            <input type="text" id="passportDepartmentCode" class="form-control">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Кем выдан:</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" id="passportDepartment" name="parent[0][passport][department]" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Когда выдан:</label>
+                                                                            <div class="col-sm-3">
+                                                                                <div class="input-group">
+                                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="parent[0][passport][date]" class="form-control">
+                                                                                    <span class="input-group-addon">
+                                                                                        <i class="fa fa-calendar"></i>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <label class="col-sm-3 control-label">Код подразделения:</label>
+                                                                            <div class="col-sm-3">
+                                                                                <input type="text" id="passportDepartmentCode" name="parent[0][passport][departmentCode]" class="form-control">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h3 class="m-b col-lg-12">Родитель 2</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Степень родства:</label>
-                                                            <select id="parentRole" class="form-control">
-                                                                <option></option>
-                                                                <option value="mother">Мать</option>
-                                                                <option value="father">Отец</option>
-                                                                <option value="guardian">Опекун</option>
-                                                                <option value="guardian">Законный представитель</option>
-                                                            </select>
+                                                    <div class="hr-line-dashed col-lg-12"></div>
+                                                    <h3 class="m-b col-lg-12">Родитель 2</h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Степень родства:</label>
+                                                                <select id="parentRole" name="parent[1][role]" class="form-control">
+                                                                    <option></option>
+                                                                    <option value="mother">Мать</option>
+                                                                    <option value="father">Отец</option>
+                                                                    <option value="guardian">Опекун</option>
+                                                                    <option value="guardian">Законный представитель</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Фамилия:</label>
-                                                            <input type="text" id="parentFirstName" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Фамилия:</label>
+                                                                <input type="text" id="parentFirstName" name="parent[1][firstname]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Имя:</label>
+                                                                <input type="text" id="parentLastName" name="parent[1][lastname]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Отчество:</label>
+                                                                <input type="text" id="parentMiddleName" name="parent[1][middlename]" class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Имя:</label>
-                                                            <input type="text" id="parentLastName" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Место работы:</label>
+                                                                <input type="text" id="parentWork" name="parent[1][work]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Должность:</label>
+                                                                <input type="text" id="parentPosition" name="parent[1][position]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" data-mask="(999) 999-9999">Рабочий телефон:</label>
+                                                                <input type="text" id="parentWorkphone" name="parent[1][workphone]" class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Отчество:</label>
-                                                            <input type="text" id="parentMiddleName" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Контактный телефон:</label>
+                                                                <input type="text" id="parentPhone" name="parent[1][phone]" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="control-label">Адрес:</label>
+                                                                <input type="text" id="parentAddress" name="parent[1][address]" class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Место работы:</label>
-                                                            <input type="text" id="parentWork" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Должность:</label>
-                                                            <input type="text" id="parentPosition" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label" data-mask="(999) 999-9999">Рабочий телефон:</label>
-                                                            <input type="text" id="parentWorkphone" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Контактный телефон:</label>
-                                                            <input type="text" id="parentPhone" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-8">
-                                                            <label class="control-label">Адрес:</label>
-                                                            <input type="text" id="parentAddress" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="ibox float-e-margins">
-                                                                <div class="ibox-title">
-                                                                    <h5>Паспортные данные</h5>
-                                                                    {{>iboxTools}}
-                                                                </div>
-                                                                <div class="ibox-content">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Серия:</label>
-                                                                        <div class="col-sm-3">
-                                                                            <input type="text" data-mask="9999" id="passportCode" class="form-control">
-                                                                        </div>
-                                                                        <label class="col-sm-2 control-label">Номер:</label>
-                                                                        <div class="col-sm-4">
-                                                                            <input type="text" id="passportNumber" class="form-control">
-                                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="ibox float-e-margins">
+                                                                    <div class="ibox-title">
+                                                                        <h5>Паспортные данные</h5>
+                                                                        {{>iboxTools}}
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Кем выдан:</label>
-                                                                        <div class="col-sm-9">
-                                                                            <input type="text" id="passportDepartment" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Когда выдан:</label>
-                                                                        <div class="col-sm-3">
-                                                                            <div class="input-group">
-                                                                                <input type="text" data-mask="99.99.9999" id="passportDate" class="form-control">
-                                                                                <span class="input-group-addon">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </span>
+                                                                    <div class="ibox-content">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Серия:</label>
+                                                                            <div class="col-sm-3">
+                                                                                <input type="text" data-mask="9999" id="passportCode" name="parent[1][passport][code]" class="form-control">
+                                                                            </div>
+                                                                            <label class="col-sm-2 control-label">Номер:</label>
+                                                                            <div class="col-sm-4">
+                                                                                <input type="text" id="passportNumber" name="parent[1][passport][number]" class="form-control">
                                                                             </div>
                                                                         </div>
-                                                                        <label class="col-sm-3 control-label">Код подразделения:</label>
-                                                                        <div class="col-sm-3">
-                                                                            <input type="text" id="passportDepartmentCode" class="form-control">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Кем выдан:</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" id="passportDepartment" name="parent[1][passport][department]" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Когда выдан:</label>
+                                                                            <div class="col-sm-3">
+                                                                                <div class="input-group">
+                                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="parent[1][passport][date]" class="form-control">
+                                                                                    <span class="input-group-addon">
+                                                                                        <i class="fa fa-calendar"></i>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <label class="col-sm-3 control-label">Код подразделения:</label>
+                                                                            <div class="col-sm-3">
+                                                                                <input type="text" id="passportDepartmentCode" name="parent[1][passport][departmentCode]" class="form-control">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h3 class="m-b col-lg-12">Данные о составе семьи</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Статус семьи:</label>
-                                                            <select id="familyStatus" class="form-control">
-                                                                <option></option>
-                                                                <option value="full">Полная</option>
-                                                                <option value="partial">Не полная</option>
-                                                            </select>
+                                                    <div class="hr-line-dashed col-lg-12"></div>
+                                                    <h3 class="m-b col-lg-12">Данные о составе семьи</h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Статус семьи:</label>
+                                                                <select id="familyStatus" name="familyStatus" class="form-control">
+                                                                    <option></option>
+                                                                    <option value="full">Полная</option>
+                                                                    <option value="partial">Не полная</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Кол-во братьев:</label>
+                                                                <input type="number" id="familyBrotherCount" name="familyBrotherCount" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Кол-во сестер:</label>
+                                                                <input type="number" id="familySisterCount" name="familySisterCount" class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Кол-во братьев:</label>
-                                                            <input type="number" id="familyBrotherCount" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Кол-во сестер:</label>
-                                                            <input type="number" id="familySisterCount" class="form-control">
+                                                    </div>
+                                                    <div class="hr-line-dashed col-lg-12"></div>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Семейное положение:</label>
+                                                                <select id="maritalStatus" name="maritalStatus" class="form-control">
+                                                                    <option></option>
+                                                                    <option value="married">Женат/Замужем</option>
+                                                                    <option value="single">Холост/Не замужем</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Кол-во детей(если есть):</label>
+                                                                <input type="number" id="familyBrotherCount" name="familyBrotherCount" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Семейное положение:</label>
-                                                            <select id="maritalStatus" class="form-control">
-                                                                <option></option>
-                                                                <option value="married">Женат/Замужем</option>
-                                                                <option value="single">Холост/Не замужем</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Кол-во детей(если есть):</label>
-                                                            <input type="number" id="familyBrotherCount" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab-5">
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Группа крови:</label>
-                                                            <input type="text" id="bloodType" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Рост:</label>
-                                                            <input type="text" id="growth" class="form-control">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Размер обуви:</label>
-                                                            <input type="text" id="shoeSize" class="form-control">
+                                                <div class="tab-pane" id="tab-5">
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Группа крови:</label>
+                                                                <input type="text" id="bloodType" name="bloodType" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Рост:</label>
+                                                                <input type="text" id="growth" name="growth" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Размер обуви:</label>
+                                                                <input type="text" id="shoeSize" name="shoeSize" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h2 class="m-b col-lg-12">Увлечения</h2>
-                                                <h3 class="m-b col-lg-12">
+                                                    <div class="hr-line-dashed col-lg-12"></div>
+                                                    <h2 class="m-b col-lg-12">Увлечения</h2>
+                                                    <h3 class="m-b col-lg-12">
                                                         <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
                                                         Спорт
-                                            </h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Вид:</label>
-                                                            <input type="text" class="form-control sportType">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Разряд:</label>
-                                                            <input type="text" class="form-control sportRank">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Достижения:</label>
-                                                            <input type="text" class="form-control sportAchievement">
+                                                    </h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Вид:</label>
+                                                                <input type="text" class="form-control sportType" name="sport[0][type]">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Разряд:</label>
+                                                                <input type="text" class="form-control sportRank" name="sport[0][rank]">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Достижения:</label>
+                                                                <input type="text" class="form-control sportAchievement" name="sport[0][achievement]">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <h3 class="m-b col-lg-12">
+                                                    <h3 class="m-b col-lg-12">
                                                         <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
                                                         Творчество
-                                                </h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Вид:</label>
-                                                            <input type="text" class="form-control creationType">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Документ:</label>
-                                                            <input type="text" class="form-control creationDoc">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Достижения:</label>
-                                                            <input type="text" class="form-control creationAchievement">
+                                                    </h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Вид:</label>
+                                                                <input type="text" class="form-control creationType" name="creation[0][type]">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Документ:</label>
+                                                                <input type="text" class="form-control creationDoc" name="creation[0][doc]">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Достижения:</label>
+                                                                <input type="text" class="form-control creationAchievement" name="creation[0][achievement]">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <h3 class="m-b col-lg-12">
+                                                    <h3 class="m-b col-lg-12">
                                                         <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
                                                         Прочие увлечения
                                                     </h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Вид:</label>
-                                                            <input type="text" class="form-control hobbiesType">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Документ:</label>
-                                                            <input type="text" class="form-control hobbiesDoc">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="control-label">Достижения:</label>
-                                                            <input type="text" class="form-control hobbiesAchievement">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="hr-line-dashed col-lg-12"></div>
-                                                <h3 class="m-b col-lg-12">Прочее</h3>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Личные качества:</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea class="form-control" id="personalQualities" rows="4"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Награды и поощрения:</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea class="form-control" id="rewards" rows="4"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Вредные привычки:</label>
-                                                        <div class="col-lg-9">
-                                                            <input type="text" class="form-control" id="badHabits">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Другая информация:</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea class="form-control" id="otherCharacterInfo" rows="4"></textarea>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Вид:</label>
+                                                                <input type="text" class="form-control hobbiesType" name="hobbies[0][type]">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Документ:</label>
+                                                                <input type="text" class="form-control hobbiesDoc" name="hobbies[0][doc]">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label">Достижения:</label>
+                                                                <input type="text" class="form-control hobbiesAchievement" name="hobbies[0][achievement]">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="hr-line-dashed col-lg-12"></div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Откуда получена информация о профессиях и специальностях ПМК:</label>
-                                                        <div class="col-lg-12 m-t">
-                                                            <div class="row">
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="1" name="informers[]">
-                                                                        <i></i> Объявление в газете
-                                                                    </label>
+                                                    <h3 class="m-b col-lg-12">Прочее</h3>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Личные качества:</label>
+                                                            <div class="col-lg-9">
+                                                                <textarea class="form-control" id="personalQualities" name="personalQualities" rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Награды и поощрения:</label>
+                                                            <div class="col-lg-9">
+                                                                <textarea class="form-control" id="rewards" name="rewards" rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Вредные привычки:</label>
+                                                            <div class="col-lg-9">
+                                                                <input type="text" class="form-control" id="badHabits" name="badHabits">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Другая информация:</label>
+                                                            <div class="col-lg-9">
+                                                                <textarea class="form-control" id="otherCharacterInfo" name="otherCharacterInfo" rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hr-line-dashed col-lg-12"></div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Откуда получена информация о профессиях и специальностях ПМК:</label>
+                                                            <div class="col-lg-12 m-t">
+                                                                <div class="row">
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="1" name="informers[]">
+                                                                            <i></i> Объявление в газете
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="2" name="informers[]">
+                                                                            <i></i> Реклама на телевидении
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="3" name="informers[]">
+                                                                            <i></i> Реклама на радио
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="4" name="informers[]">
+                                                                            <i></i> От родителей, друзей, родственников, знакомых
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="5" name="informers[]">
+                                                                            <i></i> Буклеты, листовки
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="6" name="informers[]">
+                                                                            <i></i> Сборник учебных заведений
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="7" name="informers[]">
+                                                                            <i></i> Афиша в школе
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="8" name="informers[]">
+                                                                            <i></i> Интернет
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="9" name="informers[]">
+                                                                            <i></i> День открытых дверей
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-6">
+                                                                        <label>
+                                                                            <input type="checkbox" value="10" name="informers[]">
+                                                                            <i></i> Другие источники
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="2" name="informers[]">
-                                                                        <i></i> Реклама на телевидении
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="3" name="informers[]">
-                                                                        <i></i> Реклама на радио
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="4" name="informers[]">
-                                                                        <i></i> От родителей, друзей, родственников, знакомых
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="5" name="informers[]">
-                                                                        <i></i> Буклеты, листовки
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="6" name="informers[]">
-                                                                        <i></i> Сборник учебных заведений
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="7" name="informers[]">
-                                                                        <i></i> Афиша в школе
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="8" name="informers[]">
-                                                                        <i></i> Интернет
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="9" name="informers[]">
-                                                                        <i></i> День открытых дверей
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-6">
-                                                                    <label>
-                                                                        <input type="checkbox" value="10" name="informers[]">
-                                                                        <i></i> Другие источники
-                                                                    </label>
+                                                            </div>
+                                                        </div><div class="hr-line-dashed col-lg-12"></div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Почему выбран ПМК:</label>
+                                                            <div class="col-lg-12 m-t">
+                                                                <div class="row">
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="1" name="choose[]">
+                                                                            <i></i> Близость к дому
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="2" name="choose[]">
+                                                                            <i></i> Престижность колледжа
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="3" name="choose[]">
+                                                                            <i></i> Перспективные и востребованные специальности
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="4" name="choose[]">
+                                                                            <i></i> Перспективы трудоустройства и развития
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="5" name="choose[]">
+                                                                            <i></i> Возможность бесплатного поступления и обучения
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="6" name="choose[]">
+                                                                            <i></i> в ПМК учились(учатся) мои родители, родственники, друзья
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="7" name="choose[]">
+                                                                            <i></i> Материальная заинтересованность
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="8" name="choose[]">
+                                                                            <i></i> Возможность учиться по программе "Будущее Белой металлургии"
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="9" name="choose[]">
+                                                                            <i></i> Интерес к профессии
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="10" name="choose[]">
+                                                                            <i></i> Выбор случаен
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="i-checks col-sm-12">
+                                                                        <label>
+                                                                            <input type="checkbox" value="11" name="choose[]">
+                                                                            <i></i> Другой вариант
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div><div class="hr-line-dashed col-lg-12"></div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Почему выбран ПМК:</label>
-                                                        <div class="col-lg-12 m-t">
-                                                            <div class="row">
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="1" name="choose[]">
-                                                                        <i></i> Близость к дому
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="2" name="choose[]">
-                                                                        <i></i> Престижность колледжа
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="3" name="choose[]">
-                                                                        <i></i> Перспективные и востребованные специальности
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="4" name="choose[]">
-                                                                        <i></i> Перспективы трудоустройства и развития
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="5" name="choose[]">
-                                                                        <i></i> Возможность бесплатного поступления и обучения
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="6" name="choose[]">
-                                                                        <i></i> в ПМК учились(учатся) мои родители, родственники, друзья
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="7" name="choose[]">
-                                                                        <i></i> Материальная заинтересованность
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="8" name="choose[]">
-                                                                        <i></i> Возможность учиться по программе "Будущее Белой металлургии"
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="9" name="choose[]">
-                                                                        <i></i> Интерес к профессии
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="10" name="choose[]">
-                                                                        <i></i> Выбор случаен
-                                                                    </label>
-                                                                </div>
-                                                                <div class="i-checks col-sm-12">
-                                                                    <label>
-                                                                        <input type="checkbox" value="11" name="choose[]">
-                                                                        <i></i> Другой вариант
-                                                                    </label>
-                                                                </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab-6">
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Академическая задолженность:</label>
+                                                            <div class="col-lg-9">
+                                                                <textarea class="form-control" id="academicDebt" name="academicDebt" rows="4"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab-6">
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Академическая задолженность:</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea class="form-control" id="academicDebt" rows="4"></textarea>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Кол-во пропусков:</label>
+                                                            <div class="col-lg-3">
+                                                                <input type="number" class="form-control" id="passCount" name="passCount">
+                                                            </div>
+                                                            <label class="control-label col-lg-3">Средний балл:</label>
+                                                            <div class="col-lg-3">
+                                                                <input type="number" class="form-control" id="avgPoints" name="avgPoints">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Кол-во пропусков:</label>
-                                                        <div class="col-lg-3">
-                                                            <input type="number" class="form-control" id="passCount">
-                                                        </div>
-                                                        <label class="control-label col-lg-3">Средний балл:</label>
-                                                        <div class="col-lg-3">
-                                                            <input type="number" class="form-control" id="avgPoints">
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Характеристика (от мастеров производственного обучения):</label>
+                                                            <div class="col-lg-9">
+                                                                <textarea class="form-control" id="characteristic" name="characteristic" rows="10"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Характеристика (от мастеров производственного обучения):</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea class="form-control" id="characteristic" rows="10"></textarea>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Рейтинг:</label>
+                                                            <div class="col-lg-9">
+                                                                <input type="number" class="form-control" id="rating" name="rating">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Рейтинг:</label>
-                                                        <div class="col-lg-9">
-                                                            <input type="number" class="form-control" id="rating">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-lg-3">Пожелания (чем бы хотел заниматься):</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea class="form-control" id="wishes" rows="4"></textarea>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-lg-3">Пожелания (чем бы хотел заниматься):</label>
+                                                            <div class="col-lg-9">
+                                                                <textarea class="form-control" id="wishes" name="wishes" rows="4"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -918,15 +929,15 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row m-t">
-                            <div class="col-lg-12">
-                                <div class="pull-right">
-                                    <button class="btn btn-primary" id="save">Сохранить</button>
-                                    <button class="btn btn-default" id="cancel" aria-dismiss="true">Отмена</button>
+                            <div class="row m-t">
+                                <div class="col-lg-12">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-primary" id="save">Сохранить</button>
+                                        <button type="cancel" class="btn btn-default" id="cancel" aria-dismiss="true">Отмена</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -936,4 +947,5 @@
             </div>
         </div>
     </div>
+    {{/with}}
 </template>

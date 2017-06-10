@@ -30,15 +30,11 @@
                         <tbody>
                         {{#each students}}
                             <tr>
-                                <td class="project-status">
-                                    {{#if _isEqual profile.status "active" }}
-                                        <span class="label label-primary">Активен</span>
-                                    {{else}}
-                                        <span class="label label-warning">Отключен</span>
-                                    {{/if}}
+                                <td class="project-id">
+                                    <a href="/student/{{_id}}">{{ind}}</a>
                                 </td>
                                 <td class="project-title">
-                                    <a href="#">{{name}}</a>
+                                    <a href="#">{{lastname}} {{firstname}} {{middlename}}</a>
                                 </td>
                                 <td class="project-completion">
                                     {{profession}}
