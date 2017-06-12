@@ -24,8 +24,8 @@
                                         <label class="col-sm-3 control-label">Статус:</label>
                                         <div class="col-sm-9">
                                             <select id="role" name="role" class="form-control">
-                                                <option value="abiturient">Абитуриент</option>
-                                                <option value="student">Студент</option>
+                                                <option value="abiturient" {{isSelected role "abiturient"}}>Абитуриент</option>
+                                                <option value="student" {{isSelected role "student"}}>Студент</option>
                                             </select>
                                         </div>
                                     </div>
@@ -119,16 +119,16 @@
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Полное наименование:</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" id="schoolName" name="school[name]" class="form-control">
+                                                                    <input type="text" id="schoolName" name="school[name]" class="form-control" value="{{school.name}}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Номер:</label>
                                                                 <div class="col-sm-2">
-                                                                    <input type="number" id="schoolNumber" name="school[number]" class="form-control">
+                                                                    <input type="number" id="schoolNumber" name="school[number]" class="form-control" value="{{school.number}}">
                                                                 </div>
                                                                 <label class="col-sm-1 control-label">Город:</label><div class="col-sm-6">
-                                                                <input type="text" id="schoolCity" name="school[city]" class="form-control">
+                                                                <input type="text" id="schoolCity" name="school[city]" class="form-control" value="{{school.city}}">
                                                             </div>
                                                             </div>
                                                         </div>
@@ -138,28 +138,28 @@
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Тип документа:</label>
                                                                 <div class="col-sm-9">
-                                                                    <input type="text" id="diploma" name="diploma[type]" class="form-control">
+                                                                    <input type="text" id="diploma" name="diploma[type]" class="form-control" value="{{diploma.type}}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Серия:</label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="text" id="diplomaCode" name="diploma[code]" class="form-control">
+                                                                    <input type="text" id="diplomaCode" name="diploma[code]" class="form-control" value="{{diploma.code}}">
                                                                 </div>
                                                                 <label class="col-sm-1 control-label">Номер:</label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="text" id="diplomaNumber" name="diploma[number]" class="form-control">
+                                                                    <input type="text" id="diplomaNumber" name="diploma[number]" class="form-control" value="{{diploma.number}}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Год окончания:</label>
                                                                 <div class="col-sm-4">
-                                                                    <input type="text" data-mask="9999" id="schoolYearEnd" name="school[year]" class="form-control">
+                                                                    <input type="text" data-mask="9999" id="schoolYearEnd" name="school[year]" class="form-control" value="{{school.year}}">
                                                                 </div>
                                                                 <label class="col-sm-1 control-label">Дата выдачи:</label>
                                                                 <div class="col-sm-4">
                                                                     <div class="input-group date">
-                                                                        <input type="text" data-mask="99.99.9999" id="diplomaDate" name="diploma[date]" class="form-control">
+                                                                        <input type="text" data-mask="99.99.9999" id="diplomaDate" name="diploma[date]" class="form-control" value="{{diploma.date}}">
                                                                         <span class="input-group-addon date">
                                                                             <i class="fa fa-calendar"></i>
                                                                         </span>
@@ -170,21 +170,21 @@
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Кол-во "3":</label>
                                                                 <div class="col-sm-3">
-                                                                    <input type="number" id="diplomaCounts3" name="diploma[counts][3]" class="form-control">
+                                                                    <input type="number" id="diplomaCounts3" name="diploma[counts][3]" class="form-control" value="{{diploma.counts.[3]}}">
                                                                 </div>
                                                                 <label class="col-sm-3 control-label">Кол-во "4":</label>
                                                                 <div class="col-sm-3">
-                                                                    <input type="number" id="diplomaCounts4" name="diploma[counts][4]" class="form-control">
+                                                                    <input type="number" id="diplomaCounts4" name="diploma[counts][4]" class="form-control" value="{{diploma.counts.[4]}}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Кол-во "5":</label>
                                                                 <div class="col-sm-3">
-                                                                    <input type="number" id="diplomaCounts5" name="diploma[counts][5]" class="form-control">
+                                                                    <input type="number" id="diplomaCounts5" name="diploma[counts][5]" class="form-control" value="{{diploma.counts.[5]}}">
                                                                 </div>
                                                                 <label class="col-sm-3 control-label">Средний балл:</label>
                                                                 <div class="col-sm-3">
-                                                                    <input type="text" id="diplomaAvr" name="diploma[avr]" class="form-control">
+                                                                    <input type="text" id="diplomaAvr" name="diploma[avr]" class="form-control" value="{{diploma.avr}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -194,17 +194,17 @@
                                                             <div class="form-group">
                                                                 <label class="col-sm-3 control-label">Иностранный язык (какой):</label>
                                                                 <div class="col-sm-3">
-                                                                    <input type="text" id="otherLangName" name="otherLangName" class="form-control">
+                                                                    <input type="text" id="otherLangName" name="otherLangName" class="form-control" value="{{otherLangName}}">
                                                                 </div>
                                                                 <label class="col-sm-4 control-label">Иностранный язык (оценка):</label>
                                                                 <div class="col-sm-2">
-                                                                    <input type="text" id="otherLangPoints" name="otherLangPoints" class="form-control">
+                                                                    <input type="text" id="otherLangPoints" name="otherLangPoints" class="form-control" value="{{otherLangPoints}}">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-sm-4 control-label">Физическая культура (оценка):</label>
                                                                 <div class="col-sm-2">
-                                                                    <input type="text" id="physicalPoints" name="physicalPoints" class="form-control">
+                                                                    <input type="text" id="physicalPoints" name="physicalPoints" class="form-control" value="{{physicalPoints}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -216,24 +216,24 @@
                                                         <div class="form-group required">
                                                             <label class="col-sm-3 control-label">Серия:</label>
                                                             <div class="col-sm-3">
-                                                                <input type="text" data-mask="9999" id="passportCode" name="passport[code]" class="form-control">
+                                                                <input type="text" data-mask="9999" id="passportCode" name="passport[code]" class="form-control" value="{{passport.code}}">
                                                             </div>
                                                             <label class="col-sm-2 control-label">Номер:</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" id="passportNumber" name="passport[number]" class="form-control">
+                                                                <input type="text" id="passportNumber" name="passport[number]" class="form-control"  value="{{passport.number}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group required">
                                                             <label class="col-sm-3 control-label">Кем выдан:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="passportDepartment" name="passport[department]" class="form-control">
+                                                                <input type="text" id="passportDepartment" name="passport[department]" class="form-control"  value="{{passport.department}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group required">
                                                             <label class="col-sm-3 control-label">Когда выдан:</label>
                                                             <div class="col-sm-3">
                                                                 <div class="input-group date">
-                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="passport[date]" class="form-control">
+                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="passport[date]" class="form-control"  value="{{passport.date}}">
                                                                     <span class="input-group-addon">
                                                                         <i class="fa fa-calendar"></i>
                                                                     </span>
@@ -241,13 +241,13 @@
                                                             </div>
                                                             <label class="col-sm-3 control-label">Код подразделения:</label>
                                                             <div class="col-sm-3">
-                                                                <input type="text" id="passportDepartmentCode" name="passport[departmentCode]" class="form-control">
+                                                                <input type="text" id="passportDepartmentCode" name="passport[departmentCode]" class="form-control"  value="{{passport.departmentCode}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Место рождения:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control">
+                                                                <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control"  value="{{placeOfBirth}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -257,29 +257,29 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Зарегистрирован:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="addressRegistration" name="address[registration][name]" class="form-control">
+                                                                <input type="text" id="addressRegistration" name="address[registration][name]" class="form-control"  value="{{address.registration.name}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Регион:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="addressRegistrationRegion" name="address[registration][region]" class="form-control">
+                                                                <input type="text" id="addressRegistrationRegion" name="address[registration][region]" class="form-control" value="{{address.registration.region}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Населенный пункт:</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" id="addressRegistrationCity" name="address[registration][city]" class="form-control">
+                                                                <input type="text" id="addressRegistrationCity" name="address[registration][city]" class="form-control" value="{{address.registration.city}}">
                                                             </div>
                                                             <label class="col-sm-1 control-label">Район:</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" id="addressRegistrationArea" name="address[registration][area]" class="form-control">
+                                                                <input type="text" id="addressRegistrationArea" name="address[registration][area]" class="form-control" value="{{address.registration.area}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Улица, дом, квартира:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="addressRegistrationSHF" name="address[registration][shf]" class="form-control">
+                                                                <input type="text" id="addressRegistrationSHF" name="address[registration][shf]" class="form-control" value="{{address.registration.shf}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,7 +288,7 @@
                                                         <small class="pull-right">
                                                             <div class="i-checks checkbox-inline">
                                                                 <label>
-                                                                    <input type="checkbox" name="factAsRegistration" value="true">
+                                                                    <input type="checkbox" name="factAsRegistration" value="true" {{isChecked factAsRegistration "true"}}>
                                                                     <i></i> Совпадает с адресом регистрации
                                                                 </label>
                                                             </div>
@@ -298,23 +298,23 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Регион:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="addressFactRegion" name="address[fact][region]" data-link="addressRegistrationRegion" class="form-control">
+                                                                <input type="text" id="addressFactRegion" name="address[fact][region]" data-link="addressRegistrationRegion" class="form-control" value="{{address.fact.region}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Населенный пункт:</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" id="addressFactCity" name="address[fact][city]" data-link="addressRegistrationCity" class="form-control">
+                                                                <input type="text" id="addressFactCity" name="address[fact][city]" data-link="addressRegistrationCity" class="form-control" value="{{address.fact.city}}">
                                                             </div>
                                                             <label class="col-sm-1 control-label">Район:</label>
                                                             <div class="col-sm-4">
-                                                                <input type="text" id="addressFactArea" name="address[fact][area]" data-link="addressRegistrationArea" class="form-control">
+                                                                <input type="text" id="addressFactArea" name="address[fact][area]" data-link="addressRegistrationArea" class="form-control" value="{{address.fact.area}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Улица, дом, квартира:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="addressFactSHF" name="address[fact][shf]" data-link="addressRegistrationSHF" class="form-control">
+                                                                <input type="text" id="addressFactSHF" name="address[fact][shf]" data-link="addressRegistrationSHF" class="form-control" value="{{address.fact.shf}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -324,19 +324,19 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Медицинский полис:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="medicalPolicy" name="medicalPolicy" class="form-control">
+                                                                <input type="text" id="medicalPolicy" name="medicalPolicy" class="form-control" value="{{medicalPolicy}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">ИНН:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="TIN" name="TIN" class="form-control">
+                                                                <input type="text" id="TIN" name="TIN" class="form-control" value="{{TIN}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">СНИЛС:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="SNILS" name="SNILS" class="form-control">
+                                                                <input type="text" id="SNILS" name="SNILS" class="form-control" value="{{SNILS}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -346,53 +346,42 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Номер:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="armyNumber" name="army[number]" class="form-control">
+                                                                <input type="text" id="armyNumber" name="army[number]" class="form-control" value="{{army.number}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Кем выдан (о):</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="armyDepartment" name="army[department]" class="form-control">
+                                                                <input type="text" id="armyDepartment" name="army[department]" class="form-control" value="{{army.department}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Когда выдан (о):</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="armyDate" name="army[date]" class="form-control">
+                                                                <div class="input-group date">
+                                                                    <input type="text" data-mask="99.99.9999" id="armyDate" name="army[date]" class="form-control" value="{{army.date}}">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-3 control-label">Категория годности:</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" id="armyCategory" name="army[category]" class="form-control">
+                                                                <input type="text" id="armyCategory" name="army[category]" class="form-control" value="{{army.category}}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="hr-line-dashed col-lg-12"></div>
                                                     <h3 class="m-b col-lg-12">
-                                                        <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
+                                                        <button type="button" class="btn btn-primary btn-xs pull-right" id="socialDocAdd"><i class="fa fa-plus"></i> Добавить</button>
                                                         Документы подтверждающие социальный статус
                                                     </h3>
-                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Наименование:</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control socialDocName" name="socialDoc[0][name]">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Кем выдан (о):</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control socialDocDepartment" name="socialDoc[0][department]">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Когда выдан (о):</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control socialDocDate"  name="socialDoc[0][date]">
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal" id="socialDocContainer">
+                                                        {{#each doc in socialDoc}}
+                                                            {{> SocialDoc index=@index data=doc }}
+                                                        {{/each}}
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="tab-4">
@@ -403,49 +392,49 @@
                                                                 <label class="control-label">Степень родства:</label>
                                                                 <select id="parentRole" name="parent[0][role]" class="form-control">
                                                                     <option></option>
-                                                                    <option value="mother">Мать</option>
-                                                                    <option value="father">Отец</option>
-                                                                    <option value="guardian">Опекун</option>
-                                                                    <option value="guardian">Законный представитель</option>
+                                                                    <option value="mother" {{isSelected parent.[0].role "mother"}}>Мать</option>
+                                                                    <option value="father" {{isSelected parent.[0].role "father"}}>Отец</option>
+                                                                    <option value="guardian" {{isSelected parent.[0].role "guardian"}}>Опекун</option>
+                                                                    <option value="representative" {{isSelected parent.[0].role "representative"}}>Законный представитель</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Фамилия:</label>
-                                                                <input type="text" id="parentFirstName" name="parent[0][firstname]" class="form-control">
+                                                                <input type="text" id="parentFirstName" name="parent[0][firstname]" class="form-control"  value="{{parent.[0].firstname}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Имя:</label>
-                                                                <input type="text" id="parentLastName" name="parent[0][lastname]" class="form-control">
+                                                                <input type="text" id="parentLastName" name="parent[0][lastname]" class="form-control" value="{{parent.[0].lastname}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Отчество:</label>
-                                                                <input type="text" id="parentMiddleName" name="parent[0][middlename]" class="form-control">
+                                                                <input type="text" id="parentMiddleName" name="parent[0][middlename]" class="form-control" value="{{parent.[0].middlename}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Место работы:</label>
-                                                                <input type="text" id="parentWork" name="parent[0][work]" class="form-control">
+                                                                <input type="text" id="parentWork" name="parent[0][work]" class="form-control"  value="{{parent.[0].work}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Должность:</label>
-                                                                <input type="text" id="parentPosition" name="parent[0][position]" class="form-control">
+                                                                <input type="text" id="parentPosition" name="parent[0][position]" class="form-control"  value="{{parent.[0].position}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label" data-mask="(999) 999-9999">Рабочий телефон:</label>
-                                                                <input type="text" id="parentWorkphone" name="parent[0][workphone]" class="form-control">
+                                                                <input type="text" id="parentWorkphone" name="parent[0][workphone]" class="form-control" value="{{parent.[0].workphone}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Контактный телефон:</label>
-                                                                <input type="text" id="parentPhone" name="parent[0][phone]" class="form-control">
+                                                                <input type="text" id="parentPhone" name="parent[0][phone]" class="form-control"  value="{{parent.[0].phone}}">
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <label class="control-label">Адрес:</label>
-                                                                <input type="text" id="parentAddress" name="parent[0][address]" class="form-control">
+                                                                <input type="text" id="parentAddress" name="parent[0][address]" class="form-control"  value="{{parent.[0].address}}">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -453,30 +442,29 @@
                                                                 <div class="ibox float-e-margins">
                                                                     <div class="ibox-title">
                                                                         <h5>Паспортные данные</h5>
-                                                                        {{>iboxTools}}
                                                                     </div>
                                                                     <div class="ibox-content">
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Серия:</label>
                                                                             <div class="col-sm-3">
-                                                                                <input type="text" data-mask="9999" id="passportCode" name="parent[0][passport][code]" class="form-control">
+                                                                                <input type="text" data-mask="9999" id="passportCode" name="parent[0][passport][code]" class="form-control"  value="{{parent.[0].passport.code}}">
                                                                             </div>
                                                                             <label class="col-sm-2 control-label">Номер:</label>
                                                                             <div class="col-sm-4">
-                                                                                <input type="text" id="passportNumber" name="parent[0][passport][number]" class="form-control">
+                                                                                <input type="text" id="passportNumber" name="parent[0][passport][number]" class="form-control" value="{{parent.[0].passport.number}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Кем выдан:</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" id="passportDepartment" name="parent[0][passport][department]" class="form-control">
+                                                                                <input type="text" id="passportDepartment" name="parent[0][passport][department]" class="form-control" value="{{parent.[0].passport.department}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Когда выдан:</label>
                                                                             <div class="col-sm-3">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="parent[0][passport][date]" class="form-control">
+                                                                                <div class="input-group date">
+                                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="parent[0][passport][date]" class="form-control" value="{{parent.[0].passport.date}}">
                                                                                     <span class="input-group-addon">
                                                                                         <i class="fa fa-calendar"></i>
                                                                                     </span>
@@ -484,7 +472,7 @@
                                                                             </div>
                                                                             <label class="col-sm-3 control-label">Код подразделения:</label>
                                                                             <div class="col-sm-3">
-                                                                                <input type="text" id="passportDepartmentCode" name="parent[0][passport][departmentCode]" class="form-control">
+                                                                                <input type="text" id="passportDepartmentCode" name="parent[0][passport][departmentCode]" class="form-control" value="{{parent.[0].passport.departmentCode}}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -500,49 +488,49 @@
                                                                 <label class="control-label">Степень родства:</label>
                                                                 <select id="parentRole" name="parent[1][role]" class="form-control">
                                                                     <option></option>
-                                                                    <option value="mother">Мать</option>
-                                                                    <option value="father">Отец</option>
-                                                                    <option value="guardian">Опекун</option>
-                                                                    <option value="guardian">Законный представитель</option>
+                                                                    <option value="mother" {{isSelected parent.[1].role "mother"}}>Мать</option>
+                                                                    <option value="father" {{isSelected parent.[1].role "father"}}>Отец</option>
+                                                                    <option value="guardian" {{isSelected parent.[1].role "guardian"}}>Опекун</option>
+                                                                    <option value="representative" {{isSelected parent.[1].role "representative"}}>Законный представитель</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Фамилия:</label>
-                                                                <input type="text" id="parentFirstName" name="parent[1][firstname]" class="form-control">
+                                                                <input type="text" id="parentFirstName" name="parent[1][firstname]" class="form-control" value="{{parent.[1].firstname}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Имя:</label>
-                                                                <input type="text" id="parentLastName" name="parent[1][lastname]" class="form-control">
+                                                                <input type="text" id="parentLastName" name="parent[1][lastname]" class="form-control" value="{{parent.[1].lastname}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Отчество:</label>
-                                                                <input type="text" id="parentMiddleName" name="parent[1][middlename]" class="form-control">
+                                                                <input type="text" id="parentMiddleName" name="parent[1][middlename]" class="form-control" value="{{parent.[1].middlename}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Место работы:</label>
-                                                                <input type="text" id="parentWork" name="parent[1][work]" class="form-control">
+                                                                <input type="text" id="parentWork" name="parent[1][work]" class="form-control" value="{{parent.[1].work}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Должность:</label>
-                                                                <input type="text" id="parentPosition" name="parent[1][position]" class="form-control">
+                                                                <input type="text" id="parentPosition" name="parent[1][position]" class="form-control" value="{{parent.[1].position}}">
                                                             </div>
                                                             <div class="col-sm-4">
-                                                                <label class="control-label" data-mask="(999) 999-9999">Рабочий телефон:</label>
-                                                                <input type="text" id="parentWorkphone" name="parent[1][workphone]" class="form-control">
+                                                                <label class="control-label">Рабочий телефон:</label>
+                                                                <input data-mask="(999) 999-9999" type="text" id="parentWorkphone" name="parent[1][workphone]" class="form-control" value="{{parent.[1].workphone}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Контактный телефон:</label>
-                                                                <input type="text" id="parentPhone" name="parent[1][phone]" class="form-control">
+                                                                <input type="text" id="parentPhone" name="parent[1][phone]" class="form-control" value="{{parent.[1].phone}}">
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <label class="control-label">Адрес:</label>
-                                                                <input type="text" id="parentAddress" name="parent[1][address]" class="form-control">
+                                                                <input type="text" id="parentAddress" name="parent[1][address]" class="form-control" value="{{parent.[1].address}}">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -550,30 +538,29 @@
                                                                 <div class="ibox float-e-margins">
                                                                     <div class="ibox-title">
                                                                         <h5>Паспортные данные</h5>
-                                                                        {{>iboxTools}}
                                                                     </div>
                                                                     <div class="ibox-content">
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Серия:</label>
                                                                             <div class="col-sm-3">
-                                                                                <input type="text" data-mask="9999" id="passportCode" name="parent[1][passport][code]" class="form-control">
+                                                                                <input type="text" data-mask="9999" id="passportCode" name="parent[1][passport][code]" class="form-control" value="{{parent.[1].passport.code}}">
                                                                             </div>
                                                                             <label class="col-sm-2 control-label">Номер:</label>
                                                                             <div class="col-sm-4">
-                                                                                <input type="text" id="passportNumber" name="parent[1][passport][number]" class="form-control">
+                                                                                <input type="text" id="passportNumber" name="parent[1][passport][number]" class="form-control" value="{{parent.[1].passport.number}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Кем выдан:</label>
                                                                             <div class="col-sm-9">
-                                                                                <input type="text" id="passportDepartment" name="parent[1][passport][department]" class="form-control">
+                                                                                <input type="text" id="passportDepartment" name="parent[1][passport][department]" class="form-control" value="{{parent.[1].passport.department}}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Когда выдан:</label>
                                                                             <div class="col-sm-3">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="parent[1][passport][date]" class="form-control">
+                                                                                <div class="input-group date">
+                                                                                    <input type="text" data-mask="99.99.9999" id="passportDate" name="parent[1][passport][date]" class="form-control" value="{{parent.[1].passport.date}}">
                                                                                     <span class="input-group-addon">
                                                                                         <i class="fa fa-calendar"></i>
                                                                                     </span>
@@ -581,7 +568,7 @@
                                                                             </div>
                                                                             <label class="col-sm-3 control-label">Код подразделения:</label>
                                                                             <div class="col-sm-3">
-                                                                                <input type="text" id="passportDepartmentCode" name="parent[1][passport][departmentCode]" class="form-control">
+                                                                                <input type="text" id="passportDepartmentCode" name="parent[1][passport][departmentCode]" class="form-control" value="{{parent.[1].passport.departmentCode}}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -597,17 +584,17 @@
                                                                 <label class="control-label">Статус семьи:</label>
                                                                 <select id="familyStatus" name="familyStatus" class="form-control">
                                                                     <option></option>
-                                                                    <option value="full">Полная</option>
-                                                                    <option value="partial">Не полная</option>
+                                                                    <option value="full" {{isSelected familyStatus "full"}}>Полная</option>
+                                                                    <option value="partial" {{isSelected familyStatus "partial"}}>Не полная</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Кол-во братьев:</label>
-                                                                <input type="number" id="familyBrotherCount" name="familyBrotherCount" class="form-control">
+                                                                <input type="number" id="familyBrotherCount" name="familyBrotherCount" class="form-control"  value="{{familyBrotherCount}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Кол-во сестер:</label>
-                                                                <input type="number" id="familySisterCount" name="familySisterCount" class="form-control">
+                                                                <input type="number" id="familySisterCount" name="familySisterCount" class="form-control"  value="{{familySisterCount}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -618,13 +605,13 @@
                                                                 <label class="control-label">Семейное положение:</label>
                                                                 <select id="maritalStatus" name="maritalStatus" class="form-control">
                                                                     <option></option>
-                                                                    <option value="married">Женат/Замужем</option>
-                                                                    <option value="single">Холост/Не замужем</option>
+                                                                    <option value="married" {{isSelected maritalStatus "married"}}>Женат/Замужем</option>
+                                                                    <option value="single" {{isSelected maritalStatus "single"}}>Холост/Не замужем</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Кол-во детей(если есть):</label>
-                                                                <input type="number" id="familyBrotherCount" name="familyBrotherCount" class="form-control">
+                                                                <input type="number" id="familyChildCount" name="familyChildCount" class="form-control"  value="{{familyChildCount}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -634,79 +621,46 @@
                                                         <div class="form-group">
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Группа крови:</label>
-                                                                <input type="text" id="bloodType" name="bloodType" class="form-control">
+                                                                <input type="text" id="bloodType" name="bloodType" class="form-control" value="{{familyChildCount}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Рост:</label>
-                                                                <input type="text" id="growth" name="growth" class="form-control">
+                                                                <input type="text" id="growth" name="growth" class="form-control" value="{{familyChildCount}}">
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <label class="control-label">Размер обуви:</label>
-                                                                <input type="text" id="shoeSize" name="shoeSize" class="form-control">
+                                                                <input type="text" id="shoeSize" name="shoeSize" class="form-control" value="{{familyChildCount}}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="hr-line-dashed col-lg-12"></div>
                                                     <h2 class="m-b col-lg-12">Увлечения</h2>
                                                     <h3 class="m-b col-lg-12">
-                                                        <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
+                                                        <button type="button" class="btn btn-primary btn-xs pull-right" id="addSport"><i class="fa fa-plus"></i> Добавить</button>
                                                         Спорт
                                                     </h3>
-                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Вид:</label>
-                                                                <input type="text" class="form-control sportType" name="sport[0][type]">
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Разряд:</label>
-                                                                <input type="text" class="form-control sportRank" name="sport[0][rank]">
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Достижения:</label>
-                                                                <input type="text" class="form-control sportAchievement" name="sport[0][achievement]">
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal" id="sportContainer">
+                                                        {{#each doc in sport}}
+                                                            {{> Sport index=@index data=doc }}
+                                                        {{/each}}
                                                     </div>
                                                     <h3 class="m-b col-lg-12">
-                                                        <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
+                                                        <button type="button" class="btn btn-primary btn-xs pull-right" id="addCreation"><i class="fa fa-plus"></i> Добавить</button>
                                                         Творчество
                                                     </h3>
-                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Вид:</label>
-                                                                <input type="text" class="form-control creationType" name="creation[0][type]">
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Документ:</label>
-                                                                <input type="text" class="form-control creationDoc" name="creation[0][doc]">
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Достижения:</label>
-                                                                <input type="text" class="form-control creationAchievement" name="creation[0][achievement]">
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal" id="creationContainer">
+                                                        {{#each doc in creation}}
+                                                            {{> creation index=@index data=doc }}
+                                                        {{/each}}
                                                     </div>
                                                     <h3 class="m-b col-lg-12">
-                                                        <button class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i> Добавить</button>
+                                                        <button type="button" class="btn btn-primary btn-xs pull-right" id="addHobby"><i class="fa fa-plus"></i> Добавить</button>
                                                         Прочие увлечения
                                                     </h3>
-                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                                        <div class="form-group">
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Вид:</label>
-                                                                <input type="text" class="form-control hobbiesType" name="hobbies[0][type]">
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Документ:</label>
-                                                                <input type="text" class="form-control hobbiesDoc" name="hobbies[0][doc]">
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <label class="control-label">Достижения:</label>
-                                                                <input type="text" class="form-control hobbiesAchievement" name="hobbies[0][achievement]">
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal" id="hobbiesContainer">
+                                                        {{#each doc in hobbies}}
+                                                            {{> creation index=@index data=doc }}
+                                                        {{/each}}
                                                     </div>
                                                     <div class="hr-line-dashed col-lg-12"></div>
                                                     <h3 class="m-b col-lg-12">Прочее</h3>
@@ -714,25 +668,25 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Личные качества:</label>
                                                             <div class="col-lg-9">
-                                                                <textarea class="form-control" id="personalQualities" name="personalQualities" rows="4"></textarea>
+                                                                <textarea class="form-control" id="personalQualities" name="personalQualities" rows="4">{{personalQualities}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Награды и поощрения:</label>
                                                             <div class="col-lg-9">
-                                                                <textarea class="form-control" id="rewards" name="rewards" rows="4"></textarea>
+                                                                <textarea class="form-control" id="rewards" name="rewards" rows="4">{{rewards}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Вредные привычки:</label>
                                                             <div class="col-lg-9">
-                                                                <input type="text" class="form-control" id="badHabits" name="badHabits">
+                                                                <input type="text" class="form-control" id="badHabits" name="badHabits" value="{{badHabits}}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Другая информация:</label>
                                                             <div class="col-lg-9">
-                                                                <textarea class="form-control" id="otherCharacterInfo" name="otherCharacterInfo" rows="4"></textarea>
+                                                                <textarea class="form-control" id="otherCharacterInfo" name="otherCharacterInfo" rows="4">{{otherCharacterInfo}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="hr-line-dashed col-lg-12"></div>
@@ -742,61 +696,61 @@
                                                                 <div class="row">
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="1" name="informers[]">
+                                                                            <input type="checkbox" value="1" name="informers[]" {{isChecked (_contains informers "1") true}}>
                                                                             <i></i> Объявление в газете
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="2" name="informers[]">
+                                                                            <input type="checkbox" value="2" name="informers[]" {{isChecked (_contains informers "2") true}}>
                                                                             <i></i> Реклама на телевидении
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="3" name="informers[]">
+                                                                            <input type="checkbox" value="3" name="informers[]" {{isChecked (_contains informers "3") true}}>
                                                                             <i></i> Реклама на радио
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="4" name="informers[]">
+                                                                            <input type="checkbox" value="4" name="informers[]" {{isChecked (_contains informers "4") true}}>
                                                                             <i></i> От родителей, друзей, родственников, знакомых
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="5" name="informers[]">
+                                                                            <input type="checkbox" value="5" name="informers[]" {{isChecked (_contains informers "5") true}}>
                                                                             <i></i> Буклеты, листовки
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="6" name="informers[]">
+                                                                            <input type="checkbox" value="6" name="informers[]" {{isChecked (_contains informers "6") true}}>
                                                                             <i></i> Сборник учебных заведений
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="7" name="informers[]">
+                                                                            <input type="checkbox" value="7" name="informers[]" {{isChecked (_contains informers "7") true}}>
                                                                             <i></i> Афиша в школе
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="8" name="informers[]">
+                                                                            <input type="checkbox" value="8" name="informers[]" {{isChecked (_contains informers "8") true}}>
                                                                             <i></i> Интернет
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="9" name="informers[]">
+                                                                            <input type="checkbox" value="9" name="informers[]" {{isChecked (_contains informers "9") true}}>
                                                                             <i></i> День открытых дверей
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-6">
                                                                         <label>
-                                                                            <input type="checkbox" value="10" name="informers[]">
+                                                                            <input type="checkbox" value="10" name="informers[]" {{isChecked (_contains informers "10") true}}>
                                                                             <i></i> Другие источники
                                                                         </label>
                                                                     </div>
@@ -809,67 +763,67 @@
                                                                 <div class="row">
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="1" name="choose[]">
+                                                                            <input type="checkbox" value="1" name="choose[]" {{isChecked (_contains choose "1") true}}>
                                                                             <i></i> Близость к дому
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="2" name="choose[]">
+                                                                            <input type="checkbox" value="2" name="choose[]" {{isChecked (_contains choose "2") true}}>
                                                                             <i></i> Престижность колледжа
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="3" name="choose[]">
+                                                                            <input type="checkbox" value="3" name="choose[]" {{isChecked (_contains choose "3") true}}>
                                                                             <i></i> Перспективные и востребованные специальности
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="4" name="choose[]">
+                                                                            <input type="checkbox" value="4" name="choose[]" {{isChecked (_contains choose "4") true}}>
                                                                             <i></i> Перспективы трудоустройства и развития
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="5" name="choose[]">
+                                                                            <input type="checkbox" value="5" name="choose[]" {{isChecked (_contains choose "5") true}}>
                                                                             <i></i> Возможность бесплатного поступления и обучения
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="6" name="choose[]">
+                                                                            <input type="checkbox" value="6" name="choose[]" {{isChecked (_contains choose "6") true}}>
                                                                             <i></i> в ПМК учились(учатся) мои родители, родственники, друзья
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="7" name="choose[]">
+                                                                            <input type="checkbox" value="7" name="choose[]" {{isChecked (_contains choose "7") true}}>
                                                                             <i></i> Материальная заинтересованность
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="8" name="choose[]">
+                                                                            <input type="checkbox" value="8" name="choose[]" {{isChecked (_contains choose "8") true}}>
                                                                             <i></i> Возможность учиться по программе "Будущее Белой металлургии"
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="9" name="choose[]">
+                                                                            <input type="checkbox" value="9" name="choose[]" {{isChecked (_contains choose "9") true}}>
                                                                             <i></i> Интерес к профессии
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="10" name="choose[]">
+                                                                            <input type="checkbox" value="10" name="choose[]" {{isChecked (_contains choose "10") true}}>
                                                                             <i></i> Выбор случаен
                                                                         </label>
                                                                     </div>
                                                                     <div class="i-checks col-sm-12">
                                                                         <label>
-                                                                            <input type="checkbox" value="11" name="choose[]">
+                                                                            <input type="checkbox" value="11" name="choose[]" {{isChecked (_contains choose "11") true}}>
                                                                             <i></i> Другой вариант
                                                                         </label>
                                                                     </div>
@@ -883,7 +837,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Академическая задолженность:</label>
                                                             <div class="col-lg-9">
-                                                                <textarea class="form-control" id="academicDebt" name="academicDebt" rows="4"></textarea>
+                                                                <textarea class="form-control" id="academicDebt" name="academicDebt" rows="4">{{academicDebt}}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -891,11 +845,11 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Кол-во пропусков:</label>
                                                             <div class="col-lg-3">
-                                                                <input type="number" class="form-control" id="passCount" name="passCount">
+                                                                <input type="number" class="form-control" id="passCount" name="passCount" value="{{passCount}}">
                                                             </div>
                                                             <label class="control-label col-lg-3">Средний балл:</label>
                                                             <div class="col-lg-3">
-                                                                <input type="number" class="form-control" id="avgPoints" name="avgPoints">
+                                                                <input type="number" class="form-control" id="avgPoints" name="avgPoints" value="{{avgPoints}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -903,7 +857,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Характеристика (от мастеров производственного обучения):</label>
                                                             <div class="col-lg-9">
-                                                                <textarea class="form-control" id="characteristic" name="characteristic" rows="10"></textarea>
+                                                                <textarea class="form-control" id="characteristic" name="characteristic" rows="10">{{characteristic}}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -911,7 +865,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Рейтинг:</label>
                                                             <div class="col-lg-9">
-                                                                <input type="number" class="form-control" id="rating" name="rating">
+                                                                <input type="number" class="form-control" id="rating" name="rating" value="{{rating}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -919,7 +873,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-lg-3">Пожелания (чем бы хотел заниматься):</label>
                                                             <div class="col-lg-9">
-                                                                <textarea class="form-control" id="wishes" name="wishes" rows="4"></textarea>
+                                                                <textarea class="form-control" id="wishes" name="wishes" rows="4">{{wishes}}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -933,7 +887,7 @@
                                 <div class="col-lg-12">
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-primary" id="save">Сохранить</button>
-                                        <button type="cancel" class="btn btn-default" id="cancel" aria-dismiss="true">Отмена</button>
+                                        <button type="button" class="btn btn-default" id="cancel">Отмена</button>
                                     </div>
                                 </div>
                             </div>

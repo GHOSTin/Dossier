@@ -26,7 +26,8 @@ FlowRouter.route('/student/:id', {
     subscriptions(params){
         this.register('student', Meteor.subscribe('students', params.id))
     },
-    action() {
+    action(params) {
+        Session.set('selectedUser', params.id);
         BlazeLayout.render("mainLayout", {content: "Student"})
     }
 });

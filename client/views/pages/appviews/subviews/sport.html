@@ -1,0 +1,18 @@
+<template name="Sport">
+    <div class="sportContent">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="control-label">Вид:</label>
+                <input type="text" class="form-control sportType" name="sport[][type]" value="{{data.type}}">
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label">Разряд:</label>
+                <input type="text" class="form-control sportRank" name="sport[][rank]" value="{{data.rank}}">
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label">Достижения:</label>
+                <input type="text" class="form-control sportAchievement" name="sport[][achievement]" value="{{data.achievement}}">
+            </div>
+        </div>
+    </div>
+</template>

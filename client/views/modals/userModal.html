@@ -44,9 +44,8 @@
                         <label for="role">Роль</label>
                         <select id="role" class="form-control input pmd-select2" style="width: 100%;">
                             <option></option>
-                            {{#each role in roles}}
-                                <option value="{{role.name}}" selected="{{#if _contains user.roles role.name}}selected{{/if}}">{{role.name}}</option>
-                            {{/each}}
+                            <option value="admin" {{isSelected (_contains user.roles "admin") true}}>Администратор</option>
+                            <option value="user" {{isSelected (_contains user.roles "user") true}}>Пользователь</option>
                         </select>
                     </div>
                 </div>

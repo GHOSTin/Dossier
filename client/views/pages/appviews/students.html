@@ -30,18 +30,23 @@
                         <tbody>
                         {{#each students}}
                             <tr>
-                                <td class="project-id">
+                                <td class="project-title">
                                     <a href="/student/{{_id}}">{{ind}}</a>
                                 </td>
                                 <td class="project-title">
-                                    <a href="#">{{lastname}} {{firstname}} {{middlename}}</a>
+                                    <strong>{{lastname}} {{firstname}} {{middlename}}</strong>
                                 </td>
-                                <td class="project-completion">
-                                    {{profession}}
-                                </td>
+                                <td class="contact-type"><i class="fa fa-phone visible-lg-inline"> </i></td>
+                                <td><span class="visible-lg-inline">{{phone}}</span></td>
+                                <td class="contact-type"><i class="fa fa-mobile visible-lg-inline"> </i></td>
+                                <td><span class="visible-lg-inline">{{mobile}}</span></td>
+                                <td class="contact-type"><i class="fa fa-envelope visible-lg-inline"> </i></td>
+                                <td><span class="visible-lg-inline">{{email}}</span></td>
                                 <td class="project-actions">
                                     <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
+                                    {{#if isInRole 'admin'}}
                                     <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                                    {{/if}}
                                 </td>
                             </tr>
                         {{/each}}
