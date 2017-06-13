@@ -1,0 +1,22 @@
+<template name="academicDebt">
+    <tr>
+        <td>
+            {{index}}
+        </td>
+        <td>
+            <input type="hidden" name="academicDebt[][name]" value="{{data.name}}">
+            {{data.name}}
+        </td>
+        <td>
+            <input type="hidden" name="academicDebt[][type]" value="{{data.type}}">
+            {{data.type}}
+        </td>
+        <td>
+            <input type="hidden" name="academicDebt[][date]" value="{{data.date}}">
+            {{data.date}}
+        </td>
+        <td>
+            <span class="btn btn-default btn-xs"><i class="fa fa-close"></i> </span>
+        </td>
+    </tr>
+</template>

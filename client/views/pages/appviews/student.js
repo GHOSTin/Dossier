@@ -2,9 +2,9 @@ require('jquery-serializejson');
 import {Students} from '/lib/collections/students'
 
 Template.Student.onCreated(function() {
-    var self = this;
+    let self = this;
     self.autorun(function() {
-        var postId = FlowRouter.getParam('id');
+        let postId = FlowRouter.getParam('id');
         self.sub = self.subscribe('student', postId);
     });
     self.socialDocs = new ReactiveVar(false);
@@ -33,7 +33,7 @@ Template.Student.onRendered(function () {
                         $(this).prop('readonly', true);
                     });
                 }
-            })
+            });
         }
     });
     $('.input-group.date').datepicker({
@@ -49,6 +49,7 @@ Template.Student.onRendered(function () {
     });
 
     $("#form").validate({
+        ignore: "",
         rules: {
             ind: {
                 required: true,
@@ -66,30 +67,111 @@ Template.Student.onRendered(function () {
             birthday: {
                 required: true
             },
-            'gender': {
+            gender: {
                 required: true
-            }
+            },
+            'school[name]': {
+                required: true
+            },
+            'passport[code]': {
+                required: true
+            },
+            'passport[number]': {
+                required: true
+            },
+            'passport[department]': {
+                required: true
+            },
+            'passport[date]': {
+                required: true
+            },
+            'passport[departmentCode]': {
+                required: true
+            },
+            'diploma[type]': {
+                required: true
+            },
+            'diploma[code]': {
+                required: true
+            },
+            'diploma[number]': {
+                required: true
+            },
+            'school[year]': {
+                required: true
+            },
+            'diploma[date]': {
+                required: true
+            },
+            'address[registration][region]':"required",
+            'address[registration][city]':"required",
+            'address[registration][shf]':"required",
+            'address[fact][region]':"required",
+            'address[fact][city]':"required",
+            'address[fact][shf]':"required",
         },
         messages: {
             ind: {
                 required: "Индивидуальный номер обязателен к заполнению.",
             },
             firstname: {
-                required: "Индивидуальный номер обязателен к заполнению.",
+                required: "Укажите имя.",
             },
             lastname: {
-                required: "Индивидуальный номер обязателен к заполнению.",
+                required: "Укажите фамилию.",
             },
             middlename: {
-                required: "Индивидуальный номер обязателен к заполнению.",
+                required: "Укажите отчество.",
             },
             birthday: {
-                required: "Индивидуальный номер обязателен к заполнению.",
+                required: "Укажите дату рождения.",
             },
-            'gender': {
+            gender: {
                 required: "Укажите пол.",
             },
-        }
+            'school[name]': {
+                required: "Укажите полное наименование Образовательного учереждения."
+            },
+            'passport[code]': {
+                required: "Укажите серию паспорта."
+            },
+            'passport[number]': {
+                required: "Укажите номер паспорта."
+            },
+            'passport[department]': {
+                required: "Укажите кем выдан паспорт."
+            },
+            'passport[date]': {
+                required: "Укажите дату выдачи паспорта."
+            },
+            'passport[departmentCode]': {
+                required: "Укажите код подразделения паспорта."
+            },
+            'diploma[type]': {
+                required: "Укажите вид документа об образовании."
+            },
+            'diploma[code]': {
+                required: "Укажите серию документа об образовании."
+            },
+            'diploma[number]': {
+                required: "Укажите номер документа об образовании."
+            },
+            'school[year]': {
+                required: "Укажите год окончания учебного учереждения."
+            },
+            'diploma[date]': {
+                required: "Укажите дату получения документа об образовании."
+            },
+            'address[registration][region]':"Укажите регион в адресе регистрации",
+            'address[registration][city]':"Укажите город в адресе регистрации",
+            'address[registration][shf]':"Укажите улицу/дом/квартиру в адресе регистрации",
+            'address[fact][region]':"Укажите регион в фактическом адресе проживания",
+            'address[fact][city]':"Укажите город в фактическом адресе проживания",
+            'address[fact][shf]':"Укажите улицу/дом/квартиру в фактическом адресе проживания",
+        },
+        errorContainer: $('#validation-errors'),
+        errorLabelContainer: $('#validation-errors ul'),
+        wrapper: 'li',
     });
 });
 
@@ -100,6 +182,10 @@ Template.Student.events({
     },
     'submit form': ( event, template ) => {
         event.preventDefault();
+        if(!$("#form").valid()){
+            Bert.alert('Обнаружены ошибки в заполнении!', 'danger', 'fixed-top', 'fa-frown-o');
+            return false;
+        }
         let data = $('#form').find(':input').filter(function () {
             return $.trim(this.value).length > 0
         }).serializeJSON({
@@ -175,30 +261,38 @@ Template.Student.events({
     },
     'click #socialDocAdd': ( event, template )=>{
         event.preventDefault();
-        if(!template.socialDocs.get()) {
-            let length = $('.socialDocContent').length;
-            template.socialDocs.set(Blaze.renderWithData(Template.SocialDoc, {index: length}, $('#socialDocContainer')[0]));
-        }
+        let length = $('.socialDocContent').length;
+        template.socialDocs.set(Blaze.renderWithData(Template.SocialDoc, {index: length}, $('#socialDocContainer')[0]));
     },
     'click #addSport': ( event, template )=>{
         event.preventDefault();
-        if(!template.sports.get()) {
-            let length = $('.sportContent').length;
-            template.sports.set(Blaze.renderWithData(Template.Sport, {index: length}, $('#sportContainer')[0]));
-        }
+        let length = $('.sportContent').length;
+        template.sports.set(Blaze.renderWithData(Template.Sport, {index: length}, $('#sportContainer')[0]));
     },
     'click #addCreation': ( event, template )=>{
         event.preventDefault();
-        if(!template.creations.get()) {
-            let length = $('.creationContent').length;
-            template.creations.set(Blaze.renderWithData(Template.Sport, {index: length}, $('#creationContainer')[0]));
-        }
+        let length = $('.creationContent').length;
+        template.creations.set(Blaze.renderWithData(Template.creation, {index: length}, $('#creationContainer')[0]));
     },
     'click #addHobby': ( event, template )=>{
         event.preventDefault();
-        if(!template.hobbies.get()) {
-            let length = $('.hobbiesContent').length;
-            template.hobbies.set(Blaze.renderWithData(Template.Sport, {index: length}, $('#hobbiesContainer')[0]));
+        let length = $('.hobbiesContent').length;
+        template.hobbies.set(Blaze.renderWithData(Template.hobby, {index: length}, $('#hobbiesContainer')[0]));
+    },
+    'click .sportContent, click .creationContent, click .socialDocContent, click .hobbiesContent':( event ) => {
+        let $this = $(event.currentTarget);
+        if(event.clientX > $this.outerWidth()+$this.offset().left && event.clientY < $this.offset().top + 25){
+            $this.remove();
         }
+    },
+    'click #addDebt': ( event,template ) => {
+        event.preventDefault();
+        /***let data = {
+            name: $('#debtName').val(),
+            type: $('#debtType').val(),
+            date: $('#debtDate').val()
+        },
+            index = $('#debtTable tbody').find('tr').length;
+        Blaze.renderWithData(Template.academicDebt, {index: index, data: data}, $('#debtTable tbody')[0]);*/
     }
 });
