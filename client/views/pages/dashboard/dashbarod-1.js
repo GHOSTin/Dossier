@@ -1,3 +1,4 @@
+import {Students} from '/lib/collections/students'
 Template.dashboard1.helpers({
 
     // For demo purpose
@@ -8,7 +9,15 @@ Template.dashboard1.helpers({
         {number: 3, labelClass: 'primary', content: 'Open new shop', time: '08.22 pm'},
         {number: 4, labelClass: 'default', content: 'Call back to Sylvia', time: '11:06 pm'},
         {number: 5, labelClass: 'primary', content: 'Write a letter to Sandra', time: '12:00 pm'}
-    ]
+    ],
+    SACount(){
+        let start = new Date();
+        start.setHours(0,0,0,0);
+
+        let end = new Date();
+        end.setHours(23,59,59,999);
+        return Students.find({"createAt":{$gte: start, $lt: end}}).count();
+    }
 
 });
 
@@ -30,10 +39,6 @@ Template.dashboard1.rendered = function(){
         }
     };
 
-
-    var ctx4 = document.getElementById("doughnutChart").getContext("2d");
-    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
-
     var doughnutData = {
         labels: ["App","Software","Laptop" ],
         datasets: [{
@@ -49,11 +54,6 @@ Template.dashboard1.rendered = function(){
             display: false
         }
     };
-
-
-    var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
-    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
-
 
     // Options/data for flot chart
     var data1 = [
@@ -115,7 +115,7 @@ Template.dashboard1.rendered = function(){
         width:100
     });
 
-    var updatingChart = $(".updating-chart").peity("line", { fill: '#1ab394',stroke:'#169c81', width: 64 })
+    /*var updatingChart = $(".updating-chart").peity("line", { fill: '#1ab394',stroke:'#169c81', width: 64 })
 
     setInterval(function() {
         var random = Math.round(Math.random() * 10)
@@ -126,6 +126,6 @@ Template.dashboard1.rendered = function(){
         updatingChart
             .text(values.join(","))
             .change()
-    }, 1000);
+    }, 1000);*/
 
 };

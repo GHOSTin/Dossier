@@ -102,9 +102,16 @@ Template.Student.events({
         event.preventDefault();
         let data = $('#form').find(':input').filter(function () {
             return $.trim(this.value).length > 0
-        }).serializeJSON(),
+        }).serializeJSON({
+            customTypes: {
+                date: function(str) {
+                    return new Date(str);
+                }
+            }
+        }),
             userId = Session.get('selectedUser');
         if (!userId) {
+            _.extend(data, {createAt: new Date()});
             Meteor.call('addStudent', data, function (error, result) {
                 if (error) {
                     Bert.alert(error.reason, 'danger', 'fixed-top', 'fa-frown-o')

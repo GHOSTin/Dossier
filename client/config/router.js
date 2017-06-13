@@ -12,7 +12,8 @@ FlowRouter.route('/users', {
 
 FlowRouter.route('/students', {
     action() {
-        BlazeLayout.render("mainLayout", {content: "students"})
+        BlazeLayout.render("mainLayout", {content: "students"});
+        Session.set('selectedUser', null);
     }
 });
 

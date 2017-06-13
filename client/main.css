@@ -6,12 +6,54 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .onoffswitch-inner:before {
     text-align: left;
 }
+/* remove button */
+.socialDocContent::after,
+.creationContent::after,
+.hobbiesContent::after,
+.sportContent::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    top: 40px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
 
+.socialDocContent::after,
+.creationContent::after,
+.hobbiesContent::after,
+.sportContent::after {
+    content: "\f068";
+    font: normal normal normal 14px/20px FontAwesome;
+    border-radius: 3px;
+    border: 1px solid;
+}
+
+.sportContent::after,
+.hobbiesContent::after,
+.creationContent::after {
+    top: 25px;
+}
+
+.socialDocContent:nth-child(1)::after {
+    top: 0;
+}
+
+.socialDocContent,
+.sportContent,
+.creationContent,
+.hobbiesContent {
+    position: relative;
+}
+/* Mark Required fields */
 .form-group.required .control-label:after {
     content:" *";
     color:red;
 }
-
+/* Material Design for Datepicker*/
 .datepicker.datepicker-dropdown {
     font-size: 14px;
     border-radius: 0;
@@ -104,3 +146,4 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background: rgba(83, 192, 157, .6);
     border-bottom-color: rgba(83, 192, 157, .6);
 }
+/*******************************************************************/
