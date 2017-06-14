@@ -36,4 +36,4 @@ Meteor.publish('student', function( id ){
         query = {_id: id}
     }
     return Students.find(query, projection);
-})
+});

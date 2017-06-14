@@ -11,9 +11,24 @@ Template.Student.onCreated(function() {
     self.sports = new ReactiveVar(false);
     self.creations = new ReactiveVar(false);
     self.hobbies = new ReactiveVar(false);
+    self.debts = [];
+    self.avgpoints = [];
 });
 
 Template.Student.helpers({
+    indicator(){
+        if(Template.instance().subscriptionsReady()) {
+            let id = FlowRouter.getParam('id'), prevInd, ind;
+            if (id) {
+                ind = s.toNumber(Students.findOne({_id: id}, {fields: {ind: 1}, sort: {ind: 1}, limit: 1}).ind);
+            } else {
+                prevInd = Students.find({}, {fields:{ind:1}, sort: {createAt: -1}, limit: 1}).fetch();
+                console.log(prevInd);
+                ind = s.toNumber(_.first(prevInd).ind) + 1;
+            }
+            return s.lpad(ind, 6, "0");
+        }
+    },
     student() {
         let id = FlowRouter.getParam('id');
         return Students.findOne({_id: id}) || {};
@@ -182,6 +197,7 @@ Template.Student.events({
     },
     'submit form': ( event, template ) => {
         event.preventDefault();
+        event.stopPropagation();
         if(!$("#form").valid()){
             Bert.alert('Обнаружены ошибки в заполнении!', 'danger', 'fixed-top', 'fa-frown-o');
             return false;
@@ -196,6 +212,7 @@ Template.Student.events({
             }
         }),
             userId = Session.get('selectedUser');
+        data.ind = s.toNumber(data.ind);
         if (!userId) {
             _.extend(data, {createAt: new Date()});
             Meteor.call('addStudent', data, function (error, result) {
@@ -211,8 +228,10 @@ Template.Student.events({
             Meteor.call('editStudent', data, function (error, result) {
                 if (error) {
                     Bert.alert(error.reason, 'danger', 'fixed-top', 'fa-frown-o')
-                } else {
+                }
+                if (result) {
                     Bert.alert( 'Редактирование прошло успешно!', 'success', 'fixed-top' );
+                    $('tr.hidden, div[class*="Content"][class~="hidden"]').removeClass('hidden');
                     if(template.socialDocs.get()) {
                         Blaze.remove(template.socialDocs.get());
                         template.socialDocs.set(false);
@@ -229,16 +248,30 @@ Template.Student.events({
                         Blaze.remove(template.hobbies.get());
                         template.hobbies.set(false);
                     }
+                    if(template.debts.length > 0) {
+                        _.each(template.debts, ( view )=>{
+                            Blaze.remove(view);
+                        });
+                        template.debts = [];
+                    }
+                    if(template.avgpoints.length > 0) {
+                        _.each(template.avgpoints, ( view )=>{
+                            Blaze.remove(view);
+                        });
+                        template.avgpoints = [];
+                    }
                 }
             });
             console.log(data);
         }
+        return false;
     },
     'ifUnchecked [name="factAsRegistration"]': ( event ) => {
         event.preventDefault();
         $('[id^=addressFact]').each(function( index ){
             $(this).prop('readonly', false);
-        })
+        });
+        return true;
     },
     'ifChecked [name="factAsRegistration"]': ( event ) => {
         event.preventDefault();
@@ -249,6 +282,7 @@ Template.Student.events({
                 linkValue = $(`#${linkSelector}`).val();
             $(this).val(linkValue);
         });
+        return true;
     },
     'keyup [id^="addressRegistration"]': ( event ) => {
         event.preventDefault();
@@ -258,41 +292,58 @@ Template.Student.events({
                 linkValue = $(event.target).val();
             $('[data-link="'+ linkName +'"]').val(linkValue);
         }
+        return true;
     },
     'click #socialDocAdd': ( event, template )=>{
         event.preventDefault();
         let length = $('.socialDocContent').length;
         template.socialDocs.set(Blaze.renderWithData(Template.SocialDoc, {index: length}, $('#socialDocContainer')[0]));
+        return true;
     },
     'click #addSport': ( event, template )=>{
         event.preventDefault();
         let length = $('.sportContent').length;
         template.sports.set(Blaze.renderWithData(Template.Sport, {index: length}, $('#sportContainer')[0]));
+        return true;
     },
     'click #addCreation': ( event, template )=>{
         event.preventDefault();
         let length = $('.creationContent').length;
         template.creations.set(Blaze.renderWithData(Template.creation, {index: length}, $('#creationContainer')[0]));
+        return true;
     },
     'click #addHobby': ( event, template )=>{
         event.preventDefault();
         let length = $('.hobbiesContent').length;
         template.hobbies.set(Blaze.renderWithData(Template.hobby, {index: length}, $('#hobbiesContainer')[0]));
-    },
-    'click .sportContent, click .creationContent, click .socialDocContent, click .hobbiesContent':( event ) => {
-        let $this = $(event.currentTarget);
-        if(event.clientX > $this.outerWidth()+$this.offset().left && event.clientY < $this.offset().top + 25){
-            $this.remove();
-        }
+        return true;
     },
     'click #addDebt': ( event,template ) => {
         event.preventDefault();
-        /***let data = {
+        let data = {
             name: $('#debtName').val(),
             type: $('#debtType').val(),
             date: $('#debtDate').val()
         },
             index = $('#debtTable tbody').find('tr').length;
-        Blaze.renderWithData(Template.academicDebt, {index: index, data: data}, $('#debtTable tbody')[0]);*/
+        $('#debtName').val("");
+        $('#debtType').val("");
+        $('#debtDate').val("");
+        let view = Blaze.renderWithData(Template.academicDebt, {index: index, data: data}, $('#debtTable tbody')[0]);
+        template.debts.push(view);
+        return true;
+    },
+    'click #addAvgPoints': ( event,template ) => {
+        event.preventDefault();
+        let data = {
+            number: $('#avgPointsNumber').val(),
+            date: $('#avgPointsDate').val()
+        },
+            index = $('#avgPointsTable tbody').find('tr').length;
+        $('#avgPointsNumber').val("");
+        $('#avgPointsDate').val("");
+        let view = Blaze.renderWithData(Template.avgPoints, {index: index, data: data}, $('#avgPointsTable tbody')[0]);
+        template.avgpoints.push(view);
+        return true;
     }
 });

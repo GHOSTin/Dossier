@@ -16,7 +16,10 @@ Template.students.onCreated(function() {
 
 Template.students.helpers({
     students(){
-        return Students.find({})
+        return Students.find({},{sort: {createAt: 1}})
+    },
+    indicator( ind ){
+        return s.lpad(ind, 6, "0");
     }
 });
 

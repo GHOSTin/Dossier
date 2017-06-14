@@ -1,8 +1,5 @@
 <template name="academicDebt">
-    <tr>
-        <td>
-            {{index}}
-        </td>
+    <tr data-id="{{index}}">
         <td>
             <input type="hidden" name="academicDebt[][name]" value="{{data.name}}">
             {{data.name}}
@@ -16,7 +13,7 @@
             {{data.date}}
         </td>
         <td>
-            <span class="btn btn-default btn-xs"><i class="fa fa-close"></i> </span>
+            <span class="btn btn-default btn-xs remove" data-row-id="{{index}}"><i class="fa fa-close"></i> </span>
         </td>
     </tr>
 </template>

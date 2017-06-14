@@ -17,7 +17,7 @@
                                     <div class="form-group required">
                                         <label class="col-sm-3 control-label">Индивидуальный номер:</label>
                                         <div class="col-sm-9">
-                                            <input name="ind" type="text" id="ind" class="form-control" value="{{ind}}">
+                                            <input name="ind" type="text" id="ind" class="form-control" value="{{indicator}}" readonly>
                                         </div>
                                         <div class="col-sm-3">
                                             <input name="createAt:date" type="hidden" id="createAt" class="form-control" value="{{createAt}}">
@@ -840,48 +840,53 @@
                                                     <div class="col-lg-10 col-lg-offset-1 form-horizontal">
                                                         <div class="form-group">
                                                             <label class="control-label">Академическая задолженность:</label>
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-3">
-                                                                        <label class="control-label">Дисциплина:</label>
-                                                                        <input type="text" class="form-control" id="debtName">
+                                                            <div class="col-lg-12 m-t">
+                                                                <div class="ibox">
+                                                                    <div class="ibox-title">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3">
+                                                                                <label class="control-label">Дисциплина:</label>
+                                                                                <input type="text" class="form-control" id="debtName">
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <label class="control-label">Вид задолженности:</label>
+                                                                                <select class="form-control" id="debtType">
+                                                                                    <option></option>
+                                                                                    <option value="Экз">Экз</option>
+                                                                                    <option value="ДЗ">ДЗ</option>
+                                                                                    <option value="КП">КП</option>
+                                                                                    <option value="КвЭ">КвЭ</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <label class="control-label">Семестр:</label>
+                                                                                <input type="number" max="12" min="1" class="form-control" id="debtDate">
+                                                                            </div>
+                                                                            <div class="col-sm-3 p-h-md">
+                                                                                <button type="button" id="addDebt" class="btn btn-primary">
+                                                                                    <i class="fa fa-plus"></i> Добавить
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-sm-3">
-                                                                        <label class="control-label">Вид задолженности:</label>
-                                                                        <select class="form-control" id="debtType">
-                                                                            <option></option>
-                                                                            <option value="Экз">Экз</option>
-                                                                            <option value="ДЗ">ДЗ</option>
-                                                                            <option value="КП">КП</option>
-                                                                            <option value="КвЭ">КвЭ</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-sm-3">
-                                                                        <label class="control-label">Семестр:</label>
-                                                                        <input type="number" max="12" min="1" class="form-control" id="debtDate">
-                                                                    </div>
-                                                                    <div class="col-sm-3 p-h-md">
-                                                                        <button type="button" id="addDebt" class="btn btn-primary">
-                                                                            <i class="fa fa-plus"></i> Добавить
-                                                                        </button>
+                                                                    <div class="ibox-content">
+                                                                        <table class="table table-hover" id="debtTable">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Дисциплина</th>
+                                                                                    <th>Вид</th>
+                                                                                    <th>Семестр</th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            {{#each doc in academicDebt}}
+                                                                                {{>academicDebt index=@index data=doc}}
+                                                                            {{/each}}
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
-                                                                <table class="table table-striped" id="debtTable">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>#</th>
-                                                                            <th>Дисциплина</th>
-                                                                            <th>Вид</th>
-                                                                            <th>Семестр</th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    {{#each doc in academicDebt}}
-                                                                        {{>academicDebt index=@index data=doc}}
-                                                                    {{/each}}
-                                                                    </tbody>
-                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -891,9 +896,47 @@
                                                             <div class="col-lg-3">
                                                                 <input type="number" class="form-control" id="passCount" name="passCount" value="{{passCount}}">
                                                             </div>
-                                                            <label class="control-label col-lg-3">Средний балл:</label>
-                                                            <div class="col-lg-3">
-                                                                <input type="number" class="form-control" id="avgPoints" name="avgPoints" value="{{avgPoints}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-10 col-lg-offset-1 form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Средний балл:</label>
+                                                            <div class="col-lg-12 m-t">
+                                                                <div class="ibox">
+                                                                    <div class="ibox-title">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-4">
+                                                                                <label class="control-label">Семестр:</label>
+                                                                                <input type="text" class="form-control" id="avgPointsDate">
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                <label class="control-label">Средний балл:</label>
+                                                                                <input type="number" max="6" min="0" class="form-control" id="avgPointsNumber">
+                                                                            </div>
+                                                                            <div class="col-sm-3 p-h-md">
+                                                                                <button type="button" id="addAvgPoints" class="btn btn-primary">
+                                                                                    <i class="fa fa-plus"></i> Добавить
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="ibox-content">
+                                                                        <table class="table table-hover" id="avgPointsTable">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>Семестр</th>
+                                                                                <th>Средний балл</th>
+                                                                                <th></th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            {{#each doc in avgPoints}}
+                                                                                {{>avgPoints data=doc}}
+                                                                            {{/each}}
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
