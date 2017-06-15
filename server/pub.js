@@ -23,7 +23,12 @@ Meteor.publish('students', function( search ){
     if (search) {
         let regex = new RegExp(search, 'i');
 
-        query = {"firstname": regex};
+        let queryIds = Students.aggregate([
+            {$project: {"username": { $concat : ["$lastname", " ", "$firstname", " ", "$middlename"]}}},
+            {$match: {$or: [{"username": regex}, {"ind": regex}]}}
+        ]).map(function(e){ return e._id});
+
+        query = {_id: {$in: queryIds}};
     }
     return Students.find(query, projection);
 });

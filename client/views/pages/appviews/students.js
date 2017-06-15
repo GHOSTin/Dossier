@@ -27,6 +27,31 @@ Template.students.events({
     'click .edit': ( event ) => {
         event.preventDefault();
         FlowRouter.go('/student/'+$(event.currentTarget).attr('data-user-id'))
+    },
+    'keyup #userName': function(e, template) {
+        let value = $('#userName').val().trim();
+
+        if(value !== '' && e.keyCode === 13 ){
+            template.searchQuery.set(value);
+            template.searching.set( true );
+        }
+
+        if( value === "" ) {
+            template.searchQuery.set(value);
+        }
+    },
+    'click #search': function(e, template){
+        e.preventDefault();
+        let value = $('#userName').val().trim();
+
+        if(value !== ''){
+            template.searchQuery.set(value);
+            template.searching.set( true );
+        }
+
+        if( value === "" ) {
+            template.searchQuery.set(value);
+        }
     }
 });
 

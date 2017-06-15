@@ -1,4 +1,11 @@
 import {Students} from '/lib/collections/students'
+Template.dashboard1.onCreated(function(){
+    let self = this;
+    self.autorun(() => {
+        self.subscribe('students');
+    });
+});
+
 Template.dashboard1.helpers({
 
     // For demo purpose
