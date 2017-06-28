@@ -345,5 +345,27 @@ Template.Student.events({
         let view = Blaze.renderWithData(Template.avgPoints, {index: index, data: data}, $('#avgPointsTable tbody')[0]);
         template.avgpoints.push(view);
         return true;
+    },
+    'change input[name^="diploma[subject]"]': ( event, template ) => {
+        event.preventDefault();
+        let [count3, count4, count5] = [0,0,0];
+        $('input[name^="diploma[subject]"]')
+            .filter(function(){ return this.value })
+            .each(function(elem){
+                if($(this).val() == 3){
+                    count3++;
+                }
+                if($(this).val() == 4){
+                    count4++;
+                }
+                if($(this).val() == 5){
+                    count5++;
+                }
+            });
+        let avg = (3*count3+4*count4+5*count5)/(count3+count4+count5);
+        $('#diplomaCounts3').val(count3);
+        $('#diplomaCounts4').val(count4);
+        $('#diplomaCounts5').val(count5);
+        $('#diplomaAvr').val(avg);
     }
 });

@@ -15,7 +15,9 @@ Template.SocialDoc.onRendered(()=>{
 Template.SocialDoc.events({
     'click .socialDocContent':( event, template ) => {
         let $this = $(event.currentTarget);
-        if(event.clientX > $this.outerWidth()+$this.offset().left && event.clientY < $this.offset().top + 25){
+        console.log(event.clientY);
+        console.log($this.offset().top + 25);
+        if(event.clientX >= $this.outerWidth()+$this.offset().left && event.clientY+document.body.scrollTop <= $this.offset().top + 25){
             template.$(template.firstNode).addClass('hidden');
             template
                 .$(template.firstNode)
