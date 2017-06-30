@@ -25,10 +25,26 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Статус:</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-3">
                                             <select id="role" name="role" class="form-control">
                                                 <option value="abiturient" {{isSelected role "abiturient"}}>Абитуриент</option>
                                                 <option value="student" {{isSelected role "student"}}>Студент</option>
+                                            </select>
+                                        </div>
+                                        <label class="col-sm-3 control-label">Специальность:</label>
+                                        <div class="col-sm-3">
+                                            <select id="spec" name="spec" class="form-control">
+                                                <option value=""></option>
+                                                <option value="ЭД" {{isSelected spec "ЭД"}}>ЭД</option>
+                                                <option value="МД" {{isSelected spec "МД"}}>МД</option>
+                                                <option value="ТМД" {{isSelected spec "ТМД"}}>ТМД</option>
+                                                <option value="ТД" {{isSelected spec "ТД"}}>ТД</option>
+                                                <option value="СтД" {{isSelected spec "СтД"}}>СтД</option>
+                                                <option value="АвД" {{isSelected spec "АвД"}}>АвД</option>
+                                                <option value="АхД" {{isSelected spec "АхД"}}>АхД</option>
+                                                <option value="ИД" {{isSelected spec "ИД"}}>ИД</option>
+                                                <option value="АД" {{isSelected spec "АД"}}>АД</option>
+                                                <option value="ПСД" {{isSelected spec "ПСД"}}>ПСД</option>
                                             </select>
                                         </div>
                                     </div>
