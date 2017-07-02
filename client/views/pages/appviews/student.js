@@ -1,11 +1,14 @@
 require('jquery-serializejson');
 import {Students} from '/lib/collections/students'
+import {Avatars} from '/lib/collections/avatars'
 
 Template.Student.onCreated(function() {
     let self = this;
+    self.avatarId = new ReactiveVar();
     self.autorun(function() {
         let postId = FlowRouter.getParam('id');
         self.sub = self.subscribe('student', postId);
+        self.subscribe('avatar', self.avatarId.get());
     });
     self.socialDocs = new ReactiveVar(false);
     self.sports = new ReactiveVar(false);
@@ -32,6 +35,14 @@ Template.Student.helpers({
     student() {
         let id = FlowRouter.getParam('id');
         return Students.findOne({_id: id}) || {};
+    },
+    photo(){
+        let studentId = FlowRouter.getParam('id'),
+            id = Students.findOne({_id: studentId}).avatar.toString();
+        if(Template.instance().avatarId.get()) {
+            id = Template.instance().avatarId.get();
+        }
+        return Avatars.findOne({_id: id})
     }
 });
 
@@ -367,5 +378,13 @@ Template.Student.events({
         $('#diplomaCounts4').val(count4);
         $('#diplomaCounts5').val(count5);
         $('#diplomaAvr').val(avg);
+    },
+    'click .upload-avatar': ( event ) => {
+        event.preventDefault();
+        Modal.show('avatar');
+    },
+    'change input[name="avatar"]': (event, template) => {
+        event.preventDefault();
+        template.avatarId.set($(event.currentTarget).val());
     }
 });

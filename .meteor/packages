@@ -39,3 +39,6 @@ themeteorchef:bert
 aldeed:simple-schema
 underscorestring:underscore.string
 meteorhacks:aggregate
+cfs:standard-packages
+cfs:filesystem
+cfs:graphicsmagick

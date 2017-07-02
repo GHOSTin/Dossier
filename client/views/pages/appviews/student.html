@@ -39,22 +39,43 @@
                                     <h2>Общие сведения</h2>
                                 </div>
                                 <div class="col-lg-10 col-lg-offset-1 form-horizontal">
-                                    <div class="form-group required">
-                                        <label class="col-sm-3 control-label">Фамилия:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="lastname" class="form-control" name="lastname" value="{{lastname}}">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group required">
+                                                <label class="col-sm-4 control-label">Фамилия:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="lastname" class="form-control" name="lastname" value="{{lastname}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="col-sm-4 control-label">Имя:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="firstname" class="form-control" name="firstname" value="{{firstname}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="col-sm-4 control-label">Отчество:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="middlename" class="form-control" name="middlename" value="{{middlename}}">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group required">
-                                        <label class="col-sm-3 control-label">Имя:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="firstname" class="form-control" name="firstname" value="{{firstname}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group required">
-                                        <label class="col-sm-3 control-label">Отчество:</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="middlename" class="form-control" name="middlename" value="{{middlename}}">
+                                        <div class="col-md-3 text-center">
+                                            <div class="owner-photo-wrapper">
+                                                <div class="view overlay hm-black-strong">
+                                                    {{#if avatar}}
+                                                        {{#with photo}}
+                                                            <img src="{{this.url store='thumbs' uploading='/ajax-loader.gif' storing='/images/storing.gif'}}">
+                                                        {{/with}}
+                                                    {{else}}
+                                                        <img src="/default-avatar.png">
+                                                    {{/if}}
+                                                    <input type="hidden" name="avatar" value="{{avatar}}">
+                                                    <div class="mask flex-center">
+                                                        <span class="white-text upload-avatar" role="button"><i class="fa fa-cloud-upload"></i> Обновить</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
@@ -103,12 +124,12 @@
                                         <div class="panel-heading">
                                             <div class="panel-options">
                                                 <ul class="nav nav-tabs">
-                                                    <li class="active"><a href="#tab-1" data-toggle="tab">Образование</a></li>
-                                                    <li class=""><a href="#tab-2" data-toggle="tab">Паспортные данные</a></li>
-                                                    <li class=""><a href="#tab-3" data-toggle="tab">Прочие документы</a></li>
-                                                    <li class=""><a href="#tab-4" data-toggle="tab">Информация о родителях/семье</a></li>
-                                                    <li class=""><a href="#tab-5" data-toggle="tab">Доп информация</a></li>
-                                                    <li class=""><a href="#tab-6" data-toggle="tab">Успеваемость</a></li>
+                                                    <li class="active waves-light waves-effect"><a href="#tab-1" data-toggle="tab">Образование</a></li>
+                                                    <li class="waves-light waves-effect"><a href="#tab-2" data-toggle="tab">Паспортные данные</a></li>
+                                                    <li class="waves-light waves-effect"><a href="#tab-3" data-toggle="tab">Прочие документы</a></li>
+                                                    <li class="waves-light waves-effect"><a href="#tab-4" data-toggle="tab">Информация о родителях/семье</a></li>
+                                                    <li class="waves-light waves-effect"><a href="#tab-5" data-toggle="tab">Доп информация</a></li>
+                                                    <li class="waves-light waves-effect"><a href="#tab-6" data-toggle="tab">Успеваемость</a></li>
                                                 </ul>
                                             </div>
                                         </div>
