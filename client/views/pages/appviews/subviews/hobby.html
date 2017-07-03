@@ -1,0 +1,18 @@
+<template name="hobby">
+    <div class="hobbiesContent">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="control-label">Вид:</label>
+                <input type="text" class="form-control hobbiesType" name="hobbies[][type]" value="{{data.type}}">
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label">Документ:</label>
+                <input type="text" class="form-control hobbiesDoc" name="hobbies[][doc]" value="{{data.doc}}">
+            </div>
+            <div class="col-sm-4">
+                <label class="control-label">Достижения:</label>
+                <input type="text" class="form-control hobbiesAchievement" name="hobbies[][achievement]" value="{{data.achievement}}">
+            </div>
+        </div>
+    </div>
+</template>

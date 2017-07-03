@@ -1,0 +1,61 @@
+<template name="users">
+
+    <!-- Page heading -->
+    {{> pageHeading title='Список пользователей' category='' }}
+
+    <div class="wrapper wrapper-content">
+
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Список пользователей</h5>
+                <div class="ibox-tools">
+                    <a href="" class="btn btn-primary btn-xs" id="add">Добавить</a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row m-b-sm m-t-sm">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" placeholder="Поиск" class="input-sm form-control" id="userName">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-primary" id="search"> Поиск</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-list">
+
+                    <table class="table table-hover">
+                        <tbody>
+                        {{#each users}}
+                            <tr>
+                                <td class="project-status">
+                                    {{#if _isEqual profile.status "active" }}
+                                        <span class="label label-primary">Активен</span>
+                                    {{else}}
+                                        <span class="label label-warning">Отключен</span>
+                                    {{/if}}
+                                </td>
+                                <td class="project-title">
+                                    <a href="#">{{profile.name}}</a>
+                                </td>
+                                <td class="project-title">
+                                    <a href="#">{{roles}}</a>
+                                </td>
+                                <td class="project-completion">
+                                    {{profession}}
+                                </td>
+                                <td class="project-actions">
+                                    <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
+                                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

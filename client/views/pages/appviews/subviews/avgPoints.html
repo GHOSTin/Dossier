@@ -1,0 +1,15 @@
+<template name="avgPoints">
+    <tr>
+        <td>
+            <input type="hidden" name="avgPoints[][date]" value="{{data.date}}">
+            {{data.date}}
+        </td>
+        <td>
+            <input type="hidden" name="avgPoints[][number]" value="{{data.number}}">
+            {{data.number}}
+        </td>
+        <td>
+            <span class="btn btn-default btn-xs remove"><i class="fa fa-close"></i> </span>
+        </td>
+    </tr>
+</template>

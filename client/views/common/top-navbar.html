@@ -1,0 +1,20 @@
+<template name="topNavbar">
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a id="navbar-minimalize" class="minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a class="m-r-sm text-muted welcome-message" href="/"> ББМ Проф Досье.</a>
+                </li>
+                {{> loginButtons}}
+                <!--<li>-->
+                    <!--<a class="right-sidebar-toggle">-->
+                        <!--<i class="fa fa-tasks"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+            </ul>
+        </nav>
+    </div>
+</template>
