@@ -27,7 +27,11 @@ Template.Student.helpers({
             } else {
                 prevInd = Students.find({}, {fields:{ind:1}, sort: {createAt: -1}, limit: 1}).fetch();
                 console.log(prevInd);
-                ind = s.toNumber(_.first(prevInd).ind) + 1;
+                if(!_.isEmpty(prevInd)) {
+                    ind = s.toNumber(_.first(prevInd).ind) + 1;
+                } else {
+                    ind = 1;
+                }
             }
             return s.lpad(ind, 6, "0");
         }
@@ -78,7 +82,7 @@ Template.Student.onRendered(function () {
         ignore: "",
         rules: {
             ind: {
-                required: true,
+                /*required: true,*/
                 minlength: 3
             },
             firstname: {
@@ -114,7 +118,7 @@ Template.Student.onRendered(function () {
             'passport[departmentCode]': {
                 required: true
             },
-            'diploma[type]': {
+            /*'diploma[type]': {
                 required: true
             },
             'diploma[code]': {
@@ -128,7 +132,7 @@ Template.Student.onRendered(function () {
             },
             'diploma[date]': {
                 required: true
-            },
+            },*/
             'address[registration][region]':"required",
             'address[registration][city]':"required",
             'address[registration][shf]':"required",
