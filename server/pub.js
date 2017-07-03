@@ -1,4 +1,5 @@
 import {Students} from '/lib/collections/students'
+import {Avatars} from '/lib/collections/avatars'
 
 Meteor.publish('users', function (search) {
     check(search, Match.OneOf(String, null, undefined));
@@ -42,3 +43,11 @@ Meteor.publish('student', function( id ){
     }
     return Students.find(query, projection);
 });
+
+Meteor.publish('avatar', function( id ){
+    check(id, Match.OneOf(String, null, undefined));
+    if(id) {
+        return Avatars.findOne({_id: id});
+    }
+    return Avatars.find({});
+})
