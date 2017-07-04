@@ -7,10 +7,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "bcrypt": "^1.0.2",
-<<<<<<< HEAD
     "hammerjs": "^2.0.8",
-=======
->>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
     "jquery": "^1.11.0",
     "jquery-serializejson": "^2.8.1",
     "meteor-node-stubs": "~0.2.4"

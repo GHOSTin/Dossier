@@ -1,3 +1,5 @@
 node_modules/
 .idea
 Dossier1.iml
+runner.bat
+output/

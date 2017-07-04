@@ -39,9 +39,6 @@ themeteorchef:bert
 aldeed:simple-schema
 underscorestring:underscore.string
 meteorhacks:aggregate
-<<<<<<< HEAD
 cfs:standard-packages
 cfs:filesystem
 cfs:graphicsmagick
-=======
->>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67

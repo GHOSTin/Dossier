@@ -1,6 +1,5 @@
 require('jquery-serializejson');
 import {Students} from '/lib/collections/students'
-<<<<<<< HEAD
 import {Avatars} from '/lib/collections/avatars'
 
 Template.Student.onCreated(function() {
@@ -10,14 +9,6 @@ Template.Student.onCreated(function() {
         let postId = FlowRouter.getParam('id');
         self.sub = self.subscribe('student', postId);
         self.subscribe('avatar', self.avatarId.get());
-=======
-
-Template.Student.onCreated(function() {
-    let self = this;
-    self.autorun(function() {
-        let postId = FlowRouter.getParam('id');
-        self.sub = self.subscribe('student', postId);
->>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
     });
     self.socialDocs = new ReactiveVar(false);
     self.sports = new ReactiveVar(false);
@@ -35,16 +26,7 @@ Template.Student.helpers({
                 ind = s.toNumber(Students.findOne({_id: id}, {fields: {ind: 1}, sort: {ind: 1}, limit: 1}).ind);
             } else {
                 prevInd = Students.find({}, {fields:{ind:1}, sort: {createAt: -1}, limit: 1}).fetch();
-<<<<<<< HEAD
-                console.log(prevInd);
-                if(!_.isEmpty(prevInd)) {
-                    ind = s.toNumber(_.first(prevInd).ind) + 1;
-                } else {
-                    ind = 1;
-                }
-=======
-                ind = (!_.isEmpty(prevInd))?s.toNumber(_.first(prevInd).ind) + 1 : 1;          
->>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
+                ind = (!_.isEmpty(prevInd))?s.toNumber(_.first(prevInd).ind) + 1 : 1;
             }
             return s.lpad(ind, 6, "0");
         }
@@ -52,7 +34,6 @@ Template.Student.helpers({
     student() {
         let id = FlowRouter.getParam('id');
         return Students.findOne({_id: id}) || {};
-<<<<<<< HEAD
     },
     photo(){
         let studentId = FlowRouter.getParam('id'),
@@ -61,8 +42,6 @@ Template.Student.helpers({
             id = Template.instance().avatarId.get();
         }
         return Avatars.findOne({_id: id})
-=======
->>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
     }
 });
 
@@ -398,7 +377,6 @@ Template.Student.events({
         $('#diplomaCounts4').val(count4);
         $('#diplomaCounts5').val(count5);
         $('#diplomaAvr').val(avg);
-<<<<<<< HEAD
     },
     'click .upload-avatar': ( event ) => {
         event.preventDefault();
@@ -407,7 +385,5 @@ Template.Student.events({
     'change input[name="avatar"]': (event, template) => {
         event.preventDefault();
         template.avatarId.set($(event.currentTarget).val());
-=======
->>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
     }
 });
