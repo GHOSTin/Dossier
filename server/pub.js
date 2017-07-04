@@ -1,5 +1,8 @@
 import {Students} from '/lib/collections/students'
+<<<<<<< HEAD
 import {Avatars} from '/lib/collections/avatars'
+=======
+>>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
 
 Meteor.publish('users', function (search) {
     check(search, Match.OneOf(String, null, undefined));
@@ -42,6 +45,7 @@ Meteor.publish('student', function( id ){
         query = {_id: id}
     }
     return Students.find(query, projection);
+<<<<<<< HEAD
 });
 
 Meteor.publish('avatar', function( id ){
@@ -51,3 +55,6 @@ Meteor.publish('avatar', function( id ){
     }
     return Avatars.find({});
 })
+=======
+});
+>>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67

@@ -151,6 +151,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     border-bottom-color: rgba(83, 192, 157, .6);
 }
 /*******************************************************************/
+<<<<<<< HEAD
 
 /* Custom css for avatar */
 .card .card-circle,
@@ -202,3 +203,5 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: block;
 }
 /**********************************************************************/
+=======
+>>>>>>> 06ebaafebcfad1825792fc29a7a4d799e5633c67
