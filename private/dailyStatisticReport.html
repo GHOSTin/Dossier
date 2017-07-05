@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h1 class="text-center">Кол-во по дням в разрезе специальностей</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <table class="table table-table-striped">
+        {{#each day}}
+          <tr>
+            <td>
+              {{day}}
+            </td>
+            <td>
+              {{spec}}
+            </td>
+            <td>
+              {{count}}
+            </td>
+          </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</div>
