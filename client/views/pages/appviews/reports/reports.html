@@ -1,0 +1,216 @@
+<template name="reports">
+
+  <!-- Page heading -->
+  {{> pageHeading title='Отчеты' category='' }}
+
+  <div class="fh-breadcrumb">
+    <div class="fh-column">
+      <div class="full-height-scroll">
+        <ul class="list-group elements-list">
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-1">
+              <small class="pull-right text-muted"> 16.02.2015</small>
+              <strong>Ann Smith</strong>
+              <div class="small m-t-xs">
+                <p>
+                  Survived not only five centuries, but also the leap scrambled it to make.
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> Riviera State 32/106
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item active">
+            <a data-toggle="tab" href="#tab-2">
+              <small class="pull-right text-muted"> 11.10.2015</small>
+              <strong>Paul Morgan</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  There are many variations of passages of Lorem Ipsum.
+                  <br/>
+                </p>
+                <p class="m-b-none">
+
+                  <span class="label pull-right label-primary">SPECIAL</span>
+                  <i class="fa fa-map-marker"></i> California 10F/32
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-3">
+              <small class="pull-right text-muted"> 08.04.2015</small>
+              <strong>Michael Jackson</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  Look even slightly believable. If you are going to use a passage of.
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> Berlin 120R/15
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-4">
+              <small class="pull-right text-muted"> 16.02.2015</small>
+              <strong>Mark Smith</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  It was popularised in the 1960s with the release of Letraset sheets
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> San Francisko 12/100
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-1">
+              <small class="pull-right text-muted"> 21.04.2015</small>
+              <strong>Monica Novak</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  Printer took a galley of type and scrambled.
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> New York 15/43
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-2">
+              <small class="pull-right text-muted"> 03.12.2015</small>
+              <strong>Jack Smith</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  Also the leap into electronic typesetting, remaining.
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> Sant Fe 10/106
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-3">
+              <small class="pull-right text-muted"> 08.04.2015</small>
+              <strong>Michael Jackson</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  Look even slightly believable. If you are going to use a passage of.
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> Berlin 120R/15
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-4">
+              <small class="pull-right text-muted"> 16.02.2015</small>
+              <strong>Mark Smith</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  It was popularised in the 1960s with the release of Letraset sheets
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> San Francisko 12/100
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a data-toggle="tab" href="#tab-1">
+              <small class="pull-right text-muted"> 21.04.2015</small>
+              <strong>Monica Novak</strong>
+              <div class="small m-t-xs">
+                <p class="m-b-xs">
+                  Printer took a galley of type and scrambled.
+                </p>
+                <p class="m-b-none">
+                  <i class="fa fa-map-marker"></i> New York 15/43
+                </p>
+              </div>
+            </a>
+          </li>
+
+
+        </ul>
+
+      </div>
+    </div>
+    <div class="full-height">
+      <div class="full-height-scroll white-bg border-left">
+        <div class="element-detail-box">
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+              <div class="ibox">
+                <div class="ibox-title">
+                  <h5>Отчеты</h5>
+                  <div class="ibox-tools">
+                    <a href="/student" class="btn btn-primary btn-xs" id="add">Добавить</a>
+                  </div>
+                </div>
+                <div class="ibox-content">
+                  <div class="row m-b-sm m-t-sm">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <input type="text" placeholder="Поиск" class="input-sm form-control"
+                               id="userName">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-sm btn-primary" id="search"> Поиск</button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="project-list table-responsive">
+                    <table class="table table-hover">
+                      <tbody>
+                      {{#each students}}
+                        <tr>
+                          <td class="project-title">
+                            <a href="/student/{{_id}}">{{indicator ind}}</a>
+                          </td>
+                          <td class="project-title">
+                            <strong>{{lastname}} {{firstname}} {{middlename}}</strong>
+                          </td>
+                          <td class="contact-type"><i
+                              class="fa fa-phone visible-lg-inline"> </i></td>
+                          <td><span class="visible-lg-inline">{{phone}}</span></td>
+                          <td class="contact-type"><i
+                              class="fa fa-mobile visible-lg-inline"> </i></td>
+                          <td><span class="visible-lg-inline">{{mobile}}</span></td>
+                          <td class="contact-type"><i
+                              class="fa fa-envelope visible-lg-inline"> </i></td>
+                          <td><span class="visible-lg-inline">{{email}}</span></td>
+                          <td class="project-actions">
+                            <a href="#" class="btn btn-white btn-sm edit"
+                               data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
+                            {{#if isInRole 'admin'}}
+                              <a href="#" class="btn btn-white btn-sm"><i
+                                  class="fa fa-trash"></i> </a>
+                            {{/if}}
+                          </td>
+                        </tr>
+                      {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="tab-2" class="tab-pane">
+            </div>
+            <div id="tab-3" class="tab-pane">
+            </div>
+            <div id="tab-4" class="tab-pane">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
