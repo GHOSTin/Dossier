@@ -68,6 +68,13 @@ admin.route('/users', {
         BlazeLayout.render("mainLayout", {content: "users"})
     }
 });
+
+admin.route('/rules', {
+    name: 'rules',
+    action() {
+        BlazeLayout.render("mainLayout", {content: "users"})
+    }
+});
 FlowRouter.notFound = {
     action: function() {
         BlazeLayout.render("blankLayout", {content: "notFound"});
