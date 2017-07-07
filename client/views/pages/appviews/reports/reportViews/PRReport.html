@@ -1,0 +1,172 @@
+<template name = "PRReport">
+  <div id="informers">
+    <div class = "row">
+      <div class = "col-sm-8 col-sm-offset-2">
+        <h1 class = "text-center">Откуда получена информация
+          о профессиях и специальностях ПМК:</h1>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-6">
+        <table class = "table table-bordered">
+          <thead>
+          <tr>
+            <th>Характеристика</th>
+            <th>Количество</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Объявление в газете
+            </td>
+            <td>{{getCount informers 1}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Реклама на телевидении
+            </td>
+            <td>{{getCount informers 2}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Реклама на радио
+            </td>
+            <td>{{getCount informers 3}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              От родителей, друзей, родственников, знакомых
+            </td>
+            <td>{{getCount informers 4}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Буклеты, листовки
+            </td>
+            <td>{{getCount informers 5}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Сборник учебных заведений
+            </td>
+            <td>{{getCount informers 6}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Афиша в школе
+            </td>
+            <td>{{getCount informers 7}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Интернет
+            </td>
+            <td>{{getCount informers 8}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              День открытых дверей
+            </td>
+            <td>{{getCount informers 9}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Другие источники
+            </td>
+            <td>{{getCount informers 10}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="choose">
+    <div class = "row">
+      <div class = "col-sm-8 col-sm-offset-2">
+        <h1 class = "text-center">Почему выбран ПМК:</h1>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-6">
+        <table class = "table table-bordered">
+          <thead>
+          <tr>
+            <th>Характеристика</th>
+            <th>Количество</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Близость к дому
+            </td>
+            <td>{{getCount choose 1}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Престижность колледжа
+            </td>
+            <td>{{getCount choose 2}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Перспективные и востребованные специальности
+            </td>
+            <td>{{getCount choose 3}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Перспективы трудоустройства и развития
+            </td>
+            <td>{{getCount choose 4}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Возможность бесплатного поступления и обучения
+            </td>
+            <td>{{getCount choose 5}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              в ПМК учились(учатся) мои родители, родственники, друзья
+            </td>
+            <td>{{getCount choose 6}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Материальная заинтересованность
+            </td>
+            <td>{{getCount choose 7}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Возможность учиться по программе
+              "Будущее Белой металлургии" 
+            </td>
+            <td>{{getCount choose 8}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Интерес к профессии
+            </td>
+            <td>{{getCount choose 9}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Выбор случаен
+            </td>
+            <td>{{getCount choose 10}}</td>
+          </tr>
+          <tr>
+            <td class = "i-checks col-sm-10">
+              Другой вариант
+            </td>
+            <td>{{getCount choose 11}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

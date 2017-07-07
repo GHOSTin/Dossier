@@ -50,14 +50,20 @@ Template.reports.events({
             if (error) {
                 Bert.alert(error.reason, 'fixed-top', 'danger', 'fa-file-text-o' )
             } else {
-                console.log(result);
                 Session.set('reportTemplate', 'dailyStatisticReport');
                 Session.set('reportData', result);
-                template.$('[data-name="saveStatisticReport"]').prop('disabled', false);
-                /*const XLSX = require('xlsx');
-                let wopts = {bookType: 'xlsx', bookSST: false, type: 'binary'},
-                    wbout = XLSX.write(result, wopts);
-                saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");*/
+            }
+        })
+    },
+    'click #PRReport': ( event, template ) => {
+        event.preventDefault();
+        Meteor.call('PRStatistics', function(error, result){
+            if (error) {
+                Bert.alert(error.reason, 'fixed-top', 'danger', 'fa-file-text-o' )
+            } else {
+                console.log(result);
+                Session.set('reportTemplate', 'PRReport');
+                Session.set('reportData', result);
             }
         })
     },
@@ -65,6 +71,18 @@ Template.reports.events({
         event.preventDefault();
         let wb = XLSX.utils.table_to_book($('#reportData').find('table')[0], {sheet: "Report"}),
             wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
+        saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
+    },
+    'click [data-name="saveReport"]': ( event, template ) => {
+        event.preventDefault();
+        let ws1 = XLSX.utils.table_to_sheet($('#informers').find('table')[0], {sheet: "Откуда получена информация"}),
+            ws2 = XLSX.utils.table_to_sheet($('#choose').find('table')[0], {sheet: "Почему выбран ПМК"}),
+            wb;
+        wb.SheetNames.push("Report1");
+        wb.Sheet["Report1"] = ws1;
+        wb.SheetNames.push("Report2");
+        wb.Sheet["Report1"] = ws2;
+        let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
     }
 });
