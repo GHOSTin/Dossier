@@ -11,6 +11,6 @@
     "jquery": "^1.11.0",
     "jquery-serializejson": "^2.8.1",
     "meteor-node-stubs": "~0.2.4",
-    "webshot": "^0.18.0"
+    "xlsx": "^0.10.7"
   }
 }

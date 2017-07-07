@@ -42,4 +42,4 @@ meteorhacks:aggregate
 cfs:standard-packages
 cfs:filesystem
 cfs:graphicsmagick
-meteorhacks:ssr
+pfafman:filesaver

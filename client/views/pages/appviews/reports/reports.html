@@ -7,21 +7,17 @@
     <div class="fh-column">
       <div class="full-height-scroll">
         <ul class="list-group elements-list">
-          <li class="list-group-item">
+          <li class="list-group-item active">
             <a data-toggle="tab" href="#tab-1">
-              <small class="pull-right text-muted"> 16.02.2015</small>
-              <strong>Ann Smith</strong>
+              <strong>Отчет по специальностям</strong>
               <div class="small m-t-xs">
                 <p>
-                  Survived not only five centuries, but also the leap scrambled it to make.
-                </p>
-                <p class="m-b-none">
-                  <i class="fa fa-map-marker"></i> Riviera State 32/106
+                  Вывод списка анкет по датам в разрезе специальностей.
                 </p>
               </div>
             </a>
           </li>
-          <li class="list-group-item active">
+          <li class="list-group-item">
             <a data-toggle="tab" href="#tab-2">
               <small class="pull-right text-muted"> 11.10.2015</small>
               <strong>Paul Morgan</strong>
@@ -147,58 +143,15 @@
         <div class="element-detail-box">
           <div class="tab-content">
             <div id="tab-1" class="tab-pane active">
-              <div class="ibox">
-                <div class="ibox-title">
-                  <h5>Отчеты</h5>
-                  <div class="ibox-tools">
-                    <a href="/student" class="btn btn-primary btn-xs" id="add">Добавить</a>
-                  </div>
+              <div class="row">
+                <div class="col-lg-12">
+                    <div class="btn btn-primary" id="dailyStatisticReport">Сформировать</div>
+                    <div class="btn btn-primary" data-name="saveStatisticReport">Сохранить</div>
                 </div>
-                <div class="ibox-content">
-                  <div class="row m-b-sm m-t-sm">
-                    <div class="col-md-12">
-                      <div class="input-group">
-                        <input type="text" placeholder="Поиск" class="input-sm form-control"
-                               id="userName">
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-sm btn-primary" id="search"> Поиск</button>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="project-list table-responsive">
-                    <table class="table table-hover">
-                      <tbody>
-                      {{#each students}}
-                        <tr>
-                          <td class="project-title">
-                            <a href="/student/{{_id}}">{{indicator ind}}</a>
-                          </td>
-                          <td class="project-title">
-                            <strong>{{lastname}} {{firstname}} {{middlename}}</strong>
-                          </td>
-                          <td class="contact-type"><i
-                              class="fa fa-phone visible-lg-inline"> </i></td>
-                          <td><span class="visible-lg-inline">{{phone}}</span></td>
-                          <td class="contact-type"><i
-                              class="fa fa-mobile visible-lg-inline"> </i></td>
-                          <td><span class="visible-lg-inline">{{mobile}}</span></td>
-                          <td class="contact-type"><i
-                              class="fa fa-envelope visible-lg-inline"> </i></td>
-                          <td><span class="visible-lg-inline">{{email}}</span></td>
-                          <td class="project-actions">
-                            <a href="#" class="btn btn-white btn-sm edit"
-                               data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
-                            {{#if isInRole 'admin'}}
-                              <a href="#" class="btn btn-white btn-sm"><i
-                                  class="fa fa-trash"></i> </a>
-                            {{/if}}
-                          </td>
-                        </tr>
-                      {{/each}}
-                      </tbody>
-                    </table>
-                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12" id="reportData">
+                  {{> Template.dynamic template=reportTemplate data=reportData }}
                 </div>
               </div>
             </div>

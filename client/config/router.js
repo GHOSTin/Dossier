@@ -13,6 +13,8 @@ let loggedIn = FlowRouter.group({
 
                 if(route.route.name !== 'login'){
                     Session.set('redirectAfterLogin', route.path)
+                } else {
+                    Session.set('redirectAfterLogin', FlowRouter.path('dashboard'))
                 }
 
                 return FlowRouter.go('login')
