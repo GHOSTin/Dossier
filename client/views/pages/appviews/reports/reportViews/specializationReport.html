@@ -1,0 +1,46 @@
+<template name="specializationReport">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h1 class="text-center">Отчет по специальностям (приемная компания)</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="specializationList">
+        <ul class="nav nav-tabs">
+          <span class="pull-right small text-muted">Число заявок: {{counter}}</span>
+          {{#each this}}
+          <li class="specialization {{#if _isEqual @index 0}}active{{/if}}"><a data-toggle="tab" href="#spec-tab-{{addOne @index}}" data-group="{{@index}}"><i class="fa fa-users"></i> {{_id}}</a></li>
+          {{/each}}
+        </ul>
+        <div class="tab-content">
+          {{#each this}}
+          <div id="spec-tab-{{addOne @index}}" class="tab-pane {{#if _isEqual @index 0}}active{{/if}}">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead class="">
+                  <tr>
+                    <th colspan="2">{{counterStr students}}</th>
+                  </tr>
+                  <tr>
+                    <th>ФИО</th>
+                    <th>Средний балл</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {{#each students}}
+                <tr>
+                  <td>{{fullname}}</td>
+                  <td class="client-status">{{avgPoints}}</td>
+                </tr>
+                {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

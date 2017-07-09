@@ -51,7 +51,7 @@ Template.reports.helpers({
 });
 
 Template.reports.events({
-    'shown.bs.tab a[data-toggle="tab"]':( event, template ) => {
+    'shown.bs.tab [data-name="reportsList"]>li>a[data-toggle="tab"]':( event, template ) => {
         template.report.set('reportName', $(event.target).data('report'))
         template.report.set('reportTemplate', false);
         template.report.set('reportData', false);
@@ -69,12 +69,6 @@ Template.reports.events({
             }
         })
     },
-    'click [data-name="saveStatisticReport"]': ( event, template ) => {
-        event.preventDefault();
-        let wb = XLSX.utils.table_to_book($('#reportData').find('table')[0], {sheet: "Report"}),
-            wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
-        saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
-    },
     'click [data-name="saveReport"]': ( event, template ) => {
         event.preventDefault();
         let report = template.report.get('reportName'),
@@ -90,6 +84,13 @@ Template.reports.events({
                 wb.Sheets["Report1"] = ws1;
                 wb.SheetNames.push("Report2");
                 wb.Sheets["Report2"] = ws2;
+                break;
+            case 'specializationReport':
+                $('[data-name="reportData"]').find('.specialization a[data-toggle="tab"]').each(function(){
+                    wb.SheetNames.push($(this).text());
+                    let ws = XLSX.utils.table_to_sheet($($(this).attr('href')).find('table')[0])
+                    wb.Sheets[$(this).text()] = ws;
+                });
                 break;
         };
         let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
