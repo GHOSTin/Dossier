@@ -1,4 +1,11 @@
 const XLSX = require('xlsx');
+import {ReactiveDict} from 'meteor/reactive-dict'
+
+Template.reports.onCreated( function() {
+    this.report = new ReactiveDict();
+    this.report.set('reportTemplate', false);
+    this.report.set('reportData', false);
+});
 
 Template.reports.rendered = function(){
 
@@ -36,34 +43,29 @@ Template.reports.destroyed = function(){
 
 Template.reports.helpers({
     reportTemplate() {
-        return Session.get('reportTemplate');
+        return Template.instance().report.get('reportTemplate');
     },
     reportData() {
-        return Session.get('reportData');
+        return Template.instance().report.get('reportData');
     },
 });
 
 Template.reports.events({
-    'click #dailyStatisticReport': ( event, template ) => {
-        event.preventDefault();
-        Meteor.call('dailyStatistic', function(error, result){
-            if (error) {
-                Bert.alert(error.reason, 'fixed-top', 'danger', 'fa-file-text-o' )
-            } else {
-                Session.set('reportTemplate', 'dailyStatisticReport');
-                Session.set('reportData', result);
-            }
-        })
+    'shown.bs.tab a[data-toggle="tab"]':( event, template ) => {
+        template.report.set('reportName', $(event.target).data('report'))
+        template.report.set('reportTemplate', false);
+        template.report.set('reportData', false);
     },
-    'click #PRReport': ( event, template ) => {
+    'click [data-name="createReport"]': ( event, template ) => {
         event.preventDefault();
-        Meteor.call('PRStatistics', function(error, result){
+        let report = template.report.get('reportName');
+        Meteor.call(report, function(error, result){
             if (error) {
                 Bert.alert(error.reason, 'fixed-top', 'danger', 'fa-file-text-o' )
             } else {
-                console.log(result);
-                Session.set('reportTemplate', 'PRReport');
-                Session.set('reportData', result);
+                template.report.set('reportTemplate', report);
+                console.log(result)
+                template.report.set('reportData', result);
             }
         })
     },
@@ -75,13 +77,21 @@ Template.reports.events({
     },
     'click [data-name="saveReport"]': ( event, template ) => {
         event.preventDefault();
-        let ws1 = XLSX.utils.table_to_sheet($('#informers').find('table')[0], {sheet: "Откуда получена информация"}),
-            ws2 = XLSX.utils.table_to_sheet($('#choose').find('table')[0], {sheet: "Почему выбран ПМК"}),
-            wb;
-        wb.SheetNames.push("Report1");
-        wb.Sheet["Report1"] = ws1;
-        wb.SheetNames.push("Report2");
-        wb.Sheet["Report1"] = ws2;
+        let report = template.report.get('reportName'),
+            wb = { SheetNames:[], Sheets:{} };
+        switch(report){
+            case 'dailyStatisticReport':
+                wb = XLSX.utils.table_to_book($('[data-name="reportData"]').find('table')[0], {sheet: "Report"});
+                break;
+            case 'PRReport':
+                let ws1 = XLSX.utils.table_to_sheet($('#informers').find('table')[0]),
+                    ws2 = XLSX.utils.table_to_sheet($('#choose').find('table')[0]);
+                wb.SheetNames.push("Report1");
+                wb.Sheets["Report1"] = ws1;
+                wb.SheetNames.push("Report2");
+                wb.Sheets["Report2"] = ws2;
+                break;
+        };
         let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
     }
