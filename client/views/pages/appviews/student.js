@@ -1,10 +1,13 @@
 require('jquery-serializejson');
 import {Students} from '/lib/collections/students'
 import {Avatars} from '/lib/collections/avatars'
+import {ReactiveDict} from 'meteor/reactive-dict'
 
 Template.Student.onCreated(function() {
     let self = this;
     self.avatarId = new ReactiveVar();
+    this.params = new ReactiveDict();
+    this.params.set('template', false);
     self.autorun(function() {
         let postId = FlowRouter.getParam('id');
         self.sub = self.subscribe('student', postId);
@@ -32,8 +35,12 @@ Template.Student.helpers({
         }
     },
     student() {
-        let id = FlowRouter.getParam('id');
-        return Students.findOne({_id: id}) || {};
+        let id = FlowRouter.getParam('id'),
+            student = Students.findOne({_id: id}) || {};
+        if(student.role === "student") {
+            Template.instance().params.set('template', 'studentAdvData');
+        }
+        return student;
     },
     photo(){
         let studentId = FlowRouter.getParam('id'),
@@ -42,6 +49,9 @@ Template.Student.helpers({
             id = Template.instance().avatarId.get();
         }
         return Avatars.findOne({_id: id})
+    },
+    template(){
+        return Template.instance().params.get('template')
     }
 });
 
@@ -61,17 +71,38 @@ Template.Student.onRendered(function () {
             });
         }
     });
-    $('.input-group.date').datepicker({
-        todayBtn: "linked",
+
+    $('.input-group.date.only-years').datepicker({
         keyboardNavigation: false,
         forceParse: false,
         autoclose: false,
         language: 'ru',
-        format: "dd.mm.yyyy",
-        weekStart: 1,
-        calendarWeeks: false,
-        todayHighlight: true
+        format: "yyyy",
+        viewMode: 'years',
+        minViewMode: 'years'
     });
+
+    $('.input-group.date.only-months').datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        autoclose: false,
+        language: 'ru',
+        format: "mm.yyyy",
+        viewMode: 'months',
+        minViewMode: 'months'
+    });
+
+    $('.input-group.date').datepicker({
+     todayBtn: "linked",
+     keyboardNavigation: false,
+     forceParse: false,
+     autoclose: false,
+     language: 'ru',
+     format: "dd.mm.yyyy",
+     weekStart: 1,
+     calendarWeeks: false,
+     todayHighlight: true
+     });
 
     $("#form").validate({
         ignore: "",
@@ -385,5 +416,13 @@ Template.Student.events({
     'change input[name="avatar"]': (event, template) => {
         event.preventDefault();
         template.avatarId.set($(event.currentTarget).val());
+    },
+    'change select[name="role"]': (event, template) => {
+        event.preventDefault();
+        if($(event.currentTarget).val() === "student") {
+            template.params.set('template', 'studentAdvData');
+        } else {
+            template.params.set('template', false);
+        }
     }
 });
