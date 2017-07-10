@@ -419,10 +419,18 @@ Template.Student.events({
     },
     'change select[name="role"]': (event, template) => {
         event.preventDefault();
-        if($(event.currentTarget).val() === "student") {
-            template.params.set('template', 'studentAdvData');
-        } else {
-            template.params.set('template', false);
+        switch ($(event.currentTarget).val()) {
+            case "student":
+                template.params.set('template', 'studentAdvData');
+                break;
+            case "graduate":
+                template.params.set('template', 'graduateAdvData');
+                break;
+            case "expelled":
+                template.params.set('template', 'expelledAdvData');
+                break;
+            default:
+                template.params.set('template', false);
         }
     }
 });

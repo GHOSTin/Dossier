@@ -1,0 +1,18 @@
+<template name="expelledAdvData">
+  <div class = "form-group">
+    <label class = "col-sm-3 control-label">№ Приказа:</label>
+    <div class = "col-sm-3">
+      <input type="text" class="form-control" name="expOrderNumber" value="{{expOrderNumber}}">
+    </div>
+    <label class = "col-sm-3 control-label">Дата отчисления:</label>
+    <div class = "col-sm-3">
+      <div class = "input-group date only-years" data-date-format="yyyy">
+        <input type = "text" id = "expDate" class = "form-control"
+               name = "expDate" value = "{{expDate}}" data-mask="99.99.9999">
+        <span class = "input-group-addon">
+          <i class = "fa fa-calendar"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>
