@@ -15,6 +15,16 @@ Meteor.publish('users', function (search) {
     return Meteor.users.find(query, projection);
 });
 
+Meteor.publish('Meteor.user.rules', function () {
+    const selector = {
+        _id: this.userId
+    };
+    const options = {
+        fields: { rules: 1 }
+    };
+    return Meteor.users.find(selector, options);
+});
+
 Meteor.publish('students', function( search ){
     check(search, Match.OneOf(String, null, undefined));
 

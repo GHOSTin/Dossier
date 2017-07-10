@@ -12,3 +12,4 @@ Tracker.autorun(()=>{
         }
     }
 })
+Meteor.subscribe('Meteor.user.rules');

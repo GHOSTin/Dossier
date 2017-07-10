@@ -9,7 +9,9 @@
             <div class="ibox-title">
                 <h5>Список студентов/абитуриентов</h5>
                 <div class="ibox-tools">
+                    {{#if currentUser.rules.students.add}}
                     <a href="/student" class="btn btn-primary btn-xs" id="add">Добавить</a>
+                    {{/if}}
                 </div>
             </div>
             <div class="ibox-content">
@@ -43,9 +45,15 @@
                                 <td class="contact-type"><i class="fa fa-envelope visible-lg-inline"> </i></td>
                                 <td><span class="visible-lg-inline">{{email}}</span></td>
                                 <td class="project-actions">
+                                    {{#if currentUser.rules.students.edit}}
                                     <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
+                                    {{/if}}
                                     {{#if isInRole 'admin'}}
                                     <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                                      {{else}}
+                                      {{#if currentUser.rules.students.delete}}
+                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                                      {{/if}}
                                     {{/if}}
                                 </td>
                             </tr>
