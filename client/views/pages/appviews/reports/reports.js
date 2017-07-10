@@ -75,7 +75,7 @@ Template.reports.events({
             wb = { SheetNames:[], Sheets:{} };
         switch(report){
             case 'dailyStatisticReport':
-                wb = XLSX.utils.table_to_book($('[data-name="reportData"]').find('table')[0], {sheet: "Report"});
+                wb = XLSX.utils.table_to_book($('[data-name="reportData"]').find('table')[0], {dateNF: "dd.mm.yyyy"});
                 break;
             case 'PRReport':
                 let ws1 = XLSX.utils.table_to_sheet($('#informers').find('table')[0]),
@@ -88,12 +88,12 @@ Template.reports.events({
             case 'specializationReport':
                 $('[data-name="reportData"]').find('.specialization a[data-toggle="tab"]').each(function(){
                     wb.SheetNames.push($(this).text());
-                    let ws = XLSX.utils.table_to_sheet($($(this).attr('href')).find('table')[0])
+                    let ws = XLSX.utils.table_to_sheet($($(this).attr('href')).find('table')[0], {dateNF: "dd.mm.yyyy"})
                     wb.Sheets[$(this).text()] = ws;
                 });
                 break;
         };
-        let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
+        let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary', cellDates: true, cellStyles: true});
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
     }
 });
