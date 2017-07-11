@@ -1,22 +1,42 @@
 <template name="dashboard1">
     <div class="wrapper wrapper-content">
         <div class="row">
-            <div class="col-md-2">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div class="widget navy-bg p-lg text-center">
-                            <div class="m-b-md">
-                                <i class="fa fa-user-circle fa-4x"></i>
-                                <h1 class="m-xs">{{SACount}}</h1>
-                                <h3 class="font-bold no-margins">
-                                    Количество анкет
-                                </h3>
-                                <small>(за сегодня)</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="col-md-2 col-sm-4">
+              <div class="ibox float-e-margins">
+                  <div class="ibox-content">
+                      <div class="widget navy-bg p-lg text-center">
+                          <div class="m-b-md">
+                              <i class="fa fa-user-circle fa-4x"></i>
+                              <h1 class="m-xs">{{SACount}}</h1>
+                              <h3 class="font-bold no-margins">
+                                  Количество анкет
+                              </h3>
+                              <small>(за сегодня)</small>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-4 col-xs-12">
+            <div class="ibox-content">
+              <div>
+                <table class="table">
+                  <tbody>
+                    {{#each groups in SACountByGroup}}
+                      <tr>
+                        {{#each groups}}
+                        <td>
+                          <button type="button" class="btn btn-{{color}} m-r-sm">{{count}}</button>
+                          {{group}}
+                        </td>
+                        {{/each}}
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
             </div>
+          </div>
         </div>
     </div>
 </template>
