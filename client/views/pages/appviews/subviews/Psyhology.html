@@ -1,0 +1,37 @@
+<template name="Psyhology">
+  <div class="psyContent">
+    <div class="form-group">
+      <div class="col-sm-6">
+        <label class="control-label">Дата:</label>
+        <div class = "input-group date">
+          <input type = "text" data-mask = "99.99.9999"
+                  name = "psyhology[][date]"
+                 class = "form-control"
+                 value = "{{data.date}}">
+          <span class = "input-group-addon date">
+              <i class = "fa fa-calendar"></i>
+          </span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label class="control-label">Вид деятельности:</label>
+        <select class="form-control" name="psyhology[][type]">
+          <option></option>
+          <option value="1" {{isSelected data.type 1 }}>Индивидуальная консультация учащегося</option>
+          <option value="2" {{isSelected data.type 2 }}>Тестирование учащегося</option>
+          <option value="3" {{isSelected data.type 3 }}>Групповая деятельность</option>
+          <option value="4" {{isSelected data.type 4 }}>Индивидуальная консультация законного представителя</option>
+          <option value="5" {{isSelected data.type 5 }}>Индивидуальная консультация специалиста</option>
+        </select>
+      </div>
+      <div class="col-sm-12">
+        <label class="control-label">Содержание/Результаты:</label>
+        <textarea class="form-control" name="psyhology[][text]" rows="12">{{data.text}}</textarea>
+      </div>
+      <div class="col-sm-12">
+        <label class="control-label">Комментарий:</label>
+        <textarea class="form-control" name="psyhology[][comment]" rows="3">{{data.comment}}</textarea>
+      </div>
+    </div>
+  </div>
+</template>

@@ -17,6 +17,7 @@ Template.Student.onCreated(function() {
     self.sports = new ReactiveVar(false);
     self.creations = new ReactiveVar(false);
     self.hobbies = new ReactiveVar(false);
+    self.params.set('psyhology', false);
     self.debts = [];
     self.avgpoints = [];
 });
@@ -289,6 +290,10 @@ Template.Student.events({
                         Blaze.remove(template.hobbies.get());
                         template.hobbies.set(false);
                     }
+                    if(template.params.get('psyhology')) {
+                        Blaze.remove(template.params.get('psyhology'));
+                        template.params.set('psyhology', false);
+                    }
                     if(template.debts.length > 0) {
                         _.each(template.debts, ( view )=>{
                             Blaze.remove(view);
@@ -357,6 +362,12 @@ Template.Student.events({
         event.preventDefault();
         let length = $('.hobbiesContent').length;
         template.hobbies.set(Blaze.renderWithData(Template.hobby, {index: length}, $('#hobbiesContainer')[0]));
+        return true;
+    },
+    'click #addPsy': ( event, template )=>{
+        event.preventDefault();
+        let length = $('.psyContent').length;
+        template.params.set('psyhology', Blaze.renderWithData(Template.Psyhology, {index: length}, $('#psyContainer')[0]));
         return true;
     },
     'click #addDebt': ( event,template ) => {
