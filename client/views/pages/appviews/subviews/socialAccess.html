@@ -19,7 +19,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[1][1]" class = "form-control"
-                       value = "{{psyTest.[1].[1]}}">
+                       value = "{{data.psyTest.[1].[1]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -27,7 +27,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[1][2]" class = "form-control"
-                       value = "{{psyTest.[1].[2]}}">
+                       value = "{{data.psyTest.[1].[2]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -35,7 +35,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[1][3]" class = "form-control"
-                       value = "{{psyTest.[1].[3]}}">
+                       value = "{{data.psyTest.[1].[3]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -43,7 +43,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[1][4]" class = "form-control"
-                       value = "{{psyTest.[1].[4]}}">
+                       value = "{{data.psyTest.[1].[4]}}">
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][1]" class = "form-control"
-                       value = "{{psyTest.[2].[1]}}">
+                       value = "{{data.psyTest.[2].[1]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -62,7 +62,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][2]" class = "form-control"
-                       value = "{{psyTest.[2].[2]}}">
+                       value = "{{data.psyTest.[2].[2]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -70,7 +70,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][3]" class = "form-control"
-                       value = "{{psyTest.[2].[3]}}">
+                       value = "{{data.psyTest.[2].[3]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -78,7 +78,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][4]" class = "form-control"
-                       value = "{{psyTest.[2].[4]}}">
+                       value = "{{data.psyTest.[2].[4]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -86,7 +86,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][5]" class = "form-control"
-                       value = "{{psyTest.[2].[5]}}">
+                       value = "{{data.psyTest.[2].[5]}}">
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][1]" class = "form-control"
-                       value = "{{psyTest.[2].[1]}}">
+                       value = "{{data.psyTest.[2].[1]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -105,7 +105,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][2]" class = "form-control"
-                       value = "{{psyTest.[2].[2]}}">
+                       value = "{{data.psyTest.[2].[2]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -113,7 +113,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][3]" class = "form-control"
-                       value = "{{psyTest.[2].[3]}}">
+                       value = "{{data.psyTest.[2].[3]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -121,7 +121,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][4]" class = "form-control"
-                       value = "{{psyTest.[2].[4]}}">
+                       value = "{{data.psyTest.[2].[4]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -129,7 +129,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[2][5]" class = "form-control"
-                       value = "{{psyTest.[2].[5]}}">
+                       value = "{{data.psyTest.[2].[5]}}">
               </div>
             </div>
           </div>-->
@@ -140,7 +140,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[4][1]" class = "form-control"
-                       value = "{{psyTest.[4].[1]}}">
+                       value = "{{data.psyTest.[4].[1]}}">
               </div>
             </div>
             <div class="row m-b-sm">
@@ -148,7 +148,7 @@
               <div class = "col-sm-8">
                 <input type = "text"
                        name = "psyTest[4][2]" class = "form-control"
-                       value = "{{psyTest.[4].[2]}}">
+                       value = "{{data.psyTest.[4].[2]}}">
               </div>
             </div>
           </div>
@@ -163,7 +163,7 @@
       Мероприятия
     </h3>
     <div class = "col-lg-10 col-lg-offset-1 form-horizontal" id = "psyContainer">
-      {{#each doc in psyhology}}
+      {{#each doc in data.psyhology}}
         {{> Psyhology index=@index data=doc }}
       {{/each}}
     </div>

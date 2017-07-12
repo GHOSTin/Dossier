@@ -10,4 +10,5 @@ Template.Psyhology.onRendered(()=>{
         calendarWeeks: false,
         todayHighlight: true
     });
+    $('.summernote').summernote({height: 300});
 })

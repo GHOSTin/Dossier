@@ -17,16 +17,20 @@
         <label class="control-label">Вид деятельности:</label>
         <select class="form-control" name="psyhology[][type]">
           <option></option>
-          <option value="1" {{isSelected data.type 1 }}>Индивидуальная консультация учащегося</option>
-          <option value="2" {{isSelected data.type 2 }}>Тестирование учащегося</option>
-          <option value="3" {{isSelected data.type 3 }}>Групповая деятельность</option>
-          <option value="4" {{isSelected data.type 4 }}>Индивидуальная консультация законного представителя</option>
-          <option value="5" {{isSelected data.type 5 }}>Индивидуальная консультация специалиста</option>
+          <option value="1" {{isSelected data.type "1" }}>Индивидуальная консультация учащегося</option>
+          <option value="2" {{isSelected data.type "2" }}>Тестирование учащегося</option>
+          <option value="3" {{isSelected data.type "3" }}>Групповая деятельность</option>
+          <option value="4" {{isSelected data.type "4" }}>Индивидуальная консультация законного представителя</option>
+          <option value="5" {{isSelected data.type "5" }}>Индивидуальная консультация специалиста</option>
         </select>
       </div>
       <div class="col-sm-12">
         <label class="control-label">Содержание/Результаты:</label>
-        <textarea class="form-control" name="psyhology[][text]" rows="12">{{data.text}}</textarea>
+        <div class="card">
+          <div class="card-block">
+            <textarea class="form-control summernote" name="psyhology[][text]" rows="12">{{data.text}}</textarea>
+          </div>
+        </div>
       </div>
       <div class="col-sm-12">
         <label class="control-label">Комментарий:</label>
