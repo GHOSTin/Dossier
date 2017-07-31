@@ -64,7 +64,6 @@ Template.reports.events({
                 Bert.alert(error.reason, 'fixed-top', 'danger', 'fa-file-text-o' )
             } else {
                 template.report.set('reportTemplate', report);
-                console.log(result)
                 template.report.set('reportData', result);
             }
         })

@@ -4,7 +4,11 @@ import 'datatables.net-bs/css/dataTables.bootstrap.css';
 
 Handlebars.registerHelper('addOne', function(value) {
     return value + 1;
-})
+});
+
+Handlebars.registerHelper('toFixed2', function(value) {
+    return parseFloat(value||0).toFixed(2);
+});
 
 Tracker.autorun(()=>{
     if (!Meteor.userId()) {

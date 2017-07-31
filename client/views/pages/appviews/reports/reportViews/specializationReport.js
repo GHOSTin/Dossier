@@ -12,8 +12,11 @@ Template.specializationReport.helpers({
     },
     counterStr(collection){
         return 'Число заявок: '+collection.length;
+    },
+    sumAvgPoints(collection){
+        return (_.reduce(collection.students, function(memo, num){ return memo + parseFloat(num.avgPoints||0)}, 0)/collection.students.length).toFixed(2);
     }
-})
+});
 
 Template.specializationReport.events({
     'shown.bs.tab .specializationList a[data-toggle="tab"]':( event, template ) => {

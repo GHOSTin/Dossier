@@ -18,11 +18,9 @@
           <div id="spec-tab-{{addOne @index}}" class="tab-pane {{#if _isEqual @index 0}}active{{/if}}">
             <div class="table-responsive">
               <table class="table table-striped table-hover">
-                <thead class="hidden">
+                <thead>
                   <tr>
-                    <th colspan="2">{{counterStr students}}</th>
-                  </tr>
-                  <tr>
+                    <th>#</th>
                     <th>ФИО</th>
                     <th>Средний балл</th>
                   </tr>
@@ -30,11 +28,19 @@
                 <tbody>
                 {{#each students}}
                 <tr>
+                  <td>{{addOne @index}}</td>
                   <td>{{fullname}}</td>
-                  <td class="client-status">{{avgPoints}}</td>
+                  <td class="client-status">{{toFixed2 avgPoints}}</td>
                 </tr>
                 {{/each}}
                 </tbody>
+                <tfoot>
+                <tr>
+                  <th>Итог</th>
+                  <th>{{counter}}</th>
+                  <th>{{sumAvgPoints this}}</th>
+                </tr>
+                </tfoot>
               </table>
             </div>
           </div>
