@@ -95,6 +95,9 @@ Template.Student.onRendered(function () {
                     $('[id^=addressRegistration]').each(function( index ) {
                         $(this).prop('readonly', true);
                     });
+                    $('[id^=addressRegistration], [id^=addressFact]').each(function( index ){
+                        $(this).rules("remote", "require");
+                    });
                 }
                 $(':input').inputmask();
                 $('.input-group.date.only-years').datepicker({
@@ -361,6 +364,10 @@ Template.Student.events({
         $('[id^=addressRegistration]').each(function( ){
             $(this).prop('readonly', false);
         });
+        $('[id="addressRegistrationRegion"], [id="addressRegistrationCity"], [id="addressRegistrationSHF"], ' +
+            '[id="addressFactRegion"], [id="addressFactCity"], [id="addressFactSHF"]').each(function( ){
+            $(this).rules("add", {"required": true});
+        });
         return true;
     },
     'ifChecked [name="notRegistration"]': ( event ) => {
@@ -368,6 +375,11 @@ Template.Student.events({
         $('[id^=addressRegistration]').each(function( ){
             $(this).prop('readonly', true);
         });
+        $('[id="addressRegistrationRegion"], [id="addressRegistrationCity"], [id="addressRegistrationSHF"], ' +
+            '[id="addressFactRegion"], [id="addressFactCity"], [id="addressFactSHF"]')
+            .each(function( ){
+                $(this).rules("remove", "required");
+            });
         return true;
     },
     'keyup [id^="addressRegistration"]': ( event ) => {
