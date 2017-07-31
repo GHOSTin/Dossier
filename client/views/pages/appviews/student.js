@@ -91,6 +91,11 @@ Template.Student.onRendered(function () {
                         $(this).prop('readonly', true);
                     });
                 }
+                if($('input[name="notRegistration"]').is(":checked")) {
+                    $('[id^=addressRegistration]').each(function( index ) {
+                        $(this).prop('readonly', true);
+                    });
+                }
                 $(':input').inputmask();
                 $('.input-group.date.only-years').datepicker({
                     keyboardNavigation: false,
@@ -348,6 +353,20 @@ Template.Student.events({
             let linkSelector = $(this).attr("data-link"),
                 linkValue = $(`#${linkSelector}`).val();
             $(this).val(linkValue);
+        });
+        return true;
+    },
+    'ifUnchecked [name="notRegistration"]': ( event ) => {
+        event.preventDefault();
+        $('[id^=addressRegistration]').each(function( ){
+            $(this).prop('readonly', false);
+        });
+        return true;
+    },
+    'ifChecked [name="notRegistration"]': ( event ) => {
+        event.preventDefault();
+        $('[id^=addressRegistration]').each(function( ){
+            $(this).prop('readonly', true);
         });
         return true;
     },
