@@ -4,11 +4,11 @@
       <h1 class="text-center">Отчет по специальностям (приемная компания)</h1>
     </div>
   </div>
+  <span class="pull-right small text-muted">Число заявок: {{counter}}</span>
   <div class="row">
     <div class="col-sm-12">
       <div class="specializationList">
         <ul class="nav nav-tabs">
-          <span class="pull-right small text-muted">Число заявок: {{counter}}</span>
           {{#each this}}
           <li class="specialization {{#if _isEqual @index 0}}active{{/if}}"><a data-toggle="tab" href="#spec-tab-{{addOne @index}}" data-group="{{@index}}"><i class="fa fa-users"></i> {{_id}}</a></li>
           {{/each}}
