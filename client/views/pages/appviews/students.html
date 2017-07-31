@@ -58,10 +58,10 @@
                                   <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
                                   {{/if}}
                                   {{#if isInRole 'admin'}}
-                                  <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                                  <a href="#" class="btn btn-white btn-sm delete" data-user-id="{{_id}}"><i class="fa fa-trash"></i> </a>
                                     {{else}}
                                     {{#if currentUser.rules.students.delete}}
-                                      <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                                      <a href="#" class="btn btn-white btn-sm delete" data-user-id="{{_id}}"><i class="fa fa-trash"></i> </a>
                                     {{/if}}
                                   {{/if}}
                               </td>
