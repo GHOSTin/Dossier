@@ -116,7 +116,7 @@
                       <div class = "col-sm-9">
                         <div class = "input-group date">
                           <input type = "text" id = "birthday" class = "form-control"
-                                 name = "birthday" value = "{{birthday}}" data-mask="99.99.9999">
+                                 name = "birthday" value = "{{birthday}}" data-inputmask-mask="99.99.9999">
                           <span class = "input-group-addon">
                                                     <i class = "fa fa-calendar"></i>
                                                 </span>
@@ -141,14 +141,14 @@
                       <label class = "col-sm-3 control-label">Домашний телефон:</label>
                       <div class = "col-sm-9">
                         <input type = "text" id = "phone" name = "phone" class = "form-control"
-                               data-mask = "(999) 999-9999" value = "{{phone}}">
+                               data-inputmask-mask = "(999) 999-9999" value = "{{phone}}">
                       </div>
                     </div>
                     <div class = "form-group">
                       <label class = "col-sm-3 control-label">Сотовый телефон:</label>
                       <div class = "col-sm-9">
                         <input type = "text" id = "mobile" name = "mobile" class = "form-control"
-                               data-mask = "+7 9999999999" value = "{{mobile}}">
+                               data-inputmask-mask = "+7 9999999999" value = "{{mobile}}">
                       </div>
                     </div>
                     <div class = "form-group">
@@ -255,7 +255,7 @@
                                   <label class = "col-sm-3 control-label">Год
                                     окончания:</label>
                                   <div class = "col-sm-3">
-                                    <input type = "text" data-mask = "9999"
+                                    <input type = "text" data-inputmask-mask = "9999"
                                            id = "schoolYearEnd" name = "school[year]"
                                            class = "form-control"
                                            value = "{{school.year}}">
@@ -264,7 +264,7 @@
                                     выдачи:</label>
                                   <div class = "col-sm-4">
                                     <div class = "input-group date">
-                                      <input type = "text" data-mask = "99.99.9999"
+                                      <input type = "text" data-inputmask-mask = "99.99.9999"
                                              id = "diplomaDate" name = "diploma[date]"
                                              class = "form-control"
                                              value = "{{diploma.date}}">
@@ -520,10 +520,20 @@
                           <div class = "tab-pane" id = "tab-2">
                             <h3 class = "m-b col-lg-12">Паспортные данные</h3>
                             <div class = "col-lg-10 col-lg-offset-1 form-horizontal">
+                              <div class = "form-group">
+                                <label class = "col-sm-3 control-label">Вид документа:</label>
+                                <div class = "col-sm-9">
+                                  <select name = "passport[type]" class = "form-control">
+                                    <option value = "1" {{isSelected passport.type "1"}}>Паспорт гражданина РФ</option>
+                                    <option value = "2" {{isSelected passport.type "2"}}>Иностранный паспорт</option>
+                                  </select>
+                                </div>
+                              </div>
                               <div class = "form-group required">
                                 <label class = "col-sm-3 control-label">Серия:</label>
                                 <div class = "col-sm-3">
-                                  <input type = "text" data-mask = "9999"
+                                  <input type = "text"
+                                         data-inputmask-mask = "{{#if passportCodeMask}}9999{{/if}}"
                                          id = "passportCode" name = "passport[code]"
                                          class = "form-control"
                                          value = "{{passport.code}}">
@@ -549,7 +559,7 @@
                                   выдан:</label>
                                 <div class = "col-sm-3">
                                   <div class = "input-group date">
-                                    <input type = "text" data-mask = "99.99.9999"
+                                    <input type = "text" data-inputmask-mask = "99.99.9999"
                                            id = "passportDate" name = "passport[date]"
                                            class = "form-control"
                                            value = "{{passport.date}}">
@@ -734,7 +744,7 @@
                                   (о):</label>
                                 <div class = "col-sm-9">
                                   <div class = "input-group date">
-                                    <input type = "text" data-mask = "99.99.9999"
+                                    <input type = "text" data-inputmask-mask = "99.99.9999"
                                            id = "armyDate" name = "army[date]"
                                            class = "form-control"
                                            value = "{{army.date}}">
@@ -835,7 +845,7 @@
                                 </div>
                                 <div class = "col-sm-4">
                                   <label class = "control-label"
-                                         data-mask = "(999) 999-9999">Рабочий
+                                         data-inputmask-mask = "(999) 999-9999">Рабочий
                                     телефон:</label>
                                   <input type = "text" id = "parentWorkphone"
                                          name = "parent[0][workphone]"
@@ -869,7 +879,7 @@
                                       <div class = "form-group">
                                         <label class = "col-sm-3 control-label">Серия:</label>
                                         <div class = "col-sm-3">
-                                          <input type = "text" data-mask = "9999"
+                                          <input type = "text" data-inputmask-mask = "9999"
                                                  id = "passportCode"
                                                  name = "parent[0][passport][code]"
                                                  class = "form-control"
@@ -901,7 +911,7 @@
                                         <div class = "col-sm-3">
                                           <div class = "input-group date">
                                             <input type = "text"
-                                                   data-mask = "99.99.9999"
+                                                   data-inputmask-mask = "99.99.9999"
                                                    id = "passportDate"
                                                    name = "parent[0][passport][date]"
                                                    class = "form-control"
@@ -992,7 +1002,7 @@
                                 <div class = "col-sm-4">
                                   <label class = "control-label">Рабочий
                                     телефон:</label>
-                                  <input data-mask = "(999) 999-9999" type = "text"
+                                  <input data-inputmask-mask = "(999) 999-9999" type = "text"
                                          id = "parentWorkphone"
                                          name = "parent[1][workphone]"
                                          class = "form-control"
@@ -1025,7 +1035,7 @@
                                       <div class = "form-group">
                                         <label class = "col-sm-3 control-label">Серия:</label>
                                         <div class = "col-sm-3">
-                                          <input type = "text" data-mask = "9999"
+                                          <input type = "text" data-inputmask-mask = "9999"
                                                  id = "passportCode"
                                                  name = "parent[1][passport][code]"
                                                  class = "form-control"
@@ -1057,7 +1067,7 @@
                                         <div class = "col-sm-3">
                                           <div class = "input-group date">
                                             <input type = "text"
-                                                   data-mask = "99.99.9999"
+                                                   data-inputmask-mask = "99.99.9999"
                                                    id = "passportDate"
                                                    name = "parent[1][passport][date]"
                                                    class = "form-control"

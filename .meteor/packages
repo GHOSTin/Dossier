@@ -42,3 +42,4 @@ cfs:standard-packages
 cfs:filesystem
 cfs:graphicsmagick
 pfafman:filesaver
+bigdsk:inputmask

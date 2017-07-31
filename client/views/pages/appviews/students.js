@@ -13,13 +13,17 @@ Template.students.onCreated(function() {
     });
 });
 
+Template.students.onRendered(()=>{
+
+});
+
 
 Template.students.helpers({
     students(){
         return Students.find({},{sort: {createAt: 1}})
     },
-    indicator( ind ){
-        return s.lpad(ind, 6, "0");
+    indicator(){
+        return s.lpad(this.ind, 6, "0");
     }
 });
 
