@@ -9,7 +9,9 @@
             <div class="ibox-title">
                 <h5>Список студентов/абитуриентов</h5>
                 <div class="ibox-tools">
+                    {{#if currentUser.rules.students.add}}
                     <a href="/student" class="btn btn-primary btn-xs" id="add">Добавить</a>
+                    {{/if}}
                 </div>
             </div>
             <div class="ibox-content">
@@ -25,32 +27,54 @@
                 </div>
 
                 <div class="project-list table-responsive">
-
-                    <table class="table table-hover">
-                        <tbody>
-                        {{#each students}}
-                            <tr>
-                                <td class="project-title">
-                                    <a href="/student/{{_id}}">{{indicator ind}}</a>
-                                </td>
-                                <td class="project-title">
-                                    <strong>{{lastname}} {{firstname}} {{middlename}}</strong>
-                                </td>
-                                <td class="contact-type"><i class="fa fa-phone visible-lg-inline"> </i></td>
-                                <td><span class="visible-lg-inline">{{phone}}</span></td>
-                                <td class="contact-type"><i class="fa fa-mobile visible-lg-inline"> </i></td>
-                                <td><span class="visible-lg-inline">{{mobile}}</span></td>
-                                <td class="contact-type"><i class="fa fa-envelope visible-lg-inline"> </i></td>
-                                <td><span class="visible-lg-inline">{{email}}</span></td>
-                                <td class="project-actions">
-                                    <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
-                                    {{#if isInRole 'admin'}}
-                                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-trash"></i> </a>
+                    <table data-page-size="5" class="table table-hover footable">
+                      <thead>
+                        <tr>
+                          <th data-sortable="false">#</th>
+                          <th>ФИО</th>
+                          <th colspan="2">Телефон</th>
+                          <th colspan="2">Мобильный</th>
+                          <th colspan="2">E-mail</th>
+                          <th data-sortable="false">Управление</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {{#each students}}
+                          <tr>
+                              <td class="project-title">
+                                  <a href="/student/{{_id}}">{{indicator}}</a>
+                              </td>
+                              <td class="project-title">
+                                  <strong>{{lastname}} {{firstname}} {{middlename}}</strong>
+                              </td>
+                              <td class="contact-type"><i class="fa fa-phone visible-lg-inline"> </i></td>
+                              <td><span class="visible-lg-inline">{{phone}}</span></td>
+                              <td class="contact-type"><i class="fa fa-mobile visible-lg-inline"> </i></td>
+                              <td><span class="visible-lg-inline">{{mobile}}</span></td>
+                              <td class="contact-type"><i class="fa fa-envelope visible-lg-inline"> </i></td>
+                              <td><span class="visible-lg-inline">{{email}}</span></td>
+                              <td class="project-actions">
+                                  {{#if currentUser.rules.students.edit}}
+                                  <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
+                                  {{/if}}
+                                  {{#if isInRole 'admin'}}
+                                  <a href="#" class="btn btn-white btn-sm delete" data-user-id="{{_id}}"><i class="fa fa-trash"></i> </a>
+                                    {{else}}
+                                    {{#if currentUser.rules.students.delete}}
+                                      <a href="#" class="btn btn-white btn-sm delete" data-user-id="{{_id}}"><i class="fa fa-trash"></i> </a>
                                     {{/if}}
-                                </td>
-                            </tr>
-                        {{/each}}
-                        </tbody>
+                                  {{/if}}
+                              </td>
+                          </tr>
+                      {{/each}}
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                        <td colspan="9">
+                          <ul class="pagination pull-right"></ul>
+                        </td>
+                      </tr>
+                      </tfoot>
                     </table>
                 </div>
             </div>

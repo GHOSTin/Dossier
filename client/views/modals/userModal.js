@@ -1,9 +1,13 @@
-Template.userModal.rendered = function(){
+Template.userModal.onRendered(function(){
     /*$('#role').select2({
         dropdownParent: $('#userModal'),
         theme: "bootstrap"
     });*/
-};
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green'
+    });
+});
 
 Template.userModal.helpers({
     user() {
@@ -23,16 +27,17 @@ Template.userModal.helpers({
 Template.userModal.events({
     'click #save': function(e){
         e.preventDefault();
-        let userId = Session.get('selectedUser'),
-            user = {
-                name: $('#name').val(),
-                username: $('#username').val(),
-                email: $('#email').val(),
-                password: $('#password').val()||"",
-                password2: $('#password2').val()||"",
-                role: $('#role').val(),
-                status: $('#status').is(':checked')?"active":"",
-            };
+        let user = $('#form').find(':input').serializeJSON({
+                checkboxUncheckedValue: false,
+                parseBooleans: true,
+                customTypes: {
+                    date: function(str) {
+                        return new Date(str);
+                    }
+                }
+            }),
+            userId = Session.get('selectedUser');
+        _.extend(user, {status: $('#status').is(':checked')?"active":""});
         if (!userId) {
             Meteor.call('addUser', user, function (error, result) {
                 if (error) {

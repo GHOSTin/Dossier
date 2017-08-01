@@ -1,0 +1,18 @@
+<template name="studentAdvData">
+  <div class = "form-group">
+    <label class = "col-sm-3 control-label">Курс:</label>
+    <div class = "col-sm-3">
+      <input type="number" min="1" max="5" class="form-control" name="course" value="{{course}}">
+    </div>
+    <label class = "col-sm-3 control-label">Год зачисления:</label>
+    <div class = "col-sm-3">
+      <div class = "input-group date only-years" data-date-format="yyyy">
+        <input type = "text" id = "receiptDate" class = "form-control"
+               name = "receiptDate" value = "{{receiptDate}}" data-mask="9999">
+        <span class = "input-group-addon">
+          <i class = "fa fa-calendar"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,9 +1,34 @@
 import {Students} from '/lib/collections/students'
 Template.dashboard1.onCreated(function(){
     let self = this;
+    self.totalGroups = new ReactiveVar();
     self.autorun(() => {
         self.subscribe('students');
     });
+});
+
+let fetchData = ( template ) => {
+    Meteor.call('countByGroup', function(error, result){
+        if(error) {
+            Bert.alert(error.reason, 'fixed-top', 'danger', 'fa-warning');
+        }
+        template.totalGroups.set(result)
+    })
+};
+
+_.chunk = function(array, chunkSize){
+    return _.reduce(array, function (reducer, item, index) {
+        reducer.current.push(item);
+        if(reducer.current.length === chunkSize || index + 1 === array.length) {
+            reducer.chunks.push(reducer.current);
+            reducer.current = [];
+        }
+        return reducer;
+    }, {current:[], chunks:[]}).chunks
+};
+
+Template.dashboard1.onRendered(()=>{
+    fetchData(Template.instance());
 });
 
 Template.dashboard1.helpers({
@@ -24,8 +49,21 @@ Template.dashboard1.helpers({
         let end = new Date();
         end.setHours(23,59,59,999);
         return Students.find({"createAt":{$gte: start, $lt: end}}).count();
+    },
+    SACountByGroup(){
+        let groups = Template.instance().totalGroups.get();
+        let colors = ["default", "primary", "success", "info", "warning", "danger"];
+        if(groups) {
+            return _.chunk(groups.map((item, index) => {
+                return {
+                    _id: index,
+                    group: item._id,
+                    count: item.count,
+                    color: colors[_.random(0,5)]
+                }
+            }), 3)
+        }
     }
-
 });
 
 Template.dashboard1.rendered = function(){

@@ -1,10 +1,14 @@
 require('jquery-serializejson');
 import {Students} from '/lib/collections/students'
 import {Avatars} from '/lib/collections/avatars'
+import {ReactiveDict} from 'meteor/reactive-dict'
 
 Template.Student.onCreated(function() {
     let self = this;
     self.avatarId = new ReactiveVar();
+    this.params = new ReactiveDict();
+    this.params.set('template', false);
+    this.params.set('passport', true);
     self.autorun(function() {
         let postId = FlowRouter.getParam('id');
         self.sub = self.subscribe('student', postId);
@@ -14,6 +18,7 @@ Template.Student.onCreated(function() {
     self.sports = new ReactiveVar(false);
     self.creations = new ReactiveVar(false);
     self.hobbies = new ReactiveVar(false);
+    self.params.set('psyhology', false);
     self.debts = [];
     self.avgpoints = [];
 });
@@ -32,8 +37,30 @@ Template.Student.helpers({
         }
     },
     student() {
-        let id = FlowRouter.getParam('id');
-        return Students.findOne({_id: id}) || {};
+        if(Template.instance().subscriptionsReady()) {
+            let id = FlowRouter.getParam('id'),
+                student = Students.findOne({_id: id}) || {};
+            if (!_.isEmpty(student)) {
+                if(student.passport.type === "2") {
+                    Template.instance().params.set('passport', false);
+                }
+            }
+            switch (student.role) {
+                case "student":
+                    Template.instance().params.set('template', 'studentAdvData');
+                    break;
+                case "graduate":
+                    Template.instance().params.set('template', 'graduateAdvData');
+                    break;
+                case "expelled":
+                    Template.instance().params.set('template', 'expelledAdvData');
+                    break;
+                default:
+                    Template.instance().params.set('template', false);
+            }
+
+            return student;
+        }
     },
     photo(){
         let studentId = FlowRouter.getParam('id'),
@@ -42,6 +69,12 @@ Template.Student.helpers({
             id = Template.instance().avatarId.get();
         }
         return Avatars.findOne({_id: id})
+    },
+    template(){
+        return Template.instance().params.get('template')
+    },
+    passportCodeMask() {
+        return Template.instance().params.get('passport')
     }
 });
 
@@ -58,145 +91,174 @@ Template.Student.onRendered(function () {
                         $(this).prop('readonly', true);
                     });
                 }
+                if($('input[name="notRegistration"]').is(":checked")) {
+                    $('[id^=addressRegistration]').each(function( index ) {
+                        $(this).prop('readonly', true);
+                    });
+                    $('[id^=addressRegistration], [id^=addressFact]').each(function( index ){
+                        $(this).rules("remote", "require");
+                    });
+                }
+                $(':input').inputmask();
+                $('.input-group.date.only-years').datepicker({
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: false,
+                    language: 'ru',
+                    format: "yyyy",
+                    viewMode: 'years',
+                    minViewMode: 'years'
+                });
+
+                $('.input-group.date.only-months').datepicker({
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: false,
+                    language: 'ru',
+                    format: "mm.yyyy",
+                    viewMode: 'months',
+                    minViewMode: 'months'
+                });
+
+                $('.input-group.date').datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: false,
+                    language: 'ru',
+                    format: "dd.mm.yyyy",
+                    weekStart: 1,
+                    calendarWeeks: false,
+                    todayHighlight: true
+                });
+
+                $("#form").validate({
+                    ignore: "",
+                    rules: {
+                        ind: {
+                            /*required: true,*/
+                            minlength: 3
+                        },
+                        firstname: {
+                            required: true
+                        },
+                        lastname: {
+                            required: true
+                        },
+                        middlename: {
+                            required: true
+                        },
+                        birthday: {
+                            required: true
+                        },
+                        gender: {
+                            required: true
+                        },
+                        'school[name]': {
+                            required: true
+                        },
+                        'passport[code]': {
+                            required: true
+                        },
+                        'passport[number]': {
+                            required: true
+                        },
+                        'passport[department]': {
+                            required: true
+                        },
+                        'passport[date]': {
+                            required: true
+                        },
+                        /*'passport[departmentCode]': {
+                         required: true
+                         },
+                         'diploma[type]': {
+                         required: true
+                         },
+                         'diploma[code]': {
+                         required: true
+                         },
+                         'diploma[number]': {
+                         required: true
+                         },
+                         'school[year]': {
+                         required: true
+                         },
+                         'diploma[date]': {
+                         required: true
+                         },*/
+                        'address[registration][region]':"required",
+                        'address[registration][city]':"required",
+                        'address[registration][shf]':"required",
+                        'address[fact][region]':"required",
+                        'address[fact][city]':"required",
+                        'address[fact][shf]':"required",
+                    },
+                    messages: {
+                        ind: {
+                            required: "Индивидуальный номер обязателен к заполнению.",
+                        },
+                        firstname: {
+                            required: "Укажите имя.",
+                        },
+                        lastname: {
+                            required: "Укажите фамилию.",
+                        },
+                        middlename: {
+                            required: "Укажите отчество.",
+                        },
+                        birthday: {
+                            required: "Укажите дату рождения.",
+                        },
+                        gender: {
+                            required: "Укажите пол.",
+                        },
+                        'school[name]': {
+                            required: "Укажите полное наименование Образовательного учереждения."
+                        },
+                        'passport[code]': {
+                            required: "Укажите серию паспорта."
+                        },
+                        'passport[number]': {
+                            required: "Укажите номер паспорта."
+                        },
+                        'passport[department]': {
+                            required: "Укажите кем выдан паспорт."
+                        },
+                        'passport[date]': {
+                            required: "Укажите дату выдачи паспорта."
+                        },
+                        'passport[departmentCode]': {
+                            required: "Укажите код подразделения паспорта."
+                        },
+                        'diploma[type]': {
+                            required: "Укажите вид документа об образовании."
+                        },
+                        'diploma[code]': {
+                            required: "Укажите серию документа об образовании."
+                        },
+                        'diploma[number]': {
+                            required: "Укажите номер документа об образовании."
+                        },
+                        'school[year]': {
+                            required: "Укажите год окончания учебного учереждения."
+                        },
+                        'diploma[date]': {
+                            required: "Укажите дату получения документа об образовании."
+                        },
+                        'address[registration][region]':"Укажите регион в адресе регистрации",
+                        'address[registration][city]':"Укажите город в адресе регистрации",
+                        'address[registration][shf]':"Укажите улицу/дом/квартиру в адресе регистрации",
+                        'address[fact][region]':"Укажите регион в фактическом адресе проживания",
+                        'address[fact][city]':"Укажите город в фактическом адресе проживания",
+                        'address[fact][shf]':"Укажите улицу/дом/квартиру в фактическом адресе проживания",
+                    },
+                    errorContainer: $('#validation-errors'),
+                    errorLabelContainer: $('#validation-errors ul'),
+                    wrapper: 'li',
+                });
             });
         }
-    });
-    $('.input-group.date').datepicker({
-        todayBtn: "linked",
-        keyboardNavigation: false,
-        forceParse: false,
-        autoclose: false,
-        language: 'ru',
-        format: "dd.mm.yyyy",
-        weekStart: 1,
-        calendarWeeks: false,
-        todayHighlight: true
-    });
-
-    $("#form").validate({
-        ignore: "",
-        rules: {
-            ind: {
-                /*required: true,*/
-                minlength: 3
-            },
-            firstname: {
-                required: true
-            },
-            lastname: {
-                required: true
-            },
-            middlename: {
-                required: true
-            },
-            birthday: {
-                required: true
-            },
-            gender: {
-                required: true
-            },
-            'school[name]': {
-                required: true
-            },
-            'passport[code]': {
-                required: true
-            },
-            'passport[number]': {
-                required: true
-            },
-            'passport[department]': {
-                required: true
-            },
-            'passport[date]': {
-                required: true
-            },
-            'passport[departmentCode]': {
-                required: true
-            },
-            /*'diploma[type]': {
-                required: true
-            },
-            'diploma[code]': {
-                required: true
-            },
-            'diploma[number]': {
-                required: true
-            },
-            'school[year]': {
-                required: true
-            },
-            'diploma[date]': {
-                required: true
-            },*/
-            'address[registration][region]':"required",
-            'address[registration][city]':"required",
-            'address[registration][shf]':"required",
-            'address[fact][region]':"required",
-            'address[fact][city]':"required",
-            'address[fact][shf]':"required",
-        },
-        messages: {
-            ind: {
-                required: "Индивидуальный номер обязателен к заполнению.",
-            },
-            firstname: {
-                required: "Укажите имя.",
-            },
-            lastname: {
-                required: "Укажите фамилию.",
-            },
-            middlename: {
-                required: "Укажите отчество.",
-            },
-            birthday: {
-                required: "Укажите дату рождения.",
-            },
-            gender: {
-                required: "Укажите пол.",
-            },
-            'school[name]': {
-                required: "Укажите полное наименование Образовательного учереждения."
-            },
-            'passport[code]': {
-                required: "Укажите серию паспорта."
-            },
-            'passport[number]': {
-                required: "Укажите номер паспорта."
-            },
-            'passport[department]': {
-                required: "Укажите кем выдан паспорт."
-            },
-            'passport[date]': {
-                required: "Укажите дату выдачи паспорта."
-            },
-            'passport[departmentCode]': {
-                required: "Укажите код подразделения паспорта."
-            },
-            'diploma[type]': {
-                required: "Укажите вид документа об образовании."
-            },
-            'diploma[code]': {
-                required: "Укажите серию документа об образовании."
-            },
-            'diploma[number]': {
-                required: "Укажите номер документа об образовании."
-            },
-            'school[year]': {
-                required: "Укажите год окончания учебного учереждения."
-            },
-            'diploma[date]': {
-                required: "Укажите дату получения документа об образовании."
-            },
-            'address[registration][region]':"Укажите регион в адресе регистрации",
-            'address[registration][city]':"Укажите город в адресе регистрации",
-            'address[registration][shf]':"Укажите улицу/дом/квартиру в адресе регистрации",
-            'address[fact][region]':"Укажите регион в фактическом адресе проживания",
-            'address[fact][city]':"Укажите город в фактическом адресе проживания",
-            'address[fact][shf]':"Укажите улицу/дом/квартиру в фактическом адресе проживания",
-        },
-        errorContainer: $('#validation-errors'),
-        errorLabelContainer: $('#validation-errors ul'),
-        wrapper: 'li',
     });
 });
 
@@ -258,6 +320,10 @@ Template.Student.events({
                         Blaze.remove(template.hobbies.get());
                         template.hobbies.set(false);
                     }
+                    if(template.params.get('psyhology')) {
+                        Blaze.remove(template.params.get('psyhology'));
+                        template.params.set('psyhology', false);
+                    }
                     if(template.debts.length > 0) {
                         _.each(template.debts, ( view )=>{
                             Blaze.remove(view);
@@ -272,7 +338,6 @@ Template.Student.events({
                     }
                 }
             });
-            console.log(data);
         }
         return false;
     },
@@ -292,6 +357,29 @@ Template.Student.events({
                 linkValue = $(`#${linkSelector}`).val();
             $(this).val(linkValue);
         });
+        return true;
+    },
+    'ifUnchecked [name="notRegistration"]': ( event ) => {
+        event.preventDefault();
+        $('[id^=addressRegistration]').each(function( ){
+            $(this).prop('readonly', false);
+        });
+        $('[id="addressRegistrationRegion"], [id="addressRegistrationCity"], [id="addressRegistrationSHF"], ' +
+            '[id="addressFactRegion"], [id="addressFactCity"], [id="addressFactSHF"]').each(function( ){
+            $(this).rules("add", {"required": true});
+        });
+        return true;
+    },
+    'ifChecked [name="notRegistration"]': ( event ) => {
+        event.preventDefault();
+        $('[id^=addressRegistration]').each(function( ){
+            $(this).prop('readonly', true);
+        });
+        $('[id="addressRegistrationRegion"], [id="addressRegistrationCity"], [id="addressRegistrationSHF"], ' +
+            '[id="addressFactRegion"], [id="addressFactCity"], [id="addressFactSHF"]')
+            .each(function( ){
+                $(this).rules("remove", "required");
+            });
         return true;
     },
     'keyup [id^="addressRegistration"]': ( event ) => {
@@ -326,6 +414,12 @@ Template.Student.events({
         event.preventDefault();
         let length = $('.hobbiesContent').length;
         template.hobbies.set(Blaze.renderWithData(Template.hobby, {index: length}, $('#hobbiesContainer')[0]));
+        return true;
+    },
+    'click #addPsy': ( event, template )=>{
+        event.preventDefault();
+        let length = $('.psyContent').length;
+        template.params.set('psyhology', Blaze.renderWithData(Template.Psyhology, {index: length}, $('#psyContainer')[0]));
         return true;
     },
     'click #addDebt': ( event,template ) => {
@@ -385,5 +479,34 @@ Template.Student.events({
     'change input[name="avatar"]': (event, template) => {
         event.preventDefault();
         template.avatarId.set($(event.currentTarget).val());
+    },
+    'change select[name="role"]': (event, template) => {
+        event.preventDefault();
+        switch ($(event.currentTarget).val()) {
+            case "student":
+                template.params.set('template', 'studentAdvData');
+                break;
+            case "graduate":
+                template.params.set('template', 'graduateAdvData');
+                break;
+            case "expelled":
+                template.params.set('template', 'expelledAdvData');
+                break;
+            default:
+                template.params.set('template', false);
+        }
+    },
+    'change select[name="passport[type]"]': ( event, template )=>{
+        event.preventDefault();
+        switch ($(event.currentTarget).val()) {
+            case "2":
+                template.params.set('passport', false);
+                $('#passportCode').inputmask("remove");
+                break;
+            case "1":
+                template.params.set('passport', true);
+                $('#passportCode').inputmask({mask: "9999"});
+                break;
+        }
     }
 });

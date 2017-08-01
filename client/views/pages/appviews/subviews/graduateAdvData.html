@@ -1,0 +1,14 @@
+<template name="graduateAdvData">
+  <div class = "form-group">
+    <label class = "col-sm-3 control-label">Год выпуска:</label>
+    <div class = "col-sm-3">
+      <div class = "input-group date only-years" data-date-format="yyyy">
+        <input type = "text" id = "graduateDate" class = "form-control"
+               name = "graduateDate" value = "{{graduateDate}}" data-mask="9999">
+        <span class = "input-group-addon">
+          <i class = "fa fa-calendar"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>

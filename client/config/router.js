@@ -13,6 +13,8 @@ let loggedIn = FlowRouter.group({
 
                 if(route.route.name !== 'login'){
                     Session.set('redirectAfterLogin', route.path)
+                } else {
+                    Session.set('redirectAfterLogin', FlowRouter.path('dashboard'))
                 }
 
                 return FlowRouter.go('login')
@@ -61,9 +63,22 @@ loggedIn.route('/student/:id', {
     }
 });
 
+loggedIn.route('/reports', {
+    action() {
+        BlazeLayout.render("mainLayout", {content: "reports"})
+    }
+});
+
 
 admin.route('/users', {
     name: 'users',
+    action() {
+        BlazeLayout.render("mainLayout", {content: "users"})
+    }
+});
+
+admin.route('/rules', {
+    name: 'rules',
     action() {
         BlazeLayout.render("mainLayout", {content: "users"})
     }

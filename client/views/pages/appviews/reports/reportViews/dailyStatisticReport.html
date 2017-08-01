@@ -1,0 +1,45 @@
+<template name="dailyStatisticReport">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h1 class="text-center">Количество по дням в разрезе специальностей</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Специальность</th>
+            <th>Количество</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this}}
+            {{#let date = _id }}
+              {{#each row in data}}
+              <tr>
+                {{#if firstRow row data}}
+                <td rowspan="{{_size data}}">
+                  {{date}}
+                </td>
+                {{/if}}
+                <td>
+                  {{row.spec}}
+                </td>
+                <td>
+                  {{row.count}}
+                </td>
+              </tr>
+              {{/each}}
+            {{/let}}
+            <tr>
+              <td colspan="2" class="text-capitalize"><em>Итог за {{_id}}:</em></td>
+              <td>{{totalCount}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
