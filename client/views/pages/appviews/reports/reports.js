@@ -74,7 +74,8 @@ Template.reports.events({
             wb = { SheetNames:[], Sheets:{} };
         switch(report){
             case 'dailyStatisticReport':
-                wb = XLSX.utils.table_to_book($('[data-name="reportData"]').find('table')[0], {dateNF: "dd.mm.yyyy"});
+            case 'KISReport':
+                wb = XLSX.utils.table_to_book($('[data-name="reportData"]').find('table')[0], {raw: true, dateNF: 0});
                 break;
             case 'PRReport':
                 let ws1 = XLSX.utils.table_to_sheet($('#informers').find('table')[0]),

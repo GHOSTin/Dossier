@@ -1,0 +1,53 @@
+<template name = "KISReport">
+  <div id="kis">
+    <div class = "row">
+      <div class = "col-sm-8 col-sm-offset-2">
+        <h1 class = "text-center">Выгрузка для KIS:</h1>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-12 table-responsive">
+        <table class = "table table-bordered">
+          <thead>
+          <tr>
+            <th>Серия/Номер</th>
+            <th>Кем выдан</th>
+            <th>Дата выдачи</th>
+            <th>Код подразделения</th>
+            <th>ФИО</th>
+            <th>Дата рождения</th>
+            <th>Место рождения</th>
+            <th>Адрес регистрации</th>
+            <th>Адрес фактической прописки</th>
+            <th>СНИЛС</th>
+            <th>ИНН</th>
+            <th>Сотовый телефон</th>
+            <th>Специальность</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each this}}
+          <tr>
+            <td>
+              {{passport.code}}/{{passport.number}}
+            </td>
+            <td>{{passport.department}}</td>
+            <td>{{passport.date}}</td>
+            <td>{{passport.department}}</td>
+            <td>{{username}}</td>
+            <td>{{birthday}}</td>
+            <td>{{placeOfBirth}}</td>
+            <td>{{address.registration.region}}, {{address.registration.city}}, {{address.registration.shf}}</td>
+            <td>{{address.fact.region}}, {{address.fact.city}}, {{address.fact.shf}}</td>
+            <td>{{SNILS}}</td>
+            <td>{{TIN}}</td>
+            <td>{{mobile}}</td>
+            <td>{{spec}}</td>
+          </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

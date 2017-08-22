@@ -33,7 +33,7 @@ Template.students.helpers({
 Template.students.events({
     'click .edit': ( event ) => {
         event.preventDefault();
-        FlowRouter.go('/student/'+$(event.currentTarget).attr('data-user-id'))
+        FlowRouter.go('/student/'+$(event.currentTarget).data('user-id'))
     },
     'click .delete': ( event ) => {
         event.preventDefault();
