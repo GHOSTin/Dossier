@@ -7,8 +7,11 @@ Template.students.onCreated(function() {
     let self = this;
     self.searchQuery = new ReactiveVar();
     self.searching = new ReactiveVar(false);
+    self.filter = new ReactiveDict();
+    self.filter.set('filterCriteria', false);
+    self.filter.set('filterText', false);
     self.autorun(() => {
-        self.subscribe('students', self.searchQuery.get(), ()=> {
+        self.subscribe('students', self.searchQuery.get(), {'filterCriteria': self.filter.get('filterCriteria'),'filterText': self.filter.get('filterText')}, ()=> {
             setTimeout(()=> {
                 self.searching.set(false);
             }, 3000);
@@ -65,10 +68,14 @@ Template.students.events({
         if(value !== '' && e.keyCode === 13 ){
             template.searchQuery.set(value);
             template.searching.set( true );
+            template.filter.set('filterCriteria', $('#filterCriteria').val());
+            template.filter.set('filterText', $('#filterText').val());
         }
 
         if( value === "" ) {
             template.searchQuery.set(value);
+            template.filter.set('filterCriteria', $('#filterCriteria').val());
+            template.filter.set('filterText', $('#filterText').val());
         }
     },
     'click #search': function(e, template){
@@ -78,11 +85,19 @@ Template.students.events({
         if(value !== ''){
             template.searchQuery.set(value);
             template.searching.set( true );
+            template.filter.set('filterCriteria', $('#filterCriteria').val());
+            template.filter.set('filterText', $('#filterText').val());
         }
 
         if( value === "" ) {
             template.searchQuery.set(value);
+            template.filter.set('filterCriteria', $('#filterCriteria').val());
+            template.filter.set('filterText', $('#filterText').val());
         }
+    },
+    'click #filter': function(e, template){
+        e.preventDefault();
+        $('#filterCriteria, #filterText').val("");
     }
 });
 

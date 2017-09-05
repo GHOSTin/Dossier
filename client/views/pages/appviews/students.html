@@ -19,10 +19,26 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <input type="text" placeholder="Поиск" class="input-sm form-control" id="userName">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-sm btn-primary" id="search"> Поиск</button>
-                            </span>
+                            <div class="input-group-btn">
+                              <button type="button" class="btn btn-sm btn-primary" id="search"> Поиск</button>
+                              <a href="#filterCollapse" data-toggle="collapse" aria-expanded="false" type="button" class="btn btn-sm btn-primary" id="filter"> Фильтр <i class="fa fa-angle-down"></i></a>
+                            </div>
                         </div>
+                    </div>
+                    <div id="filterCollapse" aria-expanded="false" class="panel-collapse collapse col-md-12 m-t">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <select class="form-control" id="filterCriteria">
+                            <option></option>
+                            <option value="parent.username">ФИО родителя</option>
+                            <option value="parent.passport.code">Серия паспорта родителя</option>
+                            <option value="parent.passport.number">Номер паспорта родителя</option>
+                          </select>
+                        </div>
+                        <div class="col-md-8">
+                          <input type="text" class="input-sm form-control" id="filterText">
+                        </div>
+                      </div>
                     </div>
                 </div>
 
