@@ -1,0 +1,35 @@
+<template name = "SchoolReport">
+  <div id="kis">
+    <div class = "row">
+      <div class = "col-sm-8 col-sm-offset-2">
+        <h1 class = "text-center">Выгрузка в разрезе школ:</h1>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-12 table-responsive">
+        <table class = "table table-bordered">
+          <thead>
+          <tr>
+            <th>Город</th>
+            <th>Школа</th>
+            <th>Количество</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each this}}
+            <tr>
+              <td>
+                {{schoolCity}}
+              </td>
+              <td>
+                {{schoolNumber}}
+              </td>
+              <td>{{count}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
