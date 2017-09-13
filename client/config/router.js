@@ -40,6 +40,13 @@ loggedIn.route('/', {
     }
 });
 
+loggedIn.route('/abiturients', {
+    action() {
+        BlazeLayout.render("mainLayout", {content: "abiturients"});
+        Session.set('selectedUser', null);
+    }
+});
+
 loggedIn.route('/students', {
     action() {
         BlazeLayout.render("mainLayout", {content: "students"});

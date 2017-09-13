@@ -31,6 +31,12 @@
             ОЦ+
           </div>
         </li>
+        {{#if currentUser.rules.abiturients.general}}
+          <li class="{{isActivePath regex='/abiturients'}}">
+            <a href="/abiturients"><i class="fa fa-id-card"></i> <span class="nav-label" data-i18n="nav.abiturients">Приемная комиссия</span>
+            </a>
+          </li>
+        {{/if}}
         {{#if currentUser.rules.students.general}}
           <li class="{{isActivePath regex='/students'}}">
             <a href="/students"><i class="fa fa-users"></i> <span class="nav-label" data-i18n="nav.students">Список студентов</span>

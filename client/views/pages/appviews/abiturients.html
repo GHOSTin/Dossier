@@ -1,15 +1,15 @@
-<template name="students">
+<template name="abiturients">
 
     <!-- Page heading -->
-    {{> pageHeading title='Список студентов' category='' }}
+    {{> pageHeading title='Список абитуриентов' category='' }}
 
     <div class="wrapper wrapper-content">
 
         <div class="ibox">
             <div class="ibox-title">
-                <h5>Список студентов</h5>
+                <h5>Список абитуриентов</h5>
                 <div class="ibox-tools">
-                    {{#if currentUser.rules.students.add}}
+                    {{#if currentUser.rules.abiturients.add}}
                     <a href="/student" class="btn btn-primary btn-xs" id="add">Добавить</a>
                     {{/if}}
                 </div>
@@ -30,10 +30,6 @@
                         <div class="col-md-4">
                           <select class="form-control" id="filterCriteria">
                             <option></option>
-                            <option value="group">Группа</option>
-                            <option value="phone">Телефон</option>
-                            <option value="mobile">Мобильный</option>
-                            <option value="email">E-mail</option>
                             <option value="parent.username">ФИО родителя</option>
                             <option value="parent.passport.code">Серия паспорта родителя</option>
                             <option value="parent.passport.number">Номер паспорта родителя</option>
@@ -52,7 +48,9 @@
                         <tr>
                           <th data-sortable="false">#</th>
                           <th>ФИО</th>
-                          <th>Группа</th>
+                          <th colspan="2">Телефон</th>
+                          <th colspan="2">Мобильный</th>
+                          <th colspan="2">E-mail</th>
                           <th data-sortable="false">Управление</th>
                         </tr>
                       </thead>
@@ -65,15 +63,20 @@
                               <td class="project-title">
                                   <strong>{{lastname}} {{firstname}} {{middlename}}</strong>
                               </td>
-                              <td>{{groupName this}}</td>
+                              <td class="contact-type"><i class="fa fa-phone visible-lg-inline"> </i></td>
+                              <td><span class="visible-lg-inline">{{phone}}</span></td>
+                              <td class="contact-type"><i class="fa fa-mobile visible-lg-inline"> </i></td>
+                              <td><span class="visible-lg-inline">{{mobile}}</span></td>
+                              <td class="contact-type"><i class="fa fa-envelope visible-lg-inline"> </i></td>
+                              <td><span class="visible-lg-inline">{{email}}</span></td>
                               <td class="project-actions">
-                                  {{#if currentUser.rules.students.edit}}
+                                  {{#if currentUser.rules.abiturients.edit}}
                                   <a href="#" class="btn btn-white btn-sm edit" data-user-id="{{_id}}"><i class="fa fa-pencil"></i> </a>
                                   {{/if}}
                                   {{#if isInRole 'admin'}}
                                   <a href="#" class="btn btn-white btn-sm delete" data-user-id="{{_id}}"><i class="fa fa-trash"></i> </a>
                                     {{else}}
-                                    {{#if currentUser.rules.students.delete}}
+                                    {{#if currentUser.rules.abiturients.delete}}
                                       <a href="#" class="btn btn-white btn-sm delete" data-user-id="{{_id}}"><i class="fa fa-trash"></i> </a>
                                     {{/if}}
                                   {{/if}}

@@ -25,10 +25,10 @@ Meteor.publish('Meteor.user.rules', function () {
     return Meteor.users.find(selector, options);
 });
 
-Meteor.publish('students', function( search, filter ){
+Meteor.publish('abiturients', function( search, filter ){
     check(search, Match.OneOf(String, null, undefined));
 
-    let query = {},
+    let query = {role: "abiturient"},
         filterQuery = {},
         projection = {sort: {"ind": 1}};
 
@@ -40,7 +40,7 @@ Meteor.publish('students', function( search, filter ){
             {$match: {$or: [{"indicator": regex}, {"username": regex}]}}
         ]).map(function(e){ return e._id});
 
-        query = {_id: {$in: queryIds}};
+        query = {_id: {$in: queryIds}, role: "abiturient"};
     }
 
     if(filter) {
@@ -61,6 +61,62 @@ Meteor.publish('students', function( search, filter ){
                     $match: {$or: [{"username1": filterText},{"username2": filterText}]}}
                 ]);
                 filterQuery = {_id: {$in: queryIds}};
+                break;
+        }
+        query = {$and: [query, filterQuery]};
+    }
+    return Students.find(query, projection);
+});
+
+Meteor.publish('students', function( search, filter ){
+    check(search, Match.OneOf(String, null, undefined));
+
+    let query = {role: "student"},
+        filterQuery = {},
+        projection = {sort: {"ind": 1}};
+
+    if (search) {
+        let regex = new RegExp(search, 'i');
+
+        let queryIds = Students.aggregate([
+            {$project: {"username": { $concat : ["$lastname", " ", "$firstname", " ", "$middlename"]}, "indicator": {"$toLower": "$ind"}}},
+            {$match: {$or: [{"indicator": regex}, {"username": regex}]}}
+        ]).map(function(e){ return e._id});
+
+        query = {_id: {$in: queryIds}, role: "student"};
+    }
+
+    if(filter) {
+        let filterText = new RegExp(filter.filterText, 'i');
+        switch (filter.filterCriteria) {
+            case 'parent.passport.code':
+                filterQuery = {$or: [{"parent.0.passport.code": filterText}, {"parent.1.passport.code": filterText}]};
+                break;
+            case 'parent.passport.number':
+                filterQuery = {$or: [{"parent.0.passport.number": filterText}, {"parent.1.passport.number": filterText}]};
+                break;
+            case 'parent.username':
+                let queryIds = Students.aggregate([{
+                    $project: {
+                        "username1": {$concat: ["$parent.0.lastname"," ","$parent.0.firstname"," ","$parent.0.middlename"]},
+                        "username2": {$concat: ["$parent.1.lastname"," ","$parent.1.firstname"," ","$parent.1.middlename"]}
+                    }},{
+                    $match: {$or: [{"username1": filterText},{"username2": filterText}]}}
+                ]);
+                filterQuery = {_id: {$in: queryIds}};
+                break;
+            case 'phone':
+                filterQuery = {phone: filterText};
+                break;
+            case 'mobile':
+                filterQuery = {mobile: filterText};
+                break;
+            case 'email':
+                filterQuery = {email: filterText};
+                break;
+            case 'group':
+                let [full, spec, course, group] = filter.filterText.split(/(\D{2,4})-(\d)(\d*)/gi);
+                filterQuery = {$and: [{spec: spec}, {course: course}, {group: group}]};
                 break;
         }
         query = {$and: [query, filterQuery]};

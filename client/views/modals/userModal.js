@@ -3,6 +3,9 @@ Template.userModal.onRendered(function(){
         dropdownParent: $('#userModal'),
         theme: "bootstrap"
     });*/
+    $('.client-detail').slimscroll({
+        height: '100%'
+    });
     $('.i-checks').iCheck({
         checkboxClass: 'icheckbox_square-green',
         radioClass: 'iradio_square-green'

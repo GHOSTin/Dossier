@@ -3,7 +3,7 @@ import swal from 'sweetalert2'
 
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-Template.students.onCreated(function() {
+Template.abiturients.onCreated(function() {
     let self = this;
     self.searchQuery = new ReactiveVar();
     self.searching = new ReactiveVar(false);
@@ -11,7 +11,7 @@ Template.students.onCreated(function() {
     self.filter.set('filterCriteria', false);
     self.filter.set('filterText', false);
     self.autorun(() => {
-        self.subscribe('students', self.searchQuery.get(), {'filterCriteria': self.filter.get('filterCriteria'),'filterText': self.filter.get('filterText')}, ()=> {
+        self.subscribe('abiturients', self.searchQuery.get(), {'filterCriteria': self.filter.get('filterCriteria'),'filterText': self.filter.get('filterText')}, ()=> {
             setTimeout(()=> {
                 self.searching.set(false);
             }, 3000);
@@ -19,24 +19,21 @@ Template.students.onCreated(function() {
     });
 });
 
-Template.students.onRendered(()=>{
+Template.abiturients.onRendered(()=>{
 
 });
 
 
-Template.students.helpers({
+Template.abiturients.helpers({
     students(){
         return Students.find({},{sort: {createAt: 1}})
     },
     indicator(){
         return s.lpad(this.ind, 6, "0");
-    },
-    groupName(student){
-        return `${student.spec}-${student.course}${student.group}`;
     }
 });
 
-Template.students.events({
+Template.abiturients.events({
     'click .edit': ( event ) => {
         event.preventDefault();
         FlowRouter.go('/student/'+$(event.currentTarget).data('user-id'))

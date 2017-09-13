@@ -64,6 +64,33 @@
                 <div role="tabpanel" class="tab-pane fade" id="userRules">
                   <div class="panel-body">
                     <div class="client-detail">
+                      <h2>Раздел "Абитуриенты"</h2>
+                      <ul class="todo-list m-t small-list ui-sortable">
+                        <li>
+                          <label>
+                            <input class="i-checks" type="checkbox" name="rules[abiturients][general]" value="true" {{isChecked user.rules.abiturients.general true}}>
+                            Общий доступ
+                          </label>
+                        </li>
+                        <li>
+                          <label>
+                            <input class="i-checks" type="checkbox" name="rules[abiturients][add]" value="true" {{isChecked user.rules.abiturients.add true}}>
+                            Создание новых
+                          </label>
+                        </li>
+                        <li>
+                          <label>
+                            <input class="i-checks" type="checkbox" name="rules[abiturients][edit]" value="true" {{isChecked user.rules.abiturients.edit true}}>
+                            Редактирование записей
+                          </label>
+                        </li>
+                        <li>
+                          <label>
+                            <input class="i-checks" type="checkbox" name="rules[abiturients][delete]" value="true" {{isChecked user.rules.abiturients.delete true}}>
+                            Удаление записей
+                          </label>
+                        </li>
+                      </ul>
                       <h2>Раздел "Студенты"</h2>
                       <ul class="todo-list m-t small-list ui-sortable">
                         <li>
