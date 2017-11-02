@@ -8,4 +8,8 @@ Template.studentAdvData.onRendered(function(){
         viewMode: 'years',
         minViewMode: 'years'
     });
+  $('.i-checks').iCheck({
+    checkboxClass: 'icheckbox_square-green',
+    radioClass: 'iradio_square-green'
+  });
 });

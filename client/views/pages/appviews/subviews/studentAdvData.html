@@ -1,16 +1,16 @@
 <template name="studentAdvData">
   <div class = "form-group">
-    <label class = "col-sm-3 control-label">Курс:</label>
+    <label class = "col-sm-3 control-label" for="course">Курс:</label>
     <div class = "col-sm-3">
-      <input type="number" min="1" max="5" class="form-control" name="course" value="{{course}}">
+      <input type="number" min="1" max="5" class="form-control" name="course" id="course" value="{{course}}">
     </div>
-    <label class = "col-sm-3 control-label">Номер группы:</label>
+    <label class = "col-sm-3 control-label" for="group">Номер группы:</label>
     <div class = "col-sm-3">
-      <input type="number" min="1" class="form-control" name="group" value="{{group}}">
+      <input type="number" min="1" class="form-control" name="group" id="group" value="{{group}}">
     </div>
   </div>
   <div class = "form-group">
-    <label class = "col-sm-3 control-label">Год зачисления:</label>
+    <label class = "col-sm-3 control-label" for="receiptDate">Год зачисления:</label>
     <div class = "col-sm-3">
       <div class = "input-group date only-years" data-date-format="yyyy">
         <input type = "text" id = "receiptDate" class = "form-control"
@@ -19,6 +19,17 @@
           <i class = "fa fa-calendar"></i>
         </span>
       </div>
+    </div>
+    <label class = "col-sm-3 control-label" for="inactive">Академический отпуск:</label>
+    <div class = "col-sm-3">
+        <div class = "i-checks checkbox-inline">
+            <label>
+                <input type = "checkbox" name = "inactive" id = "inactive"
+                       value = "true" {{isChecked
+                        inactive "true"}}>
+                <i></i>
+            </label>
+        </div>
     </div>
   </div>
 </template>
