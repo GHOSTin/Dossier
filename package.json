@@ -5,15 +5,17 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "babel-runtime": "^6.25.0",
-    "bcrypt": "1.0.x",
-    "datatables.net-bs": "^1.10.15",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "datatables.net-bs": "^1.10.16",
     "hammerjs": "2.0.x",
-    "html-pdf": "^2.1.0",
+    "html-pdf": "^2.2.0",
+    "interactjs": "^1.2.9",
+    "jQuery-QueryBuilder": "^2.4.4",
     "jquery": "1.x",
     "jquery-serializejson": "2.x",
     "meteor-node-stubs": "~0.2.4",
-    "sweetalert2": "^6.6.6",
+    "sweetalert2": "^6.11.4",
     "xlsx": "^0.10.9"
   }
 }

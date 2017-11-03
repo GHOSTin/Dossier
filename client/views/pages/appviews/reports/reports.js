@@ -1,7 +1,12 @@
 const XLSX = require('xlsx');
 import {ReactiveDict} from 'meteor/reactive-dict'
+import {Students} from '/lib/collections/students'
 
 Template.reports.onCreated( function() {
+    this.autorun(() => {
+        this.subscribe('students');
+        this.subscribe('abiturients');
+    });
     this.report = new ReactiveDict();
     this.report.set('reportTemplate', false);
     this.report.set('reportData', false);
@@ -24,6 +29,103 @@ Template.reports.rendered = function(){
     $('.sidebar-collapse').slimScroll({
         height: '100%',
         railOpacity: 0.9
+    });
+    let $b = $('#builder');
+
+    var options = {
+        lang_code: 'ru',
+        allow_empty: true,
+        sort_filters: true,
+        plugins: {
+            'bt-tooltip-errors': { delay: 100 },
+            'sortable': null,
+            'filter-description': { mode: 'popover' },
+            'bt-selectpicker': null,
+            'unique-filter': null,
+            'bt-checkbox': { color: 'primary' },
+            'invert': null,
+            'not-group': null
+        },
+        operators: [
+            { type: 'equal', optgroup: 'Базовые' },
+            { type: 'not_equal', optgroup: 'Базовые' },
+            { type: 'in', optgroup: 'Базовые' },
+            { type: 'not_in', optgroup: 'Базовые' },
+            { type: 'less', optgroup: 'Работа с числами' },
+            { type: 'less_or_equal', optgroup: 'Работа с числами' },
+            { type: 'greater', optgroup: 'Работа с числами' },
+            { type: 'greater_or_equal', optgroup: 'Работа с числами' },
+            { type: 'between', optgroup: 'Работа с числами' },
+            { type: 'not_between', optgroup: 'Работа с числами' },
+            { type: 'begins_with', optgroup: 'Работа со строками' },
+            { type: 'not_begins_with', optgroup: 'Работа со строками' },
+            { type: 'contains', optgroup: 'Работа со строками' },
+            { type: 'not_contains', optgroup: 'Работа со строками' },
+            { type: 'ends_with', optgroup: 'Работа со строками' },
+            { type: 'not_ends_with', optgroup: 'Работа со строками' },
+            { type: 'is_empty' },
+            { type: 'is_not_empty' },
+            { type: 'is_null' },
+            { type: 'is_not_null' }
+        ],
+        icons: {
+            add_group:    'fa fa-plus-sign',
+            add_rule:     'fa fa-plus',
+            remove_group: 'fa fa-remove',
+            remove_rule:  'fa fa-remove',
+            error:        'fa fa-warning-sign'
+        },
+        filters: [
+            {
+                id: 'lastname',
+                field: 'lastname',
+                label: {
+                    ru: 'Фамилия'
+                },
+                value_separator: ',',
+                type: 'string',
+                default_value: '',
+                size: 30,
+                validation: {
+                    allow_empty_value: true
+                },
+            },
+            {
+                id: 'firstname',
+                field: 'firstname',
+                label: {
+                    ru: 'Имя'
+                },
+                value_separator: ',',
+                type: 'string',
+                default_value: '',
+                size: 30,
+                validation: {
+                    allow_empty_value: true
+                },
+            },
+            {
+                id: 'middlename',
+                field: 'middlename',
+                label: {
+                    ru: 'Отчество'
+                },
+                value_separator: ',',
+                type: 'string',
+                default_value: '',
+                size: 30,
+                validation: {
+                    allow_empty_value: true
+                },
+            },
+        ]
+    }
+    $b.queryBuilder(options);
+    $b.on('afterCreateRuleInput.queryBuilder', function(e, rule) {
+        if (rule.filter.plugin == 'selectize') {
+            rule.$el.find('.rule-value-container').css('min-width', '200px')
+                .find('.selectize-control').removeClass('form-control');
+        }
     });
 };
 
@@ -95,6 +197,13 @@ Template.reports.events({
         };
         let wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary', cellDates: true, cellStyles: true});
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
+    },
+    'click #createQuery': (event) => {
+        event.preventDefault();
+        let query = $('#builder').queryBuilder('getMongo');
+        let res = Students.find(query)
+        console.log( $('#builder').queryBuilder('getRules'));
+        console.log(res.fetch());
     }
 });
 

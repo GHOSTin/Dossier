@@ -5,6 +5,12 @@ Template.navigation.rendered = function(){
 
 };
 
+Template.navigation.helpers({
+    studentGroups(){
+
+    }
+});
+
 // Used only on OffCanvas layout
 Template.navigation.events({
 
