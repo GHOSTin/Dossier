@@ -1,0 +1,61 @@
+<template name="journal">
+
+  <!-- Page heading -->
+  {{> pageHeading title='Журнал оценок' category='' }}
+    <div class="wrapper wrapper-content">
+
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class = "form-group">
+                    <label class = "col-sm-3 control-label" for="group">Группа:</label>
+                    <div class = "col-sm-3">
+                        <h5>{{#if currentUser.group}}
+                                {{currentUser.group}}
+                            {{else}}
+                                <select name="group" class="form-control" id="group">
+                                    <option></option>
+                                </select>
+                            {{/if}}
+                        </h5>
+                    </div>
+                    <label class = "col-sm-3 control-label" for="semester">Семестр:</label>
+                    <div class = "col-sm-3">
+                        <select name="semester" id="semester" class="form-control">
+                            <option value="1">Семестр 1</option>
+                            <option value="2">Семестр 2</option>
+                            <option value="3">Семестр 3</option>
+                            <option value="4">Семестр 4</option>
+                            <option value="5">Семестр 5</option>
+                            <option value="6">Семестр 6</option>
+                            <option value="7">Семестр 7</option>
+                            <option value="8">Семестр 8</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row m-b-sm m-t-sm">
+                    <div class="col-md-6 m-b-sm">
+                        <div class="input-group">
+                            <select name="lesson" id="lesson" class="form-control">
+                                <option value=""></option>
+                                <option value="Русский язык">Русский язык</option>
+                                <option value="Литература">Литература</option>
+                                <option value="Математика">Математика</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" id="add">
+                                    Добавить
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="list"></div>
+                        <button type="button" id="save" class="btn btn-primary m-t">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

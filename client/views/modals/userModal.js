@@ -1,3 +1,4 @@
+import {Groups} from '/lib/collections/students'
 Template.userModal.onRendered(function(){
     /*$('#role').select2({
         dropdownParent: $('#userModal'),
@@ -24,6 +25,9 @@ Template.userModal.helpers({
     },
     roles() {
         return Roles.getAllRoles();
+    },
+    groups(){
+        return Groups.find();
     }
 });
 

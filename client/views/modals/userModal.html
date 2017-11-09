@@ -57,7 +57,17 @@
                         <option></option>
                         <option value="admin" {{isSelected (_contains user.roles "admin") true}}>Администратор</option>
                         <option value="user" {{isSelected (_contains user.roles "user") true}}>Пользователь</option>
+                        <option value="master" {{isSelected (_contains user.roles "master") true}}>Классный руководитель</option>
                       </select>
+                    </div>
+                    <div class="form-group {{#if _isEmpty user.roles}}is-empty{{/if}}">
+                        <label for="group">Роль</label>
+                        <select id="group" class="form-control input pmd-select2" style="width: 100%;" name="group">
+                            <option value="">Все группы</option>
+                            {{#each group in groups}}
+                                <option value="{{group.name}}" {{isSelected group.name user.group}}>{{group.name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                   </div>
                 </div>
@@ -167,12 +177,10 @@
             </div>
           </form>
         </div>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="save">Сохранить</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
         </div>
-
       </div>
     </div>
   </div>

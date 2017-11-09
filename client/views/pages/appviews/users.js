@@ -17,6 +17,7 @@ Template.users.onCreated(function() {
                 self.searching.set(false);
             }, 3000);
         });
+        self.subscribe('students.groupList');
     });
 });
 

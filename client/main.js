@@ -49,4 +49,4 @@ Tracker.autorun(()=>{
         "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
 });
-Meteor.subscribe('Meteor.user.rules');
+Meteor.subscribe('Meteor.user');

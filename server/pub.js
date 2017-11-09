@@ -15,12 +15,12 @@ Meteor.publish('users', function (search) {
     return Meteor.users.find(query, projection);
 });
 
-Meteor.publish('Meteor.user.rules', function () {
+Meteor.publish('Meteor.user', function () {
     const selector = {
         _id: this.userId
     };
     const options = {
-        fields: { rules: 1 }
+        fields: { rules: 1, group: 1 }
     };
     return Meteor.users.find(selector, options);
 });
@@ -75,6 +75,16 @@ Meteor.publish('students', function( search, filter ){
         filterQuery = {},
         projection = {sort: {"ind": 1}};
 
+    if(Meteor.user().group){
+        let [, spec, course, group] = Meteor.user().group.split(/(\S+)-(\d)(\d+)/gi);
+        query = {
+            role: "student",
+            spec: spec,
+            course: course,
+            group: group
+        }
+    }
+
     if (search) {
         let regex = new RegExp(search, 'i');
 
@@ -115,7 +125,7 @@ Meteor.publish('students', function( search, filter ){
                 filterQuery = {email: filterText};
                 break;
             case 'group':
-                let [full, spec, course, group] = filter.filterText.split(/(\D{2,4})-(\d)(\d*)/gi);
+                let [, spec, course, group] = filter.filterText.split(/(\D+)-(\d)(\d+)/gi);
                 filterQuery = {$and: [{spec: spec}, {course: course}, {group: group}]};
                 break;
         }
@@ -140,4 +150,22 @@ Meteor.publish('avatar', function( id ){
         return Avatars.findOne({_id: id});
     }
     return Avatars.find({});
+});
+
+Meteor.publish('students.groupList', function(){
+  let pub = this;
+  let groups = Students.aggregate([
+    {$project: {
+        "groupName": { $concat : ["$spec", "-", "$course", "$group"]},
+        role: 1
+    }},
+    {$match: {role: "student"}},
+    {$group: {
+        _id: "$groupName"}}
+  ]).map(function(e){ return e._id});
+  console.log(groups);
+  groups.forEach((group)=>{
+      pub.added('groups', Random.id(), {name: group});
+  });
+  pub.ready();
 });

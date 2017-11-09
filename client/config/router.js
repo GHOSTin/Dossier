@@ -76,6 +76,12 @@ loggedIn.route('/reports', {
     }
 });
 
+loggedIn.route('/journal', {
+  action() {
+    BlazeLayout.render("mainLayout", {content: "journal"})
+  }
+});
+
 
 admin.route('/users', {
     name: 'users',
