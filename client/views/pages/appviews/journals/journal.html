@@ -7,19 +7,22 @@
         <div class="ibox">
             <div class="ibox-title">
                 <div class = "form-group">
-                    <label class = "col-sm-3 control-label" for="group">Группа:</label>
-                    <div class = "col-sm-3">
+                    <label class = "col-sm-1 control-label text-right" for="group">Группа:</label>
+                    <div class = "col-sm-2">
                         <h5>{{#if currentUser.group}}
                                 {{currentUser.group}}
                             {{else}}
                                 <select name="group" class="form-control" id="group">
                                     <option></option>
+                                    {{#each group in groups}}
+                                      <option value="{{group.name}}">{{group.name}}</option>
+                                    {{/each}}
                                 </select>
                             {{/if}}
                         </h5>
                     </div>
-                    <label class = "col-sm-3 control-label" for="semester">Семестр:</label>
-                    <div class = "col-sm-3">
+                    <label class = "col-sm-1 control-label text-right" for="semester">Семестр:</label>
+                    <div class = "col-sm-2">
                         <select name="semester" id="semester" class="form-control">
                             <option value="1">Семестр 1</option>
                             <option value="2">Семестр 2</option>
@@ -37,11 +40,11 @@
                 <div class="row m-b-sm m-t-sm">
                     <div class="col-md-6 m-b-sm">
                         <div class="input-group">
-                            <select name="lesson" id="lesson" class="form-control">
+                            <select name="lesson" id="lesson" class="form-control chosen-select" data-placeholder="Выберите дисциплину...">
                                 <option value=""></option>
-                                <option value="Русский язык">Русский язык</option>
-                                <option value="Литература">Литература</option>
-                                <option value="Математика">Математика</option>
+                                <option value="1">Русский язык</option>
+                                <option value="2">Литература</option>
+                                <option value="3">Математика</option>
                             </select>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary" id="add">

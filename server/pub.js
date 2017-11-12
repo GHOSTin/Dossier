@@ -163,7 +163,6 @@ Meteor.publish('students.groupList', function(){
     {$group: {
         _id: "$groupName"}}
   ]).map(function(e){ return e._id});
-  console.log(groups);
   groups.forEach((group)=>{
       pub.added('groups', Random.id(), {name: group});
   });
