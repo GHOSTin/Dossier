@@ -1,5 +1,5 @@
 import { Accounts } from 'meteor/accounts-base';
-import { Students } from '/lib/collections/students'
+import { Students, Journal, Disciplines } from '/lib/collections/students'
 
 Meteor.methods({
     addUser: function(userAttributes) {
@@ -305,5 +305,22 @@ Meteor.methods({
                 }
             }]);
         }
+    },
+  'journal.insert'(semester, data){
+    data.forEach((elem)=>{
+      let uId = elem.shift();
+      Journal.remove({uId, semester});
+      elem.forEach((elem)=>{
+        Journal.insert({uId, semester, lessonId: elem.id, point: elem.value});
+      })
+    })
+  },
+  disciplines(data){
+    let {spec, discipline} = data;
+    if(discipline.id){
+      Disciplines.update({_id: discipline.id}, {$set: {name: discipline.name, spec}})
+    } else {
+      Disciplines.insert({name: discipline.name, spec})
     }
+  }
 });

@@ -6,9 +6,9 @@
 
         <div class="ibox">
             <div class="ibox-title">
-                <div class = "form-group">
-                    <label class = "col-sm-1 control-label text-right" for="group">Группа:</label>
-                    <div class = "col-sm-2">
+                <div class = "form-group row m-b-xs">
+                    <label class = "col-xs-3 col-sm-1 control-label text-right" for="group">Группа:</label>
+                    <div class = "col-xs-9 col-sm-2 col-lg-1">
                         <h5>{{#if currentUser.group}}
                                 {{currentUser.group}}
                             {{else}}
@@ -21,8 +21,8 @@
                             {{/if}}
                         </h5>
                     </div>
-                    <label class = "col-sm-1 control-label text-right" for="semester">Семестр:</label>
-                    <div class = "col-sm-2">
+                    <label class = "col-xs-3 col-sm-2 col-lg-1 control-label text-right" for="semester">Семестр:</label>
+                    <div class = "col-xs-9 col-sm-3 col-lg-2">
                         <select name="semester" id="semester" class="form-control">
                             <option value="1">Семестр 1</option>
                             <option value="2">Семестр 2</option>
@@ -42,9 +42,9 @@
                         <div class="input-group">
                             <select name="lesson" id="lesson" class="form-control chosen-select" data-placeholder="Выберите дисциплину...">
                                 <option value=""></option>
-                                <option value="1">Русский язык</option>
-                                <option value="2">Литература</option>
-                                <option value="3">Математика</option>
+                                {{#each discipline in disciplines}}
+                                    <option value="{{discipline._id}}">{{discipline.name}}</option>
+                                {{/each}}
                             </select>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary" id="add">

@@ -4,6 +4,8 @@ Template.pageHeading.helpers({
     home: 'dashboard',
     students(){
         return {name: "Список студеентов", href: "/students"}
+    },
+    dictionary(){
+      return {name: "Справочники", href: "#"}
     }
-
 });

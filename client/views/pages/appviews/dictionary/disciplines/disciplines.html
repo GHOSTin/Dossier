@@ -1,0 +1,62 @@
+<template name="disciplines">
+    <!-- Page heading -->
+    {{> pageHeading title='Дисциплины' category='dictionary' }}
+    <div class="wrapper wrapper-content">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Список дисциплин по специальностям</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row m-b-sm m-t-sm">
+                    <div class="col-lg-1 col-md-2 col-sm-3">
+                        <label>
+                            <select class="form-control" aria-label="Специальность" id="spec">
+                                <option></option>
+                                <option value = "ЭД">ЭД</option>
+                                <option value = "МД">МД</option>
+                                <option value = "ТМД">ТМД</option>
+                                <option value = "ТД">ТД</option>
+                                <option value = "СтД">СтД</option>
+                                <option value = "АвД">АвД</option>
+                                <option value = "АхД">АхД</option>
+                                <option value = "ИД">ИД</option>
+                                <option value = "АД">АД</option>
+                                <option value = "ПСД">ПСД</option>
+                                <option value = "МчМД">МчМД</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-lg-11 col-md-10 col-sm-9">
+                        <div class="input-group">
+                            <input type="text" placeholder="Дисциплина" class="input-sm form-control" id="discipline" data-id="" aria-label="Дисциплина">
+                            <span class="input-group-btn">
+                                <button role="button" type="button" class="btn btn-primary btn-sm" id="add">Добавить</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-list">
+                    <table class="table table-hover">
+                        <tbody>
+                            {{#each discipline in disciplines}}
+                            <tr>
+                                <td class="project-title">
+                                    {{discipline.name}}
+                                </td>
+                                <td class="project-actions">
+                                    <button type="button" role="button" class="btn btn-white btn-sm" id="edit" data-id="{{discipline._id}}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button type="button" role="button" class="btn btn-white btn-sm" id="delete">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

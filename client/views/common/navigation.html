@@ -54,6 +54,15 @@
             </li>
         {{/if}}
         {{#if isInRole 'admin'}}
+            <li class="{{isActivePath regex='/dictionary/'}}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label"
+                    data-i18n="nav.journal">Справочники</span><i class="fa arrow"></i> </a>
+                <ul class="nav nav-second-level collapse in">
+                   <li>
+                       <a href="/dictionary/disciplines"><span class="nav-label" data-i18n="nav.disciplines">Учебные дисциплины</span></a>
+                   </li>
+                </ul>
+            </li>
           <li class="{{isActivePath regex='/users'}}">
             <a href="/users"><i class="fa fa-user"></i> <span class="nav-label"
                                                               data-i18n="nav.users">Пользователи</span> </a>

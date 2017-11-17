@@ -11,7 +11,7 @@ let loggedIn = FlowRouter.group({
             if(!(Meteor.loggingIn() || Meteor.userId())) {
                 let route = FlowRouter.current();
 
-                if(route.route.name !== 'login'){
+                if(route.route.name != 'login'){
                     Session.set('redirectAfterLogin', route.path)
                 } else {
                     Session.set('redirectAfterLogin', FlowRouter.path('dashboard'))
@@ -82,6 +82,12 @@ loggedIn.route('/journal', {
   }
 });
 
+admin.route('/dictionary/disciplines', {
+  name: 'disciplines',
+  action() {
+    BlazeLayout.render("mainLayout", {content: "disciplines"})
+  }
+});
 
 admin.route('/users', {
     name: 'users',
