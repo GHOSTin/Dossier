@@ -38,6 +38,6 @@ Template.disciplines.events({
   'click #edit': (event, template)=>{
     event.preventDefault();
     let discipline = Disciplines.findOne({_id: $(event.currentTarget).data('id')});
-    $('#discipline').val(discipline.name).attr('id', discipline._id);
+    $('#discipline').val(discipline.name).data('id', discipline._id);
   }
 });
