@@ -15,6 +15,7 @@
     "jquery": "^1.12.4",
     "jquery-serializejson": "^2.8.1",
     "meteor-node-stubs": "^0.2.11",
+    "pivottable": "github:nicolaskruchten/pivottable",
     "sweetalert2": "^6.11.5",
     "xlsx": "^0.10.9"
   }

@@ -202,3 +202,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     display: block;
 }
 /**********************************************************************/
+
+.pvtFilterBox input[type=checkbox] {
+    position: inherit;
+    left: auto;
+    visibility: inherit;
+}
+
+.pvtUi select {
+    display: inherit;
+}

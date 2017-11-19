@@ -1,4 +1,6 @@
+require('pivottable');
 const XLSX = require('xlsx');
+import 'pivottable/dist/pivot.min.css';
 import {ReactiveDict} from 'meteor/reactive-dict'
 import {Students} from '/lib/collections/students'
 
@@ -76,6 +78,23 @@ Template.reports.rendered = function(){
             error:        'fa fa-warning-sign'
         },
         filters: [
+            {
+                id: 'role',
+                field: 'role',
+                label: {
+                    ru: 'Статус'
+                },
+                input: 'select',
+                type: 'string',
+                values: {
+                    'student': 'Студент',
+                    'abiturient': 'Абитуриент'
+                },
+                operators: ['equal'],
+                validation: {
+                    allow_empty_value: true
+                },
+            },
             {
                 id: 'lastname',
                 field: 'lastname',
@@ -199,11 +218,28 @@ Template.reports.events({
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "report.xlsx");
     },
     'click #createQuery': (event) => {
+        let renderers = $.extend(
+            $.pivotUtilities.renderers,
+            $.pivotUtilities.c3_renderers,
+            $.pivotUtilities.d3_renderers,
+            $.pivotUtilities.export_renderers
+        );
+        let dateFormat = $.pivotUtilities.derivers.dateFormat;
         event.preventDefault();
         let query = $('#builder').queryBuilder('getMongo');
         let res = Students.find(query)
-        console.log( $('#builder').queryBuilder('getRules'));
-        console.log(res.fetch());
+        $("#pivot").pivotUI(res.fetch(), {
+            hiddenAttributes: ["_id", "id", "ind", "lastname", "firstname", "middlename"],
+            derivedAttributes: {
+                'ФИО': (item)=>{
+                    return `${item.lastname} ${item.firstname} ${item.middlename}`;
+                },
+                'Группа': (item)=>{
+                    return `${item.spec}-${item.course}${item.group}`;
+                },
+                'Дата создания': dateFormat("createAt", "%d.%m.%y")
+            },
+            renderers: renderers }, true);
     }
 });
 
