@@ -48,6 +48,8 @@
             <a href="/reports"><i class="fa fa-file-text-o"></i> <span class="nav-label"
                                                                        data-i18n="nav.reports">Отчеты</span> </a>
           </li>
+        {{/if}}
+        {{#if currentUser.rules.journal.general}}
             <li class="{{isActivePath regex='/journal'}}">
                 <a href="/journal"><i class="fa fa-bookmark"></i> <span class="nav-label"
                                                                            data-i18n="nav.journal">Журнал оценок</span> </a>
