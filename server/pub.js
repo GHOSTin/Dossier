@@ -188,6 +188,7 @@ Meteor.publish('students.groupList', function () {
       }
     },
     {$match: {role: "student"}},
+    { $sort : { groupName : -1 } },
     {
       $group: {
         _id: "$groupName"
