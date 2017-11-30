@@ -163,11 +163,16 @@ Meteor.publish('students', function (search, filter, ...args) {
 Meteor.publish('student', function (id) {
   check(id, Match.OneOf(String, null, undefined));
   let query = {},
+    journal = null,
     projection = {sort: {"ind": 1}};
   if (id) {
     query = {_id: id}
+    journal = Journal.find({uId: id});
   }
-  return Students.find(query, projection);
+  return [
+    Students.find(query, projection),
+    journal
+  ];
 });
 
 Meteor.publish('avatar', function (id) {

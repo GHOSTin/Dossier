@@ -9,10 +9,12 @@ Template.Student.onCreated(function() {
     this.params = new ReactiveDict();
     this.params.set('template', false);
     this.params.set('passport', true);
+    this.params.set('spec', false);
     self.autorun(function() {
         let postId = FlowRouter.getParam('id');
         self.sub = self.subscribe('student', postId);
         self.subscribe('avatar', self.avatarId.get());
+        self.disciplines = self.subscribe('disciplines', self.params.get('spec'));
     });
     self.socialDocs = new ReactiveVar(false);
     self.sports = new ReactiveVar(false);
@@ -48,6 +50,7 @@ Template.Student.helpers({
             switch (student.role) {
                 case "student":
                     Template.instance().params.set('template', 'studentAdvData');
+                    Template.instance().params.set('spec', student.spec);
                     break;
                 case "graduate":
                     Template.instance().params.set('template', 'graduateAdvData');

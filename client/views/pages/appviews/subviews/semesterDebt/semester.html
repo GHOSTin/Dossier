@@ -1,0 +1,32 @@
+<template name="semester">
+  <div class="row">
+    {{#with points journal}}
+    <div class="col-lg-5">
+      <dl class="dl-horizontal">
+        <dt>Средний балл:</dt> <dd>{{avg}}</dd>
+        <dt>Количество пропусков:</dt> <dd> </dd>
+      </dl>
+    </div>
+    <div class="col-lg-7" id="cluster_info">
+      <dl class="dl-horizontal" >
+        <dt>Задолженностей:</dt> <dd>{{debt}}</dd>
+      </dl>
+    </div>
+    {{/with}}
+  </div>
+  <h2>Успеваемость</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <tbody>
+      {{#each item in journal}}
+        <tr class="{{#if $eq item.point ""}}danger{{/if}}">
+          {{#with discipline item.lessonId}}
+          <td>{{name}}</td>
+          {{/with}}
+          <td>{{item.point}}</td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>
