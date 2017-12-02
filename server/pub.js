@@ -163,15 +163,15 @@ Meteor.publish('students', function (search, filter, ...args) {
 Meteor.publish('student', function (id) {
   check(id, Match.OneOf(String, null, undefined));
   let query = {},
-    journal = null,
+    journal = {_id: null},
     projection = {sort: {"ind": 1}};
   if (id) {
     query = {_id: id}
-    journal = Journal.find({uId: id});
+    journal = {uId: id};
   }
   return [
     Students.find(query, projection),
-    journal
+    Journal.find(journal)
   ];
 });
 
