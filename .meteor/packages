@@ -42,7 +42,6 @@ cfs:standard-packages
 cfs:filesystem
 cfs:graphicsmagick
 pfafman:filesaver
-bigdsk:inputmask
 reactive-dict@1.2.0
 jesperwe:bootstrap-select
 ryanswapp:interactjs

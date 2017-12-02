@@ -2,6 +2,7 @@
 
   <!-- Page heading -->
   {{> pageHeading title='Создание/Редактирование студента (абитуриента)' category=""  }}
+  {{#if isReady}}
   {{#with student}}
     <div class = "row">
       <div class = "col-lg-9">
@@ -1542,4 +1543,5 @@
       </div>
     </div>
   {{/with}}
+  {{/if}}
 </template>

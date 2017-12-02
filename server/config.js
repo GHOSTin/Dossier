@@ -1,3 +1,7 @@
+Accounts.config({
+  forbidClientAccountCreation: true,
+});
+
 Accounts.validateLoginAttempt(function (attempt) {
     if (!_.isEqual(attempt.user.profile.status, "active")) {
         attempt.allowed = false;
