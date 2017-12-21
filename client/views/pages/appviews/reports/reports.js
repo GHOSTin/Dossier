@@ -143,7 +143,7 @@ Template.reports.rendered = function () {
   $b.on('afterCreateRuleInput.queryBuilder', function (e, rule) {
     if (rule.filter.plugin == 'selectize') {
       rule.$el.find('.rule-value-container').css('min-width', '200px')
-          .find('.selectize-control').removeClass('form-control');
+        .find('.selectize-control').removeClass('form-control');
     }
   });
 };
@@ -192,7 +192,7 @@ Template.reports.events({
   'click [data-name="saveReport"]': (event, template) => {
     event.preventDefault();
     let report = template.report.get('reportName'),
-        wb = {SheetNames: [], Sheets: {}};
+      wb = {SheetNames: [], Sheets: {}};
     switch (report) {
       case 'dailyStatisticReport':
       case 'KISReport':
@@ -200,7 +200,7 @@ Template.reports.events({
         break;
       case 'PRReport':
         let ws1 = XLSX.utils.table_to_sheet($('#informers').find('table')[0]),
-            ws2 = XLSX.utils.table_to_sheet($('#choose').find('table')[0]);
+          ws2 = XLSX.utils.table_to_sheet($('#choose').find('table')[0]);
         wb.SheetNames.push("Report1");
         wb.Sheets["Report1"] = ws1;
         wb.SheetNames.push("Report2");
@@ -220,18 +220,23 @@ Template.reports.events({
   },
   'click #createQuery': (event) => {
     let renderers = $.extend(
-        $.pivotUtilities.renderers,
-        $.pivotUtilities.c3_renderers,
-        $.pivotUtilities.d3_renderers,
-        $.pivotUtilities.export_renderers
+      $.pivotUtilities.renderers,
+      $.pivotUtilities.c3_renderers,
+      $.pivotUtilities.d3_renderers,
+      $.pivotUtilities.export_renderers
     );
     let dateFormat = $.pivotUtilities.derivers.dateFormat;
     event.preventDefault();
     let query = $('#builder').queryBuilder('getMongo');
-    let res = Students.find(query)
+    let res = Students.find(query);
+    let zeroPad = function(number) {
+      return ("0" + number).substr(-2, 2);
+    };
+    let hiddenAttr = ["_id", "id", "ind", "lastname", "firstname", "middlename",
+      "spec", "course", "group", "birthday", "gender", "address", "parent", "createAt"];
     $("#pivot").pivotUI(res.fetch(), {
-      localeStrings: 'ru',
-      hiddenAttributes: ["_id", "id", "ind", "lastname", "firstname", "middlename"],
+      hiddenAttributes: hiddenAttr,
+      hiddenFromAggregators: hiddenAttr,
       derivedAttributes: {
         'ФИО': (item) => {
           return `${item.lastname} ${item.firstname} ${item.middlename}`;
@@ -239,7 +244,146 @@ Template.reports.events({
         'Группа': (item) => {
           return `${item.spec}-${item.course}${item.group}`;
         },
-        'Дата создания': dateFormat("createAt", "%d.%m.%y")
+        'Специальность': (item) => {
+          return item.spec;
+        },
+        'Номер курса': (item) => {
+          return item.course;
+        },
+        'Дата создания анкеты': dateFormat("createAt", "%d.%m.%y"),
+        'Дата рождения': dateFormat("birthday", "%d.%m.%y"),
+        'Пол': (item) => {
+          let gender = {'male': 'м', 'female': 'ж'};
+          return gender[item.gender];
+        },
+        'Телефон': (item) => {
+          return item.mobile||"";
+        },
+        'Email': (item) => {
+          return item.email||"";
+        },
+        'ИНН': (item) => {
+          return item.TIN||"";
+        },
+        'СНИЛС': (item) => {
+          return item.SNILS||"";
+        },
+        'Тип документа': (item) => {
+          let type = {"1": 'Паспорт гражданина РФ', "2": 'Паспорт иностранного гражданина'};
+          return type[item.passport.type];
+        },
+        'Серия документа': (item) => {
+          return item.passport.code;
+        },
+        'Номер документа': (item) => {
+          return item.passport.number;
+        },
+        'Дата выдачи документа': (item) => {
+          let date = item.passport.number;
+          date = new Date(Date.parse(date));
+          return `${zeroPad(date["getDate"]())}.${zeroPad(date["getMonth"]() + 1)}.${date["getFullYear"]()}`;
+        },
+        'Кем выдан документ': (item) => {
+          return item.passport.department;
+        },
+        'Код подразделения': (item) => {
+          return item.passport.departmentCode;
+        },
+        'Родитель1 (Роль)': (item) => {
+          let role = {"mother":"Мать", "father":"Отец" ,"guardian":"Опекун"};
+          if(item.parent) {
+            return item.parent[0].role? role[item.parent[0].role]:"";
+          }
+          return "";
+        },
+        'Родитель1 (ФИО)': (item) => {
+          if(item.parent) {
+            return `${item.parent[0].firstname} ${item.parent[0].lastname} ${item.parent[0].middlename}`;
+          }
+          return "";
+        },
+        'Родитель1 (Место работы)': (item) => {
+          if(item.parent) {
+            return item.parent[0].work||"";
+          }
+          return "";
+        },
+        'Родитель1 (Должность)': (item) => {
+          if(item.parent) {
+            return item.parent[0].position||"";
+          }
+          return "";
+        },
+        'Родитель1 (Телефон)': (item) => {
+          if(item.parent) {
+            return item.parent[0].phone||"";
+          }
+          return "";
+        },
+        'Родитель2 (Роль)': (item) => {
+          let role = {"mother":"Мать", "father":"Отец" ,"guardian":"Опекун"};
+          if(item.parent) {
+            return item.parent[1].role? role[item.parent[1].role]:"";
+          }
+          return "";
+        },
+        'Родитель2 (ФИО)': (item) => {
+          if(item.parent) {
+            return `${item.parent[1].firstname} ${item.parent[1].lastname} ${item.parent[1].middlename}`;
+          }
+          return "";
+        },
+        'Родитель2 (Место работы)': (item) => {
+          if(item.parent) {
+            return item.parent[1].work||"";
+          }
+          return "";
+        },
+        'Родитель2 (Должность)': (item) => {
+          if(item.parent) {
+            return item.parent[1].position||"";
+          }
+          return "";
+        },
+        'Родитель2 (Телефон)': (item) => {
+          if(item.parent) {
+            return item.parent[1].phone||"";
+          }
+          return "";
+        },
+        'Адрес Регистрации': (item) => {
+          return `${item.address.registration.region}, ${item.address.registration.city}, ${item.address.registration.shf}`;
+        },
+        'Адрес Регистрации (Регион)': (item) => {
+          return item.address.registration.region;
+        },
+        'Адрес Регистрации (Населенный пункт)': (item) => {
+          return item.address.registration.city;
+        },
+        'Адрес Регистрации (Улица, Дом, Квартира)': (item) => {
+          return item.address.registration.shf;
+        },
+        'Адрес Фактический': (item) => {
+          return `${item.address.fact.region}, ${item.address.fact.city}, ${item.address.fact.shf}`;
+        },
+        'Адрес Фактический (Регион)': (item) => {
+          return item.address.fact.region;
+        },
+        'Адрес Фактический (Населенный пункт)': (item) => {
+          return item.address.fact.city;
+        },
+        'Адрес Фактический (Улица, Дом, Квартира)': (item) => {
+          return item.address.fact.shf;
+        },
+        'Средний балл аттестата': (item) => {
+          return item.diploma.avr||0;
+        },
+        'Номер образовательной организации': (item) => {
+          return item.school.number||"";
+        },
+        'Город образовательной организации': (item) => {
+          return item.school.city||"";
+        },
       },
       renderers: renderers
     }, true);
@@ -248,7 +392,7 @@ Template.reports.events({
 
 function s2ab(s) {
   let buf = new ArrayBuffer(s.length),
-      view = new Uint8Array(buf);
+    view = new Uint8Array(buf);
   for (let i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
   return buf
 }
