@@ -282,9 +282,7 @@ Template.Student.events({
       Bert.alert('Обнаружены ошибки в заполнении!', 'danger', 'fixed-top', 'fa-frown-o');
       return false;
     }
-    let data = $('#form').find(':input').filter(function () {
-          return $.trim(this.value).length > 0
-        }).serializeJSON({
+    let data = $('#form').find(':input').serializeJSON({
           customTypes: {
             date: function (str) {
               return new Date(str);
