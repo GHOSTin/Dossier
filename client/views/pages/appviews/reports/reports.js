@@ -279,7 +279,7 @@ Template.reports.events({
           return item.passport.number;
         },
         'Дата выдачи документа': (item) => {
-          let date = item.passport.number;
+          let date = item.passport.date;
           date = new Date(Date.parse(date));
           return `${zeroPad(date["getDate"]())}.${zeroPad(date["getMonth"]() + 1)}.${date["getFullYear"]()}`;
         },
@@ -322,31 +322,31 @@ Template.reports.events({
         },
         'Родитель2 (Роль)': (item) => {
           let role = {"mother":"Мать", "father":"Отец" ,"guardian":"Опекун"};
-          if(item.parent) {
+          if(item.parent && item.parent.length > 1) {
             return item.parent[1].role? role[item.parent[1].role]:"";
           }
           return "";
         },
         'Родитель2 (ФИО)': (item) => {
-          if(item.parent) {
+          if(item.parent && item.parent.length > 1) {
             return `${item.parent[1].firstname} ${item.parent[1].lastname} ${item.parent[1].middlename}`;
           }
           return "";
         },
         'Родитель2 (Место работы)': (item) => {
-          if(item.parent) {
+          if(item.parent && item.parent.length > 1) {
             return item.parent[1].work||"";
           }
           return "";
         },
         'Родитель2 (Должность)': (item) => {
-          if(item.parent) {
+          if(item.parent && item.parent.length > 1) {
             return item.parent[1].position||"";
           }
           return "";
         },
         'Родитель2 (Телефон)': (item) => {
-          if(item.parent) {
+          if(item.parent && item.parent.length > 1) {
             return item.parent[1].phone||"";
           }
           return "";
@@ -376,7 +376,10 @@ Template.reports.events({
           return item.address.fact.shf;
         },
         'Средний балл аттестата': (item) => {
-          return item.diploma.avr||0;
+          if(item.diploma) {
+            return parseFloat(item.diploma.avr||0).toFixed(2).replace('.',',');
+          }
+          return "";
         },
         'Номер образовательной организации': (item) => {
           return item.school.number||"";
