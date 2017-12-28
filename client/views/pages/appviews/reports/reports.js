@@ -1,6 +1,7 @@
 require('pivottable');
 const XLSX = require('xlsx');
 import 'pivottable/dist/pivot.min.css';
+import moment from 'moment';
 import {ReactiveDict} from 'meteor/reactive-dict'
 import {Students} from '/lib/collections/students'
 
@@ -251,7 +252,12 @@ Template.reports.events({
           return item.course;
         },
         'Дата создания анкеты': dateFormat("createAt", "%d.%m.%y"),
-        'Дата рождения': dateFormat("birthday", "%d.%m.%y"),
+        'Дата рождения': (item) => {
+          let date = item.birthday;
+          if(date) {
+            return moment(date, 'DD.MM.YYYY').format('DD.MM.YYYY');
+          }
+        },
         'Пол': (item) => {
           let gender = {'male': 'м', 'female': 'ж'};
           return gender[item.gender];
@@ -280,8 +286,10 @@ Template.reports.events({
         },
         'Дата выдачи документа': (item) => {
           let date = item.passport.date;
-          date = new Date(Date.parse(date));
-          return `${zeroPad(date["getDate"]())}.${zeroPad(date["getMonth"]() + 1)}.${date["getFullYear"]()}`;
+          if(date) {
+            return moment(date, 'DD.MM.Y').format('DD.MM.Y');
+          }
+          return "";
         },
         'Кем выдан документ': (item) => {
           return item.passport.department;
