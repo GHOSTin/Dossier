@@ -333,31 +333,32 @@ Template.reports.events({
         },
         'Родитель2 (Роль)': (item) => {
           let role = {"mother":"Мать", "father":"Отец" ,"guardian":"Опекун"};
-          if(item.parent && item.parent.length > 1) {
+          if(item.parent && Object.keys(item.parent).length > 1) {
             return item.parent[1].role? role[item.parent[1].role]:"";
+          } else {
+            return "";
           }
-          return "";
         },
         'Родитель2 (ФИО)': (item) => {
-          if(item.parent && item.parent.length > 1) {
+          if(item.parent && Object.keys(item.parent).length > 1) {
             return `${item.parent[1].firstname} ${item.parent[1].lastname} ${item.parent[1].middlename}`;
           }
           return "";
         },
         'Родитель2 (Место работы)': (item) => {
-          if(item.parent && item.parent.length > 1) {
+          if(item.parent && Object.keys(item.parent).length > 1) {
             return item.parent[1].work||"";
           }
           return "";
         },
         'Родитель2 (Должность)': (item) => {
-          if(item.parent && item.parent.length > 1) {
+          if(item.parent && Object.keys(item.parent).length > 1) {
             return item.parent[1].position||"";
           }
           return "";
         },
         'Родитель2 (Телефон)': (item) => {
-          if(item.parent && item.parent.length > 1) {
+          if(item.parent && Object.keys(item.parent).length > 1) {
             return item.parent[1].phone||"";
           }
           return "";
