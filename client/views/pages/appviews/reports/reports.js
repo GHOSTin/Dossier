@@ -399,6 +399,9 @@ Template.reports.events({
         'Город образовательной организации': (item) => {
           return item.school.city||"";
         },
+        'Вид финансирования': ()=>{
+          return 'бюджет';
+        }
       },
     }, true);
   },
